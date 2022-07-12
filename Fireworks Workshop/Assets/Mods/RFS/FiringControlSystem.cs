@@ -50,6 +50,7 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
     public TMP_InputField StartChannel;
     public TMP_Text AudioChnnls;
     public TMP_Text ShowTime;
+    public Button ShowMakerToggle;
 
     private bool ToolActive;
     private bool ShowmakerActive;
@@ -202,6 +203,13 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
                 }
             }
         }
+        if (ShowmakerActive)
+        {
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                ToggleTool();
+            }
+        }
     }
 
 
@@ -217,6 +225,7 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
             DestroyToggle.onClick.AddListener(DesToggle);
             RemoteToggle.onClick.AddListener(RemoteDetToggle);
             Populate.onClick.AddListener(AutoPopulate);
+            ShowMakerToggle.onClick.AddListener(ToggleShowmaker);
             IsActive = true;
         }
         else
@@ -229,6 +238,7 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
             DestroyToggle.onClick.RemoveAllListeners();
             RemoteToggle.onClick.RemoveAllListeners();
             Populate.onClick.RemoveAllListeners();
+            ShowMakerToggle.onClick.RemoveAllListeners();
             UiController.SetActive(false);
             IsActive = false;
         }
@@ -398,23 +408,30 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
         {
             TopLevelUi.SetActive(false);
             ShowmakerActive = false;
-            ToolActive = true;
-            ToggleTool();
             PlayButtonClick();
+            ShowMakerToggle.image.sprite = ToggleOff;
         }
         else
         {
             TopLevelUi.SetActive(true);
             ShowmakerActive = true;
-            ToolActive = false;
-            ToggleTool();
             PlayButtonClick();
+            ShowMakerToggle.image.sprite = ToggleOn;
         }
     }
 
     public void SetStartChannel(string start)
     {
         startChannel = Mathf.Clamp(int.Parse(start), 0, 10000);
+        FAudioPlayers = (FmAudioPlayer[])GameObject.FindObjectsOfType(typeof(FmAudioPlayer));
+        AudioChnnls.text = $"Audio Players In Show: {FAudioPlayers.Length}";
+        SetAudioTimes();
+    }
+
+    public void SetStartChannel(int start)
+    {
+        startChannel = start;
+        StartChannel.text = start.ToString("0");
         FAudioPlayers = (FmAudioPlayer[])GameObject.FindObjectsOfType(typeof(FmAudioPlayer));
         AudioChnnls.text = $"Audio Players In Show: {FAudioPlayers.Length}";
         SetAudioTimes();
@@ -511,6 +528,10 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
 
         entitydata.Add<bool>("Destroy", destroy);
 
+        entitydata.Add<bool>("ShowMaker", ShowmakerActive);
+
+        entitydata.Add<int>("StartChnnl", startChannel);
+
 
         return entitydata;
     }
@@ -565,6 +586,16 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
             destroy = false;
             DestroyToggle.image.sprite = ToggleOff;
         }
+
+        bool showactive = customComponentData.Get<bool>("ShowMaker");
+        int srtchnl = customComponentData.Get<int>("StartChnnl");
+        if (showactive)
+        {
+            ToggleShowmaker();
+            SetStartChannel(srtchnl);
+            SetAudioTimes();
+        }
+
 
     }
 
