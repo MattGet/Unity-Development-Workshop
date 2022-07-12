@@ -43,8 +43,20 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
     public Sprite ToggleOn;
     public Sprite ToggleOff;
 
+    [Space(10)]
+    [Header("Showmaker Stuff")]
+    public GameObject ToolBar;
+    public GameObject TopLevelUi;
+    public TMP_InputField StartChannel;
+    public TMP_Text AudioChnnls;
+    public TMP_Text ShowTime;
 
+    private bool ToolActive;
+    private bool ShowmakerActive;
+    private int startChannel = 0;
+    private float startTime = 0;
 
+    private FmAudioPlayer[] FAudioPlayers;
     private Rigidbody _rigidbody;
 
     private bool IsActive = false;
@@ -55,6 +67,7 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
     private List<int> ids = new List<int>();
     private bool confirm = false;
     private bool remote = true;
+    
 
     public void FireButton(bool withSound)
     {
@@ -64,10 +77,19 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
         this.IgniteInstant();
         if (withSound) PlayButtonClick();
         ComputerDisplay.text = "Started Launch Sequence";
-        foreach (GameObject Channel in Channels)
+
+        int input = 0;
+        if (ShowmakerActive)
+        {
+            input = startChannel;
+            StartCoroutine(Timer());
+            if (ToolActive) ToggleTool();
+        }
+
+        for (int i = input; i <= Channels.Count - 1; i++)
         {
             List<float> data = new List<float>();
-            foreach (Transform T in Channel.transform)
+            foreach (Transform T in Channels[i].transform)
             {
                 TMP_InputField field;
                 if (T.gameObject.TryGetComponent<TMP_InputField>(out field))
@@ -89,6 +111,18 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
                 }
             }
         }
+    }
+
+    public IEnumerator Timer()
+    {
+        float CurrTime = startTime;
+        float TotalTime = FAudioPlayers[0].Player.clip.length + 30;
+        do
+        {
+            ShowTime.text = CurrTime.ToString("0000");
+            yield return new WaitForSeconds(1);
+            CurrTime = CurrTime + 1;
+        } while (CurrTime < TotalTime);
     }
 
     public IEnumerator ChannelCount(int channel, float time)
@@ -341,6 +375,89 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
             Destroy(TileToRemove);
         }
     }
+
+    public void ToggleTool()
+    {
+        if (ToolActive)
+        {
+            ToolBar.SetActive(false);
+            ToolActive = false;
+        }
+        else
+        {
+            ToolBar.SetActive(true);
+            ToolActive = true;
+            FAudioPlayers = (FmAudioPlayer[])GameObject.FindObjectsOfType(typeof(FmAudioPlayer));
+            AudioChnnls.text = $"Audio Players In Show: {FAudioPlayers.Length}";
+        }
+    }
+
+    public void ToggleShowmaker()
+    {
+        if (ShowmakerActive)
+        {
+            TopLevelUi.SetActive(false);
+            ShowmakerActive = false;
+            ToolActive = true;
+            ToggleTool();
+            PlayButtonClick();
+        }
+        else
+        {
+            TopLevelUi.SetActive(true);
+            ShowmakerActive = true;
+            ToolActive = false;
+            ToggleTool();
+            PlayButtonClick();
+        }
+    }
+
+    public void SetStartChannel(string start)
+    {
+        startChannel = Mathf.Clamp(int.Parse(start), 0, 10000);
+        FAudioPlayers = (FmAudioPlayer[])GameObject.FindObjectsOfType(typeof(FmAudioPlayer));
+        AudioChnnls.text = $"Audio Players In Show: {FAudioPlayers.Length}";
+        SetAudioTimes();
+    }
+
+    private void SetAudioTimes()
+    {
+        if (ShowmakerActive)
+        {
+
+            List<float> data = new List<float>();
+            foreach (Transform T in Channels[startChannel].transform)
+            {
+                TMP_InputField field;
+                if (T.gameObject.TryGetComponent<TMP_InputField>(out field))
+                {
+                    if (field != null)
+                    {
+                        float x = 10000f;
+                        if (float.TryParse(field.text, out x)) { data.Add(x); }
+                    }
+                }
+            }
+
+            if (data.Count == 2)
+            {
+                //Debug.Log("Caught Channel: " + data[0] + " Caught Time: " + data[1]);
+                if (data[0] == startChannel)
+                {
+                    startTime = data[1];
+                }
+            }
+
+            foreach (FmAudioPlayer Player in FAudioPlayers)
+            {
+                if (Player.Player.isPlaying) continue;
+                Player.Player.time = startTime;
+                ShowTime.text = startTime.ToString("0000");
+            }
+        }
+    }
+
+
 
     private void PlayButtonClick()
     {
