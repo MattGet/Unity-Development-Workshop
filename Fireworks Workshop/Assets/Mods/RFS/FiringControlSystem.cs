@@ -53,7 +53,7 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
     public Button ShowMakerToggle;
 
     private bool ToolActive;
-    private bool ShowmakerActive;
+    private bool ShowmakerActive = false;
     private int startChannel = 0;
     private float startTime = 0;
 
