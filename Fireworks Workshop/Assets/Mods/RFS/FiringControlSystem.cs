@@ -558,16 +558,20 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
         {
             AddChnl(0);
         }
-
+        Debug.Log("\n\nRFS Firing Control System BluePrint Loading...\n\n");
         foreach (GameObject G in Channels)
         {
+            Debug.Log($"Assesing Channel Tile = {G.name}");
             foreach (Transform T in G.transform)
             {
+                Debug.Log($"\tAssesing Transform = {T.name}");
                 TMP_InputField field;
                 if (T.gameObject.TryGetComponent<TMP_InputField>(out field))
                 {
+                    Debug.Log($"\t\tGot Input Field");
                     if (field != null)
                     {
+                        Debug.Log($"\t\t\tSetting field to {temp[0]}");
                         field.text = temp[0];
                         temp.RemoveAt(0);
                     }
