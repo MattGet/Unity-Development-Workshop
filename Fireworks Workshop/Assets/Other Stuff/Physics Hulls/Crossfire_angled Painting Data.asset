@@ -1,0 +1,185 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0de965f2e710c1c489ead8e62cd25da0, type: 3}
+  m_Name: Crossfire_angled Painting Data
+  m_EditorClassIdentifier: 
+  hullData: {fileID: 11400000, guid: 65b03fd8c551b30449001814a95eca2e, type: 2}
+  sourceMesh: {fileID: -5495902117074765545, guid: 7cd0f17db53a0a145955980cf66d7564, type: 3}
+  activeHull: 5
+  faceThickness: 0.1
+  hulls:
+  - name: Hull 1
+    isVisible: 1
+    type: 4
+    colour: {r: 0, g: 1, b: 1, a: 0.7}
+    material: {fileID: 0}
+    enableInflation: 0
+    inflationAmount: 0.01
+    boxFitMethod: 1
+    isTrigger: 0
+    isChildCollider: 0
+    selectedFaces: 02000000030000000e0000000f000000
+    collisionMesh: {fileID: 0}
+    collisionBox:
+      m_Center: {x: -0.00810606, y: 0, z: 0}
+      m_Extent: {x: 0.0018939392, y: 0.009743569, z: 0.01}
+    boxPosition: {x: 0, y: 0, z: 0}
+    boxRotation: {x: 0, y: 0, z: 0, w: 1}
+    faceCollisionMesh: {fileID: 20971033133749729, guid: 65b03fd8c551b30449001814a95eca2e, type: 2}
+    faceBoxCenter: {x: 0.04, y: -0.00012821518, z: 0}
+    faceBoxSize: {x: -0.09191138, y: 0.01974357, z: 0.02}
+    faceAsBoxRotation: {x: 0, y: 0, z: 0, w: 1}
+    autoMeshes: []
+    hasColliderError: 0
+    numColliderFaces: 0
+  - name: Hull 2
+    isVisible: 1
+    type: 4
+    colour: {r: 1, g: 0, b: 1, a: 0.7}
+    material: {fileID: 0}
+    enableInflation: 0
+    inflationAmount: 0.01
+    boxFitMethod: 1
+    isTrigger: 0
+    isChildCollider: 0
+    selectedFaces: 06000000070000000c0000000d000000
+    collisionMesh: {fileID: 7382768775853148208, guid: 65b03fd8c551b30449001814a95eca2e, type: 2}
+    collisionBox:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
+    boxPosition: {x: 0, y: 0, z: 0}
+    boxRotation: {x: 0, y: 0, z: 0, w: 0}
+    faceCollisionMesh: {fileID: 0}
+    faceBoxCenter: {x: -0.00012821518, y: -0.040000003, z: 0}
+    faceBoxSize: {x: 0.01974357, y: -0.09948714, z: 0.02}
+    faceAsBoxRotation: {x: 0, y: 0, z: 0, w: 1}
+    autoMeshes:
+    - {fileID: 1705215089753675683, guid: 65b03fd8c551b30449001814a95eca2e, type: 2}
+    hasColliderError: 0
+    numColliderFaces: 8
+  - name: Hull 3
+    isVisible: 1
+    type: 4
+    colour: {r: 1, g: 1, b: 0, a: 0.7}
+    material: {fileID: 0}
+    enableInflation: 0
+    inflationAmount: 0.01
+    boxFitMethod: 1
+    isTrigger: 0
+    isChildCollider: 0
+    selectedFaces: 04000000050000000a0000000b000000
+    collisionMesh: {fileID: -2349017794475456028, guid: 65b03fd8c551b30449001814a95eca2e, type: 2}
+    collisionBox:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
+    boxPosition: {x: 0, y: 0, z: 0}
+    boxRotation: {x: 0, y: 0, z: 0, w: 0}
+    faceCollisionMesh: {fileID: 0}
+    faceBoxCenter: {x: -0.04, y: 0.00012821518, z: 0}
+    faceBoxSize: {x: -0.09191138, y: 0.01974357, z: 0.02}
+    faceAsBoxRotation: {x: 0, y: 0, z: 0, w: 1}
+    autoMeshes:
+    - {fileID: -143254312476664952, guid: 65b03fd8c551b30449001814a95eca2e, type: 2}
+    hasColliderError: 0
+    numColliderFaces: 8
+  - name: Hull 4
+    isVisible: 1
+    type: 4
+    colour: {r: 1, g: 0, b: 0, a: 0.7}
+    material: {fileID: 0}
+    enableInflation: 0
+    inflationAmount: 0.01
+    boxFitMethod: 1
+    isTrigger: 0
+    isChildCollider: 0
+    selectedFaces: 01000000000000000900000008000000
+    collisionMesh: {fileID: -5843343716646814732, guid: 65b03fd8c551b30449001814a95eca2e, type: 2}
+    collisionBox:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
+    boxPosition: {x: 0, y: 0, z: 0}
+    boxRotation: {x: 0, y: 0, z: 0, w: 0}
+    faceCollisionMesh: {fileID: 0}
+    faceBoxCenter: {x: 0.00012821518, y: 0.040000003, z: 0}
+    faceBoxSize: {x: 0.01974357, y: -0.09948714, z: 0.02}
+    faceAsBoxRotation: {x: 0, y: 0, z: 0, w: 1}
+    autoMeshes:
+    - {fileID: -8417927399039890378, guid: 65b03fd8c551b30449001814a95eca2e, type: 2}
+    hasColliderError: 0
+    numColliderFaces: 8
+  - name: Hull 5
+    isVisible: 1
+    type: 4
+    colour: {r: 0, g: 1, b: 0, a: 0.7}
+    material: {fileID: 0}
+    enableInflation: 0
+    inflationAmount: 0.01
+    boxFitMethod: 1
+    isTrigger: 0
+    isChildCollider: 0
+    selectedFaces: 1800000019000000
+    collisionMesh: {fileID: -1176549164409710268, guid: 65b03fd8c551b30449001814a95eca2e, type: 2}
+    collisionBox:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
+    boxPosition: {x: 0, y: 0, z: 0}
+    boxRotation: {x: 0, y: 0, z: 0, w: 0}
+    faceCollisionMesh: {fileID: 0}
+    faceBoxCenter: {x: 0, y: 0, z: -0.04}
+    faceBoxSize: {x: 0.019487139, y: 0.02, z: -0.1}
+    faceAsBoxRotation: {x: 0, y: 0, z: 0, w: 1}
+    autoMeshes: []
+    hasColliderError: 0
+    numColliderFaces: 0
+  - name: Hull 6
+    isVisible: 1
+    type: 4
+    colour: {r: 0, g: 0, b: 1, a: 0.7}
+    material: {fileID: 0}
+    enableInflation: 0
+    inflationAmount: 0.01
+    boxFitMethod: 1
+    isTrigger: 0
+    isChildCollider: 0
+    selectedFaces: 1200000013000000
+    collisionMesh: {fileID: -114049037495946884, guid: 65b03fd8c551b30449001814a95eca2e, type: 2}
+    collisionBox:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
+    boxPosition: {x: 0, y: 0, z: 0}
+    boxRotation: {x: 0, y: 0, z: 0, w: 0}
+    faceCollisionMesh: {fileID: 0}
+    faceBoxCenter: {x: 0, y: 0, z: 0.04}
+    faceBoxSize: {x: 0.011911382, y: 0.02, z: -0.1}
+    faceAsBoxRotation: {x: 0, y: 0, z: 0, w: 1}
+    autoMeshes: []
+    hasColliderError: 0
+    numColliderFaces: 0
+  autoHullPreset: 1
+  vhacdParams:
+    concavity: 0.001
+    alpha: 0.05
+    beta: 0.05
+    minVolumePerCH: 0.0001
+    resolution: 100000
+    maxNumVerticesPerCH: 64
+    planeDownsampling: 4
+    convexhullDownsampling: 4
+    pca: 0
+    mode: 0
+    convexhullApproximation: 1
+    oclAcceleration: 0
+    maxConvexHulls: 1024
+    projectHullVertices: 1
+  hasLastVhacdTimings: 0
+  lastVhacdPreset: 1
+  lastVhacdDurationSecs: 0

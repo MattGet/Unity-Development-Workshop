@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0de965f2e710c1c489ead8e62cd25da0, type: 3}
+  m_Name: Cylinder Painting Data
+  m_EditorClassIdentifier: 
+  hullData: {fileID: 11400000, guid: 3cf1ae238dec0184c98f82fec19ed3ce, type: 2}
+  sourceMesh: {fileID: 2534964839176971238, guid: dec51b4c3df390e4ba46a8f15892d196, type: 3}
+  activeHull: 0
+  faceThickness: 0.1
+  hulls:
+  - name: Hull 1
+    isVisible: 1
+    type: 5
+    colour: {r: 0, g: 1, b: 1, a: 0.7}
+    material: {fileID: 0}
+    enableInflation: 0
+    inflationAmount: 0.01
+    boxFitMethod: 1
+    isTrigger: 0
+    isChildCollider: 0
+    selectedFaces: 68000000da000000930000008b000000870000007d000000770000006e00000063000000970000008c000000810000000f00000008000000020000003900000030000000290000001e0000001b000000140000007900000018000000
+    collisionMesh: {fileID: -9145249776904537882, guid: 3cf1ae238dec0184c98f82fec19ed3ce, type: 2}
+    collisionBox:
+      m_Center: {x: 0, y: -0.00009607244, z: 0.0000000018626451}
+      m_Extent: {x: 0.01, y: 0.009903927, z: 0.010000002}
+    boxPosition: {x: 0, y: 0, z: 0}
+    boxRotation: {x: 0, y: 0, z: 0, w: 1}
+    faceCollisionMesh: {fileID: 0}
+    faceBoxCenter: {x: 0, y: 0, z: 0}
+    faceBoxSize: {x: 0, y: 0, z: 0}
+    faceAsBoxRotation: {x: 0, y: 0, z: 0, w: 0}
+    autoMeshes:
+    - {fileID: -4150412452363775481, guid: 3cf1ae238dec0184c98f82fec19ed3ce, type: 2}
+    - {fileID: 1104416584552567741, guid: 3cf1ae238dec0184c98f82fec19ed3ce, type: 2}
+    - {fileID: -4910916486905127892, guid: 3cf1ae238dec0184c98f82fec19ed3ce, type: 2}
+    - {fileID: -2710428187684359017, guid: 3cf1ae238dec0184c98f82fec19ed3ce, type: 2}
+    - {fileID: -8957647114816738780, guid: 3cf1ae238dec0184c98f82fec19ed3ce, type: 2}
+    - {fileID: -3306651815913282423, guid: 3cf1ae238dec0184c98f82fec19ed3ce, type: 2}
+    - {fileID: -8853728299685708867, guid: 3cf1ae238dec0184c98f82fec19ed3ce, type: 2}
+    - {fileID: -4866538986840008547, guid: 3cf1ae238dec0184c98f82fec19ed3ce, type: 2}
+    - {fileID: 1382100791594348889, guid: 3cf1ae238dec0184c98f82fec19ed3ce, type: 2}
+    - {fileID: -3829384459771208936, guid: 3cf1ae238dec0184c98f82fec19ed3ce, type: 2}
+    - {fileID: 2676188282892207091, guid: 3cf1ae238dec0184c98f82fec19ed3ce, type: 2}
+    - {fileID: -6112595258676754042, guid: 3cf1ae238dec0184c98f82fec19ed3ce, type: 2}
+    - {fileID: -4645476209687367483, guid: 3cf1ae238dec0184c98f82fec19ed3ce, type: 2}
+    - {fileID: -451158805260419063, guid: 3cf1ae238dec0184c98f82fec19ed3ce, type: 2}
+    - {fileID: 1784861765446612190, guid: 3cf1ae238dec0184c98f82fec19ed3ce, type: 2}
+    - {fileID: -7148628083198946844, guid: 3cf1ae238dec0184c98f82fec19ed3ce, type: 2}
+    - {fileID: -399435192015023138, guid: 3cf1ae238dec0184c98f82fec19ed3ce, type: 2}
+    - {fileID: 1782736346542752745, guid: 3cf1ae238dec0184c98f82fec19ed3ce, type: 2}
+    hasColliderError: 0
+    numColliderFaces: 108
+  autoHullPreset: 2
+  vhacdParams:
+    concavity: 0.0009999848
+    alpha: 0.05
+    beta: 0.05
+    minVolumePerCH: 0.0001
+    resolution: 100065
+    maxNumVerticesPerCH: 64
+    planeDownsampling: 4
+    convexhullDownsampling: 4
+    pca: 0
+    mode: 0
+    convexhullApproximation: 1
+    oclAcceleration: 0
+    maxConvexHulls: 1024
+    projectHullVertices: 1
+  hasLastVhacdTimings: 0
+  lastVhacdPreset: 1
+  lastVhacdDurationSecs: 0
