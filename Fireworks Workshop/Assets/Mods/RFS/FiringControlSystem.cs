@@ -404,18 +404,20 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
 
     public void ToggleShowmaker()
     {
+       // Debug.Log("Toggling Showmaker");
+        PlayButtonClick();
         if (ShowmakerActive)
         {
+            //Debug.Log("Turning Off");
             TopLevelUi.SetActive(false);
             ShowmakerActive = false;
-            PlayButtonClick();
             ShowMakerToggle.image.sprite = ToggleOff;
         }
         else
         {
+            //Debug.Log("Turning On");
             TopLevelUi.SetActive(true);
             ShowmakerActive = true;
-            PlayButtonClick();
             ShowMakerToggle.image.sprite = ToggleOn;
         }
     }
