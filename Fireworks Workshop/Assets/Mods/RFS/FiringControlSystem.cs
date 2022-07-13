@@ -392,12 +392,14 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
         {
             ToolBar.SetActive(false);
             ToolActive = false;
+            Messenger.Broadcast(new MessengerEventChangeUIMode(false, true));
         }
         else
         {
             ToolBar.SetActive(true);
             ToolActive = true;
             SetAudioPlayers();
+            Messenger.Broadcast(new MessengerEventChangeUIMode(true, false));
         }
     }
 
@@ -448,6 +450,7 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
             FmAudioPlayer Player;
             if (T.gameObject.TryGetComponent(out Player))
             {
+                Debug.Log("Found Audio Player");
                 players.Add(Player);
             }
         }
