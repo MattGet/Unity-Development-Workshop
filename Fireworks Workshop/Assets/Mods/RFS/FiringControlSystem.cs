@@ -83,6 +83,7 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
         if (ShowmakerActive)
         {
             input = startChannel;
+            SetAudioTimes();
             StartCoroutine(Timer());
             if (ToolActive) ToggleTool();
         }
@@ -129,7 +130,11 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
     public IEnumerator ChannelCount(int channel, float time)
     {
         ids.Add(channel);
-        //Debug.Log("Firing Channel: " + channel + " With time delay: " + time);
+        if (ShowmakerActive)
+        {
+            time = time - startTime;
+        }
+        Debug.Log("Firing Channel: " + channel + " With time delay: " + time);
         yield return new WaitForSeconds(time);
         this.transform.parent.gameObject.BroadcastMessage("FIRE", channel);
         string text = "Firing Channel     " + channel.ToString();
@@ -599,6 +604,7 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
                     {
                         Debug.Log($"\t\t\tSetting field to {temp[0]}");
                         field.text = temp[0];
+                        field.Rebuild(CanvasUpdate.Layout);
                         temp.RemoveAt(0);
                     }
 
