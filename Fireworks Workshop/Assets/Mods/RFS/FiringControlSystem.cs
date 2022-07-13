@@ -380,6 +380,29 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
         }
     }
 
+    public void AddChnl(int chnl, float time)
+    {
+        GameObject Tile = Instantiate(TilePrefab, TileParent.transform);
+        Channels.Add(Tile);
+
+        foreach (Transform T in Tile.transform)
+        {
+            TMP_InputField field;
+            if (T.gameObject.TryGetComponent<TMP_InputField>(out field))
+            {
+                if (T.gameObject.name.Contains("ChannelInputField (TMP)"))
+                {
+                    field.text = (chnl).ToString();
+                }
+                if (T.gameObject.name.Contains("DelayInputField (TMP)"))
+                {
+                    field.text = (time).ToString();
+                }
+
+            }
+        }
+    }
+
     public void RemoveChnl()
     {
         if (Channels.Count >= 1)
@@ -584,33 +607,8 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
         List<string> temp = customComponentData.Get<List<string>>("Channels");
 
         int num = customComponentData.Get<int>("Number");
-
-        for (int i = 1; i <= num; i++)
-        {
-            AddChnl(0);
-        }
-        Debug.Log("\n\nRFS Firing Control System BluePrint Loading...\n\n");
-        foreach (GameObject G in Channels)
-        {
-            Debug.Log($"Assesing Channel Tile = {G.name}");
-            foreach (Transform T in G.transform)
-            {
-                Debug.Log($"\tAssesing Transform = {T.name}");
-                TMP_InputField field;
-                if (T.gameObject.TryGetComponent<TMP_InputField>(out field))
-                {
-                    Debug.Log($"\t\tGot Input Field");
-                    if (field != null)
-                    {
-                        Debug.Log($"\t\t\tSetting field to {temp[0]}");
-                        field.text = temp[0];
-                        field.Rebuild(CanvasUpdate.Layout);
-                        temp.RemoveAt(0);
-                    }
-
-                }
-            }
-        }
+        StartCoroutine(updateRFS(num, temp));
+        
 
         bool tempbool = customComponentData.Get<bool>("Destroy");
 
@@ -639,6 +637,16 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
 
     }
 
+    private IEnumerator updateRFS(int numb, List<string> data)
+    {
+        for (int i = 1; i <= numb; i++)
+        {
+            yield return new WaitForSeconds(Time.deltaTime);
+            AddChnl(int.Parse(data[0]), float.Parse(data[1]));
+            Debug.Log($"RFS - Adding Channel From BluePrint: {numb}, time: {data[1]} ");
+            data.RemoveRange(0, 2);
+        }
+    }
     protected override void Awake()
     {
         base.Awake();
