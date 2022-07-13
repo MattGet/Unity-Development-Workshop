@@ -52,7 +52,7 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
     public TMP_Text ShowTime;
     public Button ShowMakerToggle;
 
-    private bool ToolActive;
+    private bool ToolActive = false;
     private bool ShowmakerActive = false;
     private int startChannel = 0;
     private float startTime = 0;
@@ -397,8 +397,7 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
         {
             ToolBar.SetActive(true);
             ToolActive = true;
-            FAudioPlayers = (FmAudioPlayer[])GameObject.FindObjectsOfType(typeof(FmAudioPlayer));
-            AudioChnnls.text = $"Audio Players In Show: {FAudioPlayers.Length}";
+            SetAudioPlayers();
         }
     }
 
@@ -419,14 +418,16 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
             TopLevelUi.SetActive(true);
             ShowmakerActive = true;
             ShowMakerToggle.image.sprite = ToggleOn;
+            ToolBar.SetActive(true);
+            ToolActive = true;
+            SetAudioPlayers();
         }
     }
 
     public void SetStartChannel(string start)
     {
         startChannel = Mathf.Clamp(int.Parse(start), 0, 10000);
-        FAudioPlayers = (FmAudioPlayer[])GameObject.FindObjectsOfType(typeof(FmAudioPlayer));
-        AudioChnnls.text = $"Audio Players In Show: {FAudioPlayers.Length}";
+        SetAudioPlayers();
         SetAudioTimes();
     }
 
@@ -434,9 +435,24 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
     {
         startChannel = start;
         StartChannel.text = start.ToString("0");
-        FAudioPlayers = (FmAudioPlayer[])GameObject.FindObjectsOfType(typeof(FmAudioPlayer));
-        AudioChnnls.text = $"Audio Players In Show: {FAudioPlayers.Length}";
+        SetAudioPlayers();
         SetAudioTimes();
+    }
+
+    private void SetAudioPlayers()
+    {
+        Transform FManager = this.gameObject.transform.parent.transform;
+        List<FmAudioPlayer> players = new List<FmAudioPlayer>();
+        foreach (Transform T in FManager)
+        {
+            FmAudioPlayer Player;
+            if (T.gameObject.TryGetComponent(out Player))
+            {
+                players.Add(Player);
+            }
+        }
+        FAudioPlayers = players.ToArray();
+        AudioChnnls.text = $"Audio Players In Show: {FAudioPlayers.Length}";
     }
 
     private void SetAudioTimes()
@@ -534,6 +550,8 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
 
         entitydata.Add<int>("StartChnnl", startChannel);
 
+        entitydata.Add<bool>("HideTool", ToolActive);
+
 
         return entitydata;
     }
@@ -602,6 +620,8 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
             SetAudioTimes();
         }
 
+        bool toolactive = customComponentData.Get<bool>("HideTool");
+        if (!toolactive) ToggleTool();
 
     }
 
