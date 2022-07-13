@@ -57,7 +57,7 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
     private int startChannel = 0;
     private float startTime = 0;
 
-    private FmAudioPlayer[] FAudioPlayers;
+    private AudioSource[] FAudioPlayers;
     private Rigidbody _rigidbody;
 
     private bool IsActive = false;
@@ -117,7 +117,7 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
     public IEnumerator Timer()
     {
         float CurrTime = startTime;
-        float TotalTime = FAudioPlayers[0].Player.clip.length + 30;
+        float TotalTime = FAudioPlayers[0].clip.length + 30;
         do
         {
             ShowTime.text = CurrTime.ToString("0000");
@@ -444,15 +444,20 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
     private void SetAudioPlayers()
     {
         Transform FManager = this.gameObject.transform.parent.transform;
-        List<FmAudioPlayer> players = new List<FmAudioPlayer>();
+        List<AudioSource> players = new List<AudioSource>();
         foreach (Transform T in FManager)
         {
-            FmAudioPlayer Player;
-            if (T.gameObject.TryGetComponent(out Player))
+            if (T.gameObject.name.Contains("FM Audio Player"))
             {
-                Debug.Log("Found Audio Player");
-                players.Add(Player);
+                Debug.Log(T.name);
+                AudioSource Player;
+                if (T.gameObject.TryGetComponent(out Player))
+                {
+                    Debug.Log("Found Audio Player");
+                    players.Add(Player);
+                }
             }
+            
         }
         FAudioPlayers = players.ToArray();
         AudioChnnls.text = $"Audio Players In Show: {FAudioPlayers.Length}";
@@ -486,10 +491,10 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
                 }
             }
 
-            foreach (FmAudioPlayer Player in FAudioPlayers)
+            foreach (AudioSource Player in FAudioPlayers)
             {
-                if (Player.Player.isPlaying) continue;
-                Player.Player.time = startTime;
+                if (Player.isPlaying) continue;
+                Player.time = startTime;
                 ShowTime.text = startTime.ToString("0000");
             }
         }
