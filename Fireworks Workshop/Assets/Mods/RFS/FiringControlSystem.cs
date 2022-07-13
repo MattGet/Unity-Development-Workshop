@@ -380,7 +380,7 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
         }
     }
 
-    public void AddChnl(int chnl, float time)
+    public void AddChnl(string chnl, string time)
     {
         GameObject Tile = Instantiate(TilePrefab, TileParent.transform);
         Channels.Add(Tile);
@@ -392,15 +392,22 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
             {
                 if (T.gameObject.name.Contains("ChannelInputField (TMP)"))
                 {
-                    field.text = (chnl).ToString();
+                    Debug.Log("\tUpdating Channel Feild");
+                    field.text = chnl;
+                    field.textComponent.text = chnl;
+                    Debug.Log($"\t\tField Text = {field.text}");
                 }
                 if (T.gameObject.name.Contains("DelayInputField (TMP)"))
                 {
-                    field.text = (time).ToString();
+                    Debug.Log("\tUpdating Delay Feild");
+                    field.text = time;
+                    field.textComponent.text = time;
+                    Debug.Log($"\t\tField Text = {field.text}");
                 }
 
             }
         }
+        Canvas.ForceUpdateCanvases();
     }
 
     public void RemoveChnl()
@@ -639,12 +646,14 @@ public class FiringControlSystem : BaseFireworkBehavior, IHaveFuse, IIgnitable, 
 
     private IEnumerator updateRFS(int numb, List<string> data)
     {
-        for (int i = 1; i <= numb; i++)
+        for (int i = 0; i <= numb; i++)
         {
             yield return new WaitForSeconds(Time.deltaTime);
-            AddChnl(int.Parse(data[0]), float.Parse(data[1]));
-            Debug.Log($"RFS - Adding Channel From BluePrint: {numb}, time: {data[1]} ");
-            data.RemoveRange(0, 2);
+            Debug.Log($"RFS - Adding Channel From BluePrint: {data[0]}, time: {data[1]} ");
+            AddChnl(data[0], data[1]);
+            
+            data.RemoveAt(0);
+            data.RemoveAt(0);
         }
     }
     protected override void Awake()
