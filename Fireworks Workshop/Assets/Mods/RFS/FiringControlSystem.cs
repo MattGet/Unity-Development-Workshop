@@ -362,6 +362,7 @@ namespace RemoteFiringSystem {
                 if (T.gameObject.TryGetComponent<TMP_InputField>(out field))
                 {
                     field.text = (Channels.Count - 1).ToString();
+                    field.ForceLabelUpdate();
                     break;
                 }
             }
@@ -377,6 +378,7 @@ namespace RemoteFiringSystem {
                 if (T.gameObject.TryGetComponent<TMP_InputField>(out field))
                 {
                     field.text = (chnl).ToString();
+                    field.ForceLabelUpdate();
                     break;
                 }
             }
@@ -396,15 +398,17 @@ namespace RemoteFiringSystem {
                     {
                         Debug.Log("\tUpdating Channel Feild");
                         field.text = chnl;
-                        field.textComponent.text = chnl;
+                        field.ForceLabelUpdate();
                         Debug.Log($"\t\tField Text = {field.text}");
+                        break;
                     }
                     if (T.gameObject.name.Contains("DelayInputField (TMP)"))
                     {
                         Debug.Log("\tUpdating Delay Feild");
                         field.text = time;
-                        field.textComponent.text = time;
+                        field.ForceLabelUpdate();
                         Debug.Log($"\t\tField Text = {field.text}");
+                        break;
                     }
 
                 }
@@ -613,10 +617,17 @@ namespace RemoteFiringSystem {
                 return;
             component.isKinematic = flag;
 
-            List<string> temp = customComponentData.Get<List<string>>("Channels");
+            List<string> data = customComponentData.Get<List<string>>("Channels");
 
             int num = customComponentData.Get<int>("Number");
-            StartCoroutine(updateRFS(num, temp));
+            for (int i = 0; i <= num; i++)
+            {
+                Debug.Log($"RFS - Adding Channel From BluePrint: {data[0]}, time: {data[1]} ");
+                AddChnl(data[0], data[1]);
+
+                data.RemoveAt(0);
+                data.RemoveAt(0);
+            }
 
 
             bool tempbool = customComponentData.Get<bool>("Destroy");
@@ -634,30 +645,31 @@ namespace RemoteFiringSystem {
 
             bool showactive = customComponentData.Get<bool>("ShowMaker");
             int srtchnl = customComponentData.Get<int>("StartChnnl");
+            bool toolactive = customComponentData.Get<bool>("HideTool");
             if (showactive)
             {
                 ToggleShowmaker();
                 SetStartChannel(srtchnl);
                 SetAudioTimes();
-            }
-
-            bool toolactive = customComponentData.Get<bool>("HideTool");
-            if (!toolactive) ToggleTool();
-
-        }
-
-        private IEnumerator updateRFS(int numb, List<string> data)
-        {
-            for (int i = 0; i <= numb; i++)
-            {
-                yield return new WaitForSeconds(Time.deltaTime);
-                Debug.Log($"RFS - Adding Channel From BluePrint: {data[0]}, time: {data[1]} ");
-                AddChnl(data[0], data[1]);
-
-                data.RemoveAt(0);
-                data.RemoveAt(0);
+                if (!toolactive) ToggleTool();
             }
         }
+
+        /*
+                private IEnumerator updateRFS(int numb, List<string> data)
+                {
+                    for (int i = 0; i <= numb; i++)
+                    {
+                        yield return new WaitForSeconds(Time.deltaTime);
+                        Debug.Log($"RFS - Adding Channel From BluePrint: {data[0]}, time: {data[1]} ");
+                        AddChnl(data[0], data[1]);
+
+                        data.RemoveAt(0);
+                        data.RemoveAt(0);
+                    }
+                }
+        */
+
         protected override void Awake()
         {
             base.Awake();
