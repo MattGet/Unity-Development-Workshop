@@ -33,7 +33,7 @@ namespace RemoteFiringSystem
         [Header("UI Settings")]
         public bool UseUI = false;
         [Space(10)]
-        public GameObject UiController;
+        public GameObject RUiController;
         public TMP_InputField InputField;
         public Button RClose;
 
@@ -110,7 +110,7 @@ namespace RemoteFiringSystem
         {
             base.Start();
             RRchannelDis.updateid.AddListener(updateID);
-            if (UseUI) UiController.SetActive(false);
+            if (UseUI) RUiController.SetActive(false);
         }
 
         public void updateID(int id)
@@ -191,7 +191,7 @@ namespace RemoteFiringSystem
                 if (!IsActive)
                 {
                     Messenger.Broadcast(new MessengerEventChangeUIMode(true, false));
-                    UiController.SetActive(true);
+                    RUiController.SetActive(true);
                     RClose.onClick.AddListener(UpdateUI);
                     InputField.text = Rchannel.ToString("0000");
                     IsActive = true;
@@ -221,7 +221,7 @@ namespace RemoteFiringSystem
                         RRchannelDis.UpdateDisplay(0);
                     }
                     IsActive = false;
-                    UiController.SetActive(false);
+                    RUiController.SetActive(false);
                 }
             }
 

@@ -5767,15 +5767,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entityDefinition: {fileID: 11400000, guid: 89e78f0f5beb0db498772890e1a9882d, type: 2}
   _fuse: {fileID: 6246305175848081160}
-  channelDis: {fileID: 8940325913808733110}
-  channel: 0
+  RRchannelDis: {fileID: 0}
+  Rchannel: 0
   min: 0
   seconds: 0
   fired: 0
   UseUI: 1
   UiController: {fileID: 6004115308860454568}
   InputField: {fileID: 4602434879748993546}
-  Close: {fileID: 2401531784279255350}
+  RClose: {fileID: 0}
 --- !u!114 &375622841819889302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5916,7 +5916,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8238919318529568298
 RectTransform:
   m_ObjectHideFlags: 0
