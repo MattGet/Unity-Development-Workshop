@@ -400,7 +400,7 @@ namespace RemoteFiringSystem {
                         field.text = chnl;
                         field.ForceLabelUpdate();
                         Debug.Log($"\t\tField Text = {field.text}");
-                        break;
+                        continue;
                     }
                     if (T.gameObject.name.Contains("DelayInputField (TMP)"))
                     {
@@ -408,9 +408,8 @@ namespace RemoteFiringSystem {
                         field.text = time;
                         field.ForceLabelUpdate();
                         Debug.Log($"\t\tField Text = {field.text}");
-                        break;
+                        continue;
                     }
-
                 }
             }
             Canvas.ForceUpdateCanvases();
