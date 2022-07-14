@@ -9,200 +9,203 @@ using System.Threading;
 using FireworksMania.Core.Behaviors.Fireworks;
 using FireworksMania.Core;
 
-public class RemoteDetonator : BaseFireworkBehavior, IHaveFuse, IIgnitable, IHaveFuseConnectionPoint
+namespace RemoteFiringSystem
 {
-
-    public NumericDisplay channelDis;
-    public NumericDisplay minDis;
-    public NumericDisplay secDis;
-    [HideInInspector]
-    public int channel = 0;
-    [HideInInspector]
-    public int min = 0;
-    [HideInInspector]
-    public int seconds = 0;
-    private Rigidbody _rigidbody;
-
-    [HideInInspector]
-    public bool fired = false;
-
-
-    public void FireButton()
+    public class RemoteDetonator : BaseFireworkBehavior, IHaveFuse, IIgnitable, IHaveFuseConnectionPoint
     {
-        if (channel >= 0 && channel <= 99)
-        {
-            if (minDis != null && secDis != null)
-            {
-                min = minDis.Number;
-                seconds = secDis.Number;
-            }
 
-            if (seconds == 0 && min == 0)
-            {
-                //Debug.Log("countdown over, firing channel = " + channel);
-                this.transform.parent.gameObject.BroadcastMessage("FIRE", channel);
-                this.IgniteInstant();
-            }
-            else
-            {
-                StartCoroutine(Countdown());
-            }
-        }
-    }
+        public NumericDisplay RDchannelDis;
+        public NumericDisplay RDminDis;
+        public NumericDisplay RDsecDis;
+        [HideInInspector]
+        public int RDchannel = 0;
+        [HideInInspector]
+        public int RDmin = 0;
+        [HideInInspector]
+        public int RDseconds = 0;
+        private Rigidbody _RDrigidbody;
 
-    public IEnumerator Countdown()
-    {
-        int i = min;
-        min = minDis.Number;
-        seconds = secDis.Number;
-        while (i >= 0)
+        [HideInInspector]
+        public bool fired = false;
+
+
+        public void FireButton()
         {
-            //Debug.Log("minutes: " + i);
-            for (int t = seconds; t >= 0; t--)
+            if (RDchannel >= 0 && RDchannel <= 99)
             {
-                yield return new WaitForSeconds(1);
-                //Debug.Log("seconds: " + t);
-                if (i == 0 && t == 0)
+                if (RDminDis != null && RDsecDis != null)
                 {
-                    //Debug.Log("countdown over, firing");
-                    minDis.UpdateDisplay(i);
-                    secDis.UpdateDisplay(t);
-                    this.transform.parent.gameObject.BroadcastMessage("FIRE", channel);
-                    this.IgniteInstant();
-                    yield break;
+                    RDmin = RDminDis.Number;
+                    RDseconds = RDsecDis.Number;
                 }
-                if (t == 0)
+
+                if (RDseconds == 0 && RDmin == 0)
                 {
-                    //Debug.Log("seconds = 0");
-                    if (i > 0)
-                    {
-                        //Debug.Log("seconds = 0 swaping to sec");
-                        i = i - 1;
-                        minDis.UpdateDisplay(i);
-                        t = 59;
-                    }
-                    secDis.UpdateDisplay(t);
+                    //Debug.Log("countdown over, firing RDchannel = " + RDchannel);
+                    this.transform.parent.gameObject.BroadcastMessage("FIRE", RDchannel);
+                    this.IgniteInstant();
                 }
                 else
                 {
-                    //Debug.Log("seconds counting down");
-                    if (t > 0)
-                    {
-                        //Debug.Log("subtracting seconds");
-                        secDis.UpdateDisplay(t);
-                    }
+                    StartCoroutine(Countdown());
                 }
-                //Debug.Log("end of sec loop: " + t);
             }
-            //Debug.Log("end of min loop: " + i);
         }
-    }
 
-    public void FIRED(int chnl)
-    {
-        if (chnl == channel)
+        public IEnumerator Countdown()
         {
-            fired = true;
+            int i = RDmin;
+            RDmin = RDminDis.Number;
+            RDseconds = RDsecDis.Number;
+            while (i >= 0)
+            {
+                //Debug.Log("RDminutes: " + i);
+                for (int t = RDseconds; t >= 0; t--)
+                {
+                    yield return new WaitForSeconds(1);
+                    //Debug.Log("RDseconds: " + t);
+                    if (i == 0 && t == 0)
+                    {
+                        //Debug.Log("countdown over, firing");
+                        RDminDis.UpdateDisplay(i);
+                        RDsecDis.UpdateDisplay(t);
+                        this.transform.parent.gameObject.BroadcastMessage("FIRE", RDchannel);
+                        this.IgniteInstant();
+                        yield break;
+                    }
+                    if (t == 0)
+                    {
+                        //Debug.Log("RDseconds = 0");
+                        if (i > 0)
+                        {
+                            //Debug.Log("RDseconds = 0 swaping to sec");
+                            i = i - 1;
+                            RDminDis.UpdateDisplay(i);
+                            t = 59;
+                        }
+                        RDsecDis.UpdateDisplay(t);
+                    }
+                    else
+                    {
+                        //Debug.Log("RDseconds counting down");
+                        if (t > 0)
+                        {
+                            //Debug.Log("subtracting RDseconds");
+                            RDsecDis.UpdateDisplay(t);
+                        }
+                    }
+                    //Debug.Log("end of sec loop: " + t);
+                }
+                //Debug.Log("end of RDmin loop: " + i);
+            }
         }
-    }
 
-    public override CustomEntityComponentData CaptureState()
-    {
-
-        CustomEntityComponentData entitydata = new CustomEntityComponentData();
-        Rigidbody component = this.GetComponent<Rigidbody>();
-        entitydata.Add<bool>("IsKinematic", (UnityEngine.Object)component != (UnityEngine.Object)null && component.isKinematic);
-        entitydata.Add<SerializableVector3>("Position", new SerializableVector3()
+        public void FIRED(int chnl)
         {
-            X = this.transform.position.x,
-            Y = this.transform.position.y,
-            Z = this.transform.position.z
-        });
-        entitydata.Add<SerializableRotation>("Rotation", new SerializableRotation()
-        {
-            X = this.transform.rotation.x,
-            Y = this.transform.rotation.y,
-            Z = this.transform.rotation.z,
-            W = this.transform.rotation.w
-        });
-
-        channel = channelDis.Number;
-
-        entitydata.Add<int>("Channel", channel);
-
-        if (minDis != null && secDis != null)
-        {
-            min = minDis.Number;
-            seconds = secDis.Number;
-            entitydata.Add<int>("Mins", min);
-            entitydata.Add<int>("Seconds", seconds);
+            if (chnl == RDchannel)
+            {
+                fired = true;
+            }
         }
-        
 
-        return entitydata;
-    }
-
-    public override void RestoreState(CustomEntityComponentData customComponentData)
-    {
-        SerializableVector3 serializableVector3 = customComponentData.Get<SerializableVector3>("Position");
-        SerializableRotation serializableRotation = customComponentData.Get<SerializableRotation>("Rotation");
-        bool flag = customComponentData.Get<bool>("IsKinematic");
-        this.transform.position = new Vector3(serializableVector3.X, serializableVector3.Y, serializableVector3.Z);
-        this.transform.rotation = new Quaternion(serializableRotation.X, serializableRotation.Y, serializableRotation.Z, serializableRotation.W);
-        Rigidbody component = this.GetComponent<Rigidbody>();
-        if (!((UnityEngine.Object)component != (UnityEngine.Object)null))
-            return;
-        component.isKinematic = flag;
-
-        channel = customComponentData.Get<int>("Channel");
-        channelDis.UpdateDisplay(channel);
-
-        if (minDis != null && secDis != null)
+        public override CustomEntityComponentData CaptureState()
         {
-            min = customComponentData.Get<int>("Mins");
-            minDis.UpdateDisplay(min);
 
-            seconds = customComponentData.Get<int>("Seconds");
-            secDis.UpdateDisplay(seconds);
+            CustomEntityComponentData entitydata = new CustomEntityComponentData();
+            Rigidbody component = this.GetComponent<Rigidbody>();
+            entitydata.Add<bool>("IsKinematic", (UnityEngine.Object)component != (UnityEngine.Object)null && component.isKinematic);
+            entitydata.Add<SerializableVector3>("Position", new SerializableVector3()
+            {
+                X = this.transform.position.x,
+                Y = this.transform.position.y,
+                Z = this.transform.position.z
+            });
+            entitydata.Add<SerializableRotation>("Rotation", new SerializableRotation()
+            {
+                X = this.transform.rotation.x,
+                Y = this.transform.rotation.y,
+                Z = this.transform.rotation.z,
+                W = this.transform.rotation.w
+            });
+
+            RDchannel = RDchannelDis.Number;
+
+            entitydata.Add<int>("Channel", RDchannel);
+
+            if (RDminDis != null && RDsecDis != null)
+            {
+                RDmin = RDminDis.Number;
+                RDseconds = RDsecDis.Number;
+                entitydata.Add<int>("Mins", RDmin);
+                entitydata.Add<int>("Seconds", RDseconds);
+            }
+
+
+            return entitydata;
         }
+
+        public override void RestoreState(CustomEntityComponentData customComponentData)
+        {
+            SerializableVector3 serializableVector3 = customComponentData.Get<SerializableVector3>("Position");
+            SerializableRotation serializableRotation = customComponentData.Get<SerializableRotation>("Rotation");
+            bool flag = customComponentData.Get<bool>("IsKinematic");
+            this.transform.position = new Vector3(serializableVector3.X, serializableVector3.Y, serializableVector3.Z);
+            this.transform.rotation = new Quaternion(serializableRotation.X, serializableRotation.Y, serializableRotation.Z, serializableRotation.W);
+            Rigidbody component = this.GetComponent<Rigidbody>();
+            if (!((UnityEngine.Object)component != (UnityEngine.Object)null))
+                return;
+            component.isKinematic = flag;
+
+            RDchannel = customComponentData.Get<int>("Channel");
+            RDchannelDis.UpdateDisplay(RDchannel);
+
+            if (RDminDis != null && RDsecDis != null)
+            {
+                RDmin = customComponentData.Get<int>("Mins");
+                RDminDis.UpdateDisplay(RDmin);
+
+                RDseconds = customComponentData.Get<int>("Seconds");
+                RDsecDis.UpdateDisplay(RDseconds);
+            }
+        }
+
+        protected override void Awake()
+        {
+            base.Awake();
+            this._RDrigidbody = this.GetComponent<Rigidbody>();
+            if ((UnityEngine.Object)this._RDrigidbody == (UnityEngine.Object)null)
+                Debug.LogError((object)"Missing Rigidbody", (UnityEngine.Object)this);
+            //Debug.Log("SID = " + SaveableComponentTypeId);
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            RDchannelDis.updateid.AddListener(updateID);
+        }
+
+        public void updateID(int id)
+        {
+            RDchannel = id;
+        }
+
+        protected override void OnValidate()
+        {
+            if (Application.isPlaying)
+                return;
+            base.OnValidate();
+        }
+
+        protected override async UniTask LaunchInternalAsync(CancellationToken token)
+        {
+            FireButton();
+            await UniTask.WaitWhile(() => this.fired == false, PlayerLoopTiming.Update, token);
+            token.ThrowIfCancellationRequested();
+            if (!CoreSettings.AutoDespawnFireworks)
+                return;
+            await this.DestroyFireworkAsync(token);
+        }
+
+
     }
-
-    protected override void Awake()
-    {
-        base.Awake();
-        this._rigidbody = this.GetComponent<Rigidbody>();
-        if ((UnityEngine.Object)this._rigidbody == (UnityEngine.Object)null)
-            Debug.LogError((object)"Missing Rigidbody", (UnityEngine.Object)this);
-        //Debug.Log("SID = " + SaveableComponentTypeId);
-    }
-
-    protected override void Start()
-    {
-        base.Start();
-        channelDis.updateid.AddListener(updateID);
-    }
-
-    public void updateID(int id)
-    {
-        channel = id;
-    }
-
-    protected override void OnValidate()
-    {
-        if (Application.isPlaying)
-            return;
-        base.OnValidate();
-    }
-
-    protected override async UniTask LaunchInternalAsync(CancellationToken token)
-    {
-        FireButton();
-        await UniTask.WaitWhile(() =>  this.fired == false, PlayerLoopTiming.Update, token);
-        token.ThrowIfCancellationRequested();
-        if (!CoreSettings.AutoDespawnFireworks)
-            return;
-        await this.DestroyFireworkAsync(token);
-    }
-
-
 }

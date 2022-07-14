@@ -334,7 +334,7 @@ namespace RemoteFiringSystem {
                 {
                     if (reciver != null)
                     {
-                        ids2.Add(reciver.channel);
+                        ids2.Add(reciver.Rchannel);
                     }
                 }
             }
