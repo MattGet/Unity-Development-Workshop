@@ -88,6 +88,10 @@ namespace RemoteFiringSystem {
                 SetAudioTimes();
                 StartCoroutine(Timer());
                 if (ToolActive) ToggleTool();
+                foreach (AudioSource Player in FAudioPlayers)
+                {
+                    Player.Play();
+                }
             }
 
             for (int i = input; i <= Channels.Count - 1; i++)
@@ -468,7 +472,7 @@ namespace RemoteFiringSystem {
 
         public void SetStartChannel(string start)
         {
-            startChannel = Mathf.Clamp(int.Parse(start), 0, 10000);
+            startChannel = Mathf.Clamp(int.Parse(start), 0, 1000);
             SetAudioPlayers();
             SetAudioTimes();
         }
