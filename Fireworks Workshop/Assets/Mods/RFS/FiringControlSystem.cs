@@ -19,7 +19,7 @@ namespace RemoteFiringSystem {
     {
         [Space(10)]
         [Header("Firing System Settings")]
-        public GameObject UiController;
+        public GameObject FSUiController;
         public GameObject TilePrefab;
         public GameObject TileParent;
         public TMP_Text ComputerDisplay;
@@ -229,7 +229,7 @@ namespace RemoteFiringSystem {
             if (!IsActive)
             {
                 Messenger.Broadcast(new MessengerEventChangeUIMode(true, false));
-                UiController.SetActive(true);
+                FSUiController.SetActive(true);
                 AddChannel.onClick.AddListener(AddChnl);
                 RemoveChannel.onClick.AddListener(RemoveChnl);
                 FSClose.onClick.AddListener(UIControl);
@@ -242,7 +242,11 @@ namespace RemoteFiringSystem {
             else
             {
                 PlayButtonClick();
-                Messenger.Broadcast(new MessengerEventChangeUIMode(false, true));
+                if (!ToolActive)
+                {
+                    Messenger.Broadcast(new MessengerEventChangeUIMode(false, true));
+                }
+                
                 AddChannel.onClick.RemoveAllListeners();
                 RemoveChannel.onClick.RemoveAllListeners();
                 FSClose.onClick.RemoveAllListeners();
@@ -250,7 +254,7 @@ namespace RemoteFiringSystem {
                 RemoteToggle.onClick.RemoveAllListeners();
                 Populate.onClick.RemoveAllListeners();
                 ShowMakerToggle.onClick.RemoveAllListeners();
-                UiController.SetActive(false);
+                FSUiController.SetActive(false);
                 IsActive = false;
             }
         }
@@ -402,16 +406,18 @@ namespace RemoteFiringSystem {
                     {
                         Debug.Log("\tUpdating Channel Feild");
                         field.text = chnl;
-                        field.ForceLabelUpdate();
+
                         Debug.Log($"\t\tField Text = {field.text}");
+                        Debug.Log($"\t\tTextField Text = {field.textComponent.text}");
                         continue;
                     }
                     if (T.gameObject.name.Contains("DelayInputField (TMP)"))
                     {
                         Debug.Log("\tUpdating Delay Feild");
                         field.text = time;
-                        field.ForceLabelUpdate();
+
                         Debug.Log($"\t\tField Text = {field.text}");
+                        Debug.Log($"\t\tTextField Text = {field.textComponent.text}");
                         continue;
                     }
                 }
@@ -473,6 +479,7 @@ namespace RemoteFiringSystem {
         public void SetStartChannel(string start)
         {
             startChannel = Mathf.Clamp(int.Parse(start), 0, 1000);
+            Debug.Log($"Set Start Channel to: {startChannel}, value in = {start}");
             SetAudioPlayers();
             SetAudioTimes();
         }
@@ -480,7 +487,7 @@ namespace RemoteFiringSystem {
         public void SetStartChannel(int start)
         {
             startChannel = start;
-            StartChannel.text = start.ToString("0");
+            StartChannel.text = start.ToString();
             SetAudioPlayers();
             SetAudioTimes();
         }
@@ -512,28 +519,28 @@ namespace RemoteFiringSystem {
             if (ShowmakerActive)
             {
 
-                List<float> data = new List<float>();
+                float time = 0;
                 foreach (Transform T in Channels[startChannel].transform)
                 {
-                    TMP_InputField field;
-                    if (T.gameObject.TryGetComponent<TMP_InputField>(out field))
+                    if (T.gameObject.name.Contains("DelayInputField (TMP)"))
                     {
-                        if (field != null)
+
+                        TMP_InputField field;
+                        if (T.gameObject.TryGetComponent<TMP_InputField>(out field))
                         {
-                            float x = 10000f;
-                            if (float.TryParse(field.text, out x)) { data.Add(x); }
+                            if (field != null)
+                            {
+                                if (float.TryParse(field.text, out time))
+                                {
+                                    Debug.Log($"Set Start Time to: {time}");
+                                    break;
+                                }
+                            }
                         }
                     }
                 }
 
-                if (data.Count == 2)
-                {
-                    //Debug.Log("Caught Channel: " + data[0] + " Caught Time: " + data[1]);
-                    if (data[0] == startChannel)
-                    {
-                        startTime = data[1];
-                    }
-                }
+                startTime = time;
 
                 foreach (AudioSource Player in FAudioPlayers)
                 {
@@ -623,6 +630,9 @@ namespace RemoteFiringSystem {
             List<string> data = customComponentData.Get<List<string>>("Channels");
 
             int num = customComponentData.Get<int>("Number");
+
+            FSUiController.SetActive(true);
+
             for (int i = 0; i <= num; i++)
             {
                 Debug.Log($"RFS - Adding Channel From BluePrint: {data[0]}, time: {data[1]} ");
@@ -631,6 +641,7 @@ namespace RemoteFiringSystem {
                 data.RemoveAt(0);
                 data.RemoveAt(0);
             }
+
 
 
             bool tempbool = customComponentData.Get<bool>("Destroy");
@@ -656,6 +667,9 @@ namespace RemoteFiringSystem {
                 SetAudioTimes();
                 if (!toolactive) ToggleTool();
             }
+
+
+            FSUiController.SetActive(true);
         }
 
         /*
@@ -680,12 +694,13 @@ namespace RemoteFiringSystem {
             if ((UnityEngine.Object)this._rigidbody == (UnityEngine.Object)null)
                 Debug.LogError((object)"Missing Rigidbody", (UnityEngine.Object)this);
             //Debug.Log("SID = " + SaveableComponentTypeId);
+            TopLevelUi.SetActive(false);
         }
 
         protected override void Start()
         {
             base.Start();
-            UiController.SetActive(false);
+            FSUiController.SetActive(false);
             ConfirmScreen.SetActive(false);
         }
 
