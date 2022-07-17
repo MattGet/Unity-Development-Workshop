@@ -84,7 +84,7 @@ namespace RemoteFiringSystem {
             int input = 0;
             if (ShowmakerActive)
             {
-                input = startChannel;
+                //input = startChannel;
                 SetAudioTimes();
                 StartCoroutine(Timer());
                 if (ToolActive) ToggleTool();
@@ -92,6 +92,26 @@ namespace RemoteFiringSystem {
                 {
                     Player.Play();
                 }
+
+                List<int> channelids = new List<int>();
+                for (int i = 0; i <= Channels.Count - 1; i++)
+                {
+                    foreach (Transform T in Channels[i].transform)
+                    {
+                        TMP_InputField field;
+                        if (T.gameObject.TryGetComponent<TMP_InputField>(out field))
+                        {
+                            if (T.gameObject.name.Contains("ChannelInputField (TMP)"))
+                            {
+                                channelids.Add(int.Parse(field.text));
+                                continue;
+                            }
+                        }
+                    }
+                }
+
+                input = channelids.IndexOf(startChannel);
+                Debug.Log($"StartChannel = {input} ");
             }
 
             for (int i = input; i <= Channels.Count - 1; i++)
@@ -632,6 +652,11 @@ namespace RemoteFiringSystem {
             int num = customComponentData.Get<int>("Number");
 
             FSUiController.SetActive(true);
+
+            foreach (Transform T in TileParent.transform)
+            {
+                Destroy(T.gameObject);
+            }
 
             for (int i = 0; i <= num; i++)
             {
