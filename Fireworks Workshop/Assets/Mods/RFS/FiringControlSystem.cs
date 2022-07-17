@@ -93,21 +93,24 @@ namespace RemoteFiringSystem {
                     Player.Play();
                 }
 
+                Debug.Log("Parsing Channels");
                 List<int> channelids = new List<int>();
                 for (int i = 0; i <= Channels.Count - 1; i++)
                 {
-                    foreach (Transform T in Channels[i].transform)
-                    {
-                        TMP_InputField field;
-                        if (T.gameObject.TryGetComponent<TMP_InputField>(out field))
+                    TMP_InputField[] fields;
+                    fields = Channels[i].GetComponentsInChildren<TMP_InputField>();
+
+                    int j = 0;
+                   foreach (TMP_InputField T in fields)
+                   {
+                        if (T.gameObject.name.Contains("ChannelInputField (TMP)"))
                         {
-                            if (T.gameObject.name.Contains("ChannelInputField (TMP)"))
-                            {
-                                channelids.Add(int.Parse(field.text));
-                                continue;
-                            }
+                            Debug.Log($"Adding {fields[j].text} to list");
+                            channelids.Add(int.Parse(fields[j].text));
+
                         }
-                    }
+                        j++;
+                   }
                 }
 
                 input = channelids.IndexOf(startChannel);
