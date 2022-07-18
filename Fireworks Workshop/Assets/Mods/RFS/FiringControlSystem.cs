@@ -268,7 +268,14 @@ namespace RemoteFiringSystem {
                 {
                     Messenger.Broadcast(new MessengerEventChangeUIMode(false, true));
                 }
-                
+                else
+                {
+                    if (!ToolActive)
+                    {
+                        Messenger.Broadcast(new MessengerEventChangeUIMode(false, true));
+                    }
+                }
+
                 AddChannel.onClick.RemoveAllListeners();
                 RemoveChannel.onClick.RemoveAllListeners();
                 FSClose.onClick.RemoveAllListeners();
