@@ -92,8 +92,7 @@ namespace RemoteFiringSystem {
                 {
                     Player.Play();
                 }
-
-                Debug.Log("Parsing Channels");
+                //Debug.Log("Parsing Channels");
                 List<int> channelids = new List<int>();
                 for (int i = 0; i <= Channels.Count - 1; i++)
                 {
@@ -101,16 +100,16 @@ namespace RemoteFiringSystem {
                     fields = Channels[i].GetComponentsInChildren<TMP_InputField>();
 
                     int j = 0;
-                   foreach (TMP_InputField T in fields)
-                   {
+                    foreach (TMP_InputField T in fields)
+                    {
                         if (T.gameObject.name.Contains("ChannelInputField (TMP)"))
                         {
-                            Debug.Log($"Adding {fields[j].text} to list");
+                            //Debug.Log($"Adding {fields[j].text} to list");
                             channelids.Add(int.Parse(fields[j].text));
 
                         }
                         j++;
-                   }
+                    }
                 }
 
                 input = channelids.IndexOf(startChannel);
@@ -239,7 +238,7 @@ namespace RemoteFiringSystem {
             }
             if (ShowmakerActive)
             {
-                if (Input.GetKeyDown(KeyCode.T))
+                if (Input.GetKeyDown(KeyCode.R))
                 {
                     ToggleTool();
                 }
@@ -427,20 +426,20 @@ namespace RemoteFiringSystem {
                 {
                     if (T.gameObject.name.Contains("ChannelInputField (TMP)"))
                     {
-                        Debug.Log("\tUpdating Channel Feild");
+                        //Debug.Log("\tUpdating Channel Feild");
                         field.text = chnl;
 
-                        Debug.Log($"\t\tField Text = {field.text}");
-                        Debug.Log($"\t\tTextField Text = {field.textComponent.text}");
+                        //Debug.Log($"\t\tField Text = {field.text}");
+                        //Debug.Log($"\t\tTextField Text = {field.textComponent.text}");
                         continue;
                     }
                     if (T.gameObject.name.Contains("DelayInputField (TMP)"))
                     {
-                        Debug.Log("\tUpdating Delay Feild");
+                        //Debug.Log("\tUpdating Delay Feild");
                         field.text = time;
 
-                        Debug.Log($"\t\tField Text = {field.text}");
-                        Debug.Log($"\t\tTextField Text = {field.textComponent.text}");
+                        //Debug.Log($"\t\tField Text = {field.text}");
+                        //Debug.Log($"\t\tTextField Text = {field.textComponent.text}");
                         continue;
                     }
                 }
@@ -543,7 +542,29 @@ namespace RemoteFiringSystem {
             {
 
                 float time = 0;
-                foreach (Transform T in Channels[startChannel].transform)
+
+                //Debug.Log("Parsing Channels Set Time");
+                List<int> channelids = new List<int>();
+                for (int i = 0; i <= Channels.Count - 1; i++)
+                {
+                    TMP_InputField[] fields;
+                    fields = Channels[i].GetComponentsInChildren<TMP_InputField>();
+
+                    int j = 0;
+                    foreach (TMP_InputField T in fields)
+                    {
+                        if (T.gameObject.name.Contains("ChannelInputField (TMP)"))
+                        {
+                            //Debug.Log($"Adding {fields[j].text} to list");
+                            channelids.Add(int.Parse(fields[j].text));
+
+                        }
+                        j++;
+                    }
+                }
+                int startid = channelids.IndexOf(startChannel);
+
+                foreach (Transform T in Channels[startid].transform)
                 {
                     if (T.gameObject.name.Contains("DelayInputField (TMP)"))
                     {
@@ -632,7 +653,6 @@ namespace RemoteFiringSystem {
 
             entitydata.Add<int>("StartChnnl", startChannel);
 
-            entitydata.Add<bool>("HideTool", ToolActive);
 
 
             return entitydata;
@@ -660,6 +680,7 @@ namespace RemoteFiringSystem {
             {
                 Destroy(T.gameObject);
             }
+            Channels.Clear();
 
             for (int i = 0; i <= num; i++)
             {
@@ -687,13 +708,12 @@ namespace RemoteFiringSystem {
 
             bool showactive = customComponentData.Get<bool>("ShowMaker");
             int srtchnl = customComponentData.Get<int>("StartChnnl");
-            bool toolactive = customComponentData.Get<bool>("HideTool");
             if (showactive)
             {
                 ToggleShowmaker();
                 SetStartChannel(srtchnl);
                 SetAudioTimes();
-                if (!toolactive) ToggleTool();
+                if (ToolActive) ToggleTool();
             }
 
 
