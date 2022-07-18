@@ -264,7 +264,7 @@ namespace RemoteFiringSystem {
             else
             {
                 PlayButtonClick();
-                if (!ToolActive)
+                if (!ShowmakerActive)
                 {
                     Messenger.Broadcast(new MessengerEventChangeUIMode(false, true));
                 }
@@ -485,6 +485,7 @@ namespace RemoteFiringSystem {
                 TopLevelUi.SetActive(false);
                 ShowmakerActive = false;
                 ShowMakerToggle.image.sprite = FSToggleOff;
+                if (ToolActive) ToggleTool();
             }
             else
             {
