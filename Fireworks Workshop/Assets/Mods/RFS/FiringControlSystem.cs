@@ -85,6 +85,7 @@ namespace RemoteFiringSystem {
             if (ShowmakerActive)
             {
                 //input = startChannel;
+                SetAudioPlayers();
                 SetAudioTimes();
                 StartCoroutine(Timer());
                 if (ToolActive) ToggleTool();
@@ -593,12 +594,11 @@ namespace RemoteFiringSystem {
                 }
 
                 startTime = time;
-
+                ShowTime.text = startTime.ToString("0000");
                 foreach (AudioSource Player in FAudioPlayers)
                 {
                     if (Player.isPlaying) continue;
                     Player.time = startTime;
-                    ShowTime.text = startTime.ToString("0000");
                 }
             }
         }
