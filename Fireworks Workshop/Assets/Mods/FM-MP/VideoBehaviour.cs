@@ -71,7 +71,7 @@ public class VideoBehaviour : BaseFireworkBehavior, IHaveFuse, IIgnitable, IHave
         float time = customComponentData.Get<float>("VidTime");
         if (time != 0f && temp2 != 3)
         {
-            VideoPlayer.player.time = time;
+            VideoPlayer.SetVideoStartTime(time);
         }
     }
 

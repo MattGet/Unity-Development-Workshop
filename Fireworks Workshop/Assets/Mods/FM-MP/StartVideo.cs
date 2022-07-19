@@ -177,6 +177,23 @@ public class StartVideo : MonoBehaviour
         }
     }
 
+    public void SetVideoStartTime(float time)
+    {
+        if (videoQuality != VideoQuality.UltraHighQuality)
+        {
+            StartCoroutine(VST(time));
+        }
+    }
+
+    private IEnumerator VST(float time)
+    {
+        yield return new WaitForSeconds(Time.deltaTime);
+        yield return new WaitUntil(() => player.isPrepared);
+        PlayVideo();
+        player.time = time;
+        player.Pause();
+    }
+
     public void PlayVideo()
     {
         //Debug.Log("playing started");
@@ -241,6 +258,10 @@ public class StartVideo : MonoBehaviour
             {
                 player.Stop();
             }
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            OnButtonPress();
         }
     }
 
