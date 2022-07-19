@@ -288,8 +288,7 @@ public class InputMenu : MonoBehaviour
     {
         do
         {
-            UISetExtensions.Set(VidTime, (float)videocontroller.player.time);
-            //VidTime.Set((float)videocontroller.player.time);
+            VidTime.SetValueWithoutNotify((float)videocontroller.player.time);
             TimeValue.text = SecToMinString(videocontroller.player.time);
             yield return new WaitForSeconds(1);
         } while (whiledisplay);
