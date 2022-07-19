@@ -19,16 +19,15 @@ public class InputMenu : MonoBehaviour
     public Button play;
     public Button pause;
     public Button stop;
-    public Button Back;
-    public Button Forward;
-    public Sprite forward0;
-    public Sprite forward1;
-    public Sprite forward2;
-    private int forwardnumb;
+    public Button Back10;
+    public Button Forward10;
     public Toggle loop;
     public Sprite loopoff;
     public Sprite loopon;
     public Slider volume;
+    public Slider VidTime;
+    public GameObject ScrubMissing;
+    public TMP_Text TimeValue;
     private StartVideo videocontroller;
     private bool whiledisplay = false;
     public AudioClip clicks;
@@ -79,8 +78,11 @@ public class InputMenu : MonoBehaviour
         pause.onClick.AddListener(CPause);
         stop.onClick.AddListener(CStop);
         loop.onValueChanged.AddListener(CLoop);
-        Back.onClick.AddListener(CBack);
-        Forward.onClick.AddListener(CForward);
+        Back10.onClick.AddListener(CBack);
+        Forward10.onClick.AddListener(CForward);
+        Quality.onValueChanged.AddListener(CQuality);
+
+        videocontroller.VideoPrepared.AddListener(StartTime);
 
         Messenger.Broadcast(new MessengerEventChangeUIMode(true, false));
 
@@ -94,6 +96,43 @@ public class InputMenu : MonoBehaviour
         }
         volume.value = volnumb;
         volume.onValueChanged.AddListener(Svolume);
+        if (videocontroller.player.isPrepared || videocontroller.isPlaying)
+        {
+            StartTime();
+        }
+
+        CQuality(Quality.value);
+    }
+
+    public void StartTime()
+    {
+        if (videocontroller.player != null)
+        {
+            Debug.Log($"Starting Time Counter max time = {videocontroller.player.length}");
+            VidTime.maxValue = (float)videocontroller.player.length;
+            StartCoroutine(updatetime());
+        }
+    }
+
+    public void CQuality(int id)
+    {
+        videocontroller.Quality(Quality.value);
+        if (Quality.value == 3)
+        {
+            Debug.Log("FMVP: Disabling Video Scrubbing, Not Available on UHD Qualiy");
+            VidTime.gameObject.SetActive(false);
+            Back10.gameObject.SetActive(false);
+            Forward10.gameObject.SetActive(false);
+            ScrubMissing.SetActive(true);
+        }
+        else if (!VidTime.IsActive())
+        {
+            Debug.Log("Re Enabling Video Scrubbing");
+            VidTime.gameObject.SetActive(true);
+            Back10.gameObject.SetActive(true);
+            Forward10.gameObject.SetActive(true);
+            ScrubMissing.SetActive(false);
+        }
     }
 
 
@@ -133,68 +172,34 @@ public class InputMenu : MonoBehaviour
         }
     }
 
-    public void CForward()
-    {
-        if (videocontroller != null)
-        {
-            if (videocontroller.player.isPlaying || videocontroller.player.isPaused)
-            {
-                //Debug.Log("Force Starting");
-                videocontroller.Seek(1);
-                if (forwardnumb == 0)
-                {
-                    Forward.image.sprite = forward1;
-                }
-                if (forwardnumb == 1)
-                {
-                    Forward.image.sprite = forward2;
-                }
-                if (forwardnumb == 2)
-                {
-                    Forward.image.sprite = forward0;
-                    forwardnumb = 0;
-                }
-                else
-                {
-                    forwardnumb += 1;
-                }
-                Playclick();
-            }
-            else
-            {
-                Playerror();
-            }
-
-        }
-        else
-        {
-            Playerror();
-        }
-    }
-  
     public void CBack()
     {
-        if (videocontroller != null)
+        if (videocontroller == null)
         {
-            if (videocontroller.isSeeking)
-            {
-                //Debug.Log("Force Starting");
-                videocontroller.Seek(0);
-                    Forward.image.sprite = forward0;
-                    forwardnumb = 0;
-                Playclick();
-            }
-            else
-            {
-                Playerror();
-            }
-
+            return;
         }
-        else
+        if (videocontroller.videoQuality == VideoQuality.UltraHighQuality)
         {
-            Playerror();
+            return;
         }
+        Playclick();
+        videocontroller.player.time = videocontroller.player.time - 10;
     }
+
+    public void CForward()
+    {
+        if (videocontroller == null)
+        {
+            return;
+        }
+        if (videocontroller.videoQuality == VideoQuality.UltraHighQuality)
+        {
+            return;
+        }
+        Playclick();
+        videocontroller.player.time = videocontroller.player.time + 10;
+    }
+
     public void CPlay()
     {
         if (videocontroller != null)
@@ -279,6 +284,56 @@ public class InputMenu : MonoBehaviour
         }
     }
 
+    private IEnumerator updatetime()
+    {
+        do
+        {
+            VidTime.Set((float)videocontroller.player.time);
+            TimeValue.text = SecToMinString(videocontroller.player.time);
+            yield return new WaitForSeconds(1);
+        } while (whiledisplay);
+        yield break;
+    }
+
+    private string SecToMinString(double seconds)
+    {
+        string Time = "";
+        TimeSpan t = TimeSpan.FromSeconds(seconds);
+        if (t.Hours != 0)
+        {
+            Time = $"{t.Hours}:{t.Minutes.ToString("00")}:{t.Seconds.ToString("00")}";
+            return Time;
+        }
+        if (t.Hours == 0)
+        {
+            Time = $"{t.Minutes.ToString("00")}:{t.Seconds.ToString("00")}";
+            return Time;
+        }
+        if (t.Minutes == 0)
+        {
+            Time = $"{seconds.ToString("00")}";
+            return Time;
+        }
+        Time = $"{t.Minutes.ToString("00")}:{t.Seconds.ToString("00")}";
+        return Time;
+    }
+
+    public void CScrubber(float time)
+    {
+        if (videocontroller == null)
+        {
+            return;
+        }
+        if (videocontroller.videoQuality == VideoQuality.UltraHighQuality)
+        {
+            return;
+        }
+        if (videocontroller.player.isPrepared || videocontroller.player.isPlaying || videocontroller.player.isPaused)
+        {
+            videocontroller.player.time = time;
+            Debug.Log($"Setting time to: {time}");
+        }
+    }
 
     public void PasteClick()
     {
@@ -315,10 +370,13 @@ public class InputMenu : MonoBehaviour
         play.onClick.RemoveAllListeners();
         pause.onClick.RemoveAllListeners();
         stop.onClick.RemoveAllListeners();
+        Back10.onClick.RemoveAllListeners();
+        Forward10.onClick.RemoveAllListeners();
         loop.onValueChanged.RemoveAllListeners();
-        Back.onClick.RemoveAllListeners();
-        Forward.onClick.RemoveAllListeners();
-
+        if (videocontroller != null)
+        {
+            videocontroller.VideoPrepared.RemoveListener(StartTime);
+        }
         gameObject.SetActive(false);
     }
 }

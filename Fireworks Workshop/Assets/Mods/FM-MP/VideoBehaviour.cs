@@ -40,6 +40,7 @@ public class VideoBehaviour : BaseFireworkBehavior, IHaveFuse, IIgnitable, IHave
         entitydata.Add<bool>("audioloop", VideoPlayer.audioSource.isLooping);
         entitydata.Add<float>("videoVol", menu.volnumb);
         entitydata.Add<int>("vidQual", (int)VideoPlayer.videoQuality);
+        entitydata.Add<float>("VidTiem", (float)VideoPlayer.player.time);
         //Debug.Log("stored Shell ID = " + TubeID);
         return entitydata;
     }
@@ -60,11 +61,18 @@ public class VideoBehaviour : BaseFireworkBehavior, IHaveFuse, IIgnitable, IHave
         localVideoURL = temp;
 
         int temp2 = customComponentData.Get<int>("vidQual");
+        menu.Quality.value = temp2;
         VideoPlayer.player.isLooping = customComponentData.Get<bool>("videoloop");
         VideoPlayer.audioSource.isLooping = customComponentData.Get<bool>("audioloop");
         menu.volnumb = customComponentData.Get<float>("videoVol");
         VideoPlayer.Quality(temp2);
         VideoPlayer.OK(temp);
+
+        float time = customComponentData.Get<float>("VidTime");
+        if (time != 0f && temp2 != 3)
+        {
+            VideoPlayer.player.time = time;
+        }
     }
 
 

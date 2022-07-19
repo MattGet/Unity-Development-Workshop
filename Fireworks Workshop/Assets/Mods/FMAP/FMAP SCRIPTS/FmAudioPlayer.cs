@@ -20,7 +20,6 @@ public class FmAudioPlayer : MonoBehaviour
     [HideInInspector]
     public bool onlytriggeronce = false;
     private string VideoID;
-    private bool isVideoUrl = false;
     [HideInInspector]
     public UnityEvent<string> gotURL;
     [HideInInspector]
