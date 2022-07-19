@@ -35,6 +35,7 @@ public class VideoBehaviour : BaseFireworkBehavior, IHaveFuse, IIgnitable, IHave
             W = this.transform.rotation.w
         });
 
+        entitydata.Add<bool>("IsKinematic", component.isKinematic);
         entitydata.Add<string>("URL", VideoPlayer.VideoURL);
         entitydata.Add<bool>("videoloop", VideoPlayer.player.isLooping);
         entitydata.Add<bool>("audioloop", VideoPlayer.audioSource.isLooping);
