@@ -147,7 +147,15 @@ namespace RemoteFiringSystem {
         public IEnumerator Timer()
         {
             float CurrTime = startTime;
-            float TotalTime = FAudioPlayers[0].clip.length + 30;
+            float TotalTime = 0;
+            if (FAudioPlayers.Length > 0)
+            {
+                TotalTime = FAudioPlayers[0].clip.length + 30;
+            }
+            else
+            {
+                TotalTime = 9999;
+            }
             do
             {
                 ShowTime.text = CurrTime.ToString("0000");
