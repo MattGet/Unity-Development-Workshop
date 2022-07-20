@@ -639,7 +639,7 @@ namespace RemoteFiringSystem {
                     if (Player.isPlaying) continue;
                     if (Player.isPrepared || Player.isPaused)
                     {
-                        Player.time = startTime;
+                        Player.gameObject.SendMessage("SetVideoStartTime", time);
                     }
                 }
             }
