@@ -127,7 +127,14 @@ public class VideoBehaviour : BaseFireworkBehavior, IHaveFuse, IIgnitable, IHave
 
     protected override async UniTask LaunchInternalAsync(CancellationToken token)
     {
-        this.VideoPlayer.PlayVideo();
+        if (VideoPlayer.isPlaying && VideoPlayer.videoQuality != VideoQuality.UltraHighQuality)
+        {
+            VideoPlayer.player.Play();
+        }
+        else
+        {
+            this.VideoPlayer.PlayVideo();
+        }
         await UniTask.WaitWhile(() => VideoPlayer.isPlaying == true, PlayerLoopTiming.Update, token);
         token.ThrowIfCancellationRequested();
         if (!CoreSettings.AutoDespawnFireworks)
