@@ -12,6 +12,7 @@ using UnityEngine.UI;
 using FireworksMania.Core.Messaging;
 using FireworksMania.Core.Definitions;
 using FireworksMania.Core;
+using UnityEngine.Video;
 
 namespace RemoteFiringSystem {
 
@@ -50,6 +51,8 @@ namespace RemoteFiringSystem {
         public GameObject ToolBar;
         public GameObject TopLevelUi;
         public TMP_InputField StartChannel;
+        public TMP_InputField AudioChannel;
+        public TMP_Text VideoChnnls;
         public TMP_Text AudioChnnls;
         public TMP_Text ShowTime;
         public Button ShowMakerToggle;
@@ -61,6 +64,7 @@ namespace RemoteFiringSystem {
 
         private AudioSource[] FAudioPlayers;
         private Rigidbody _rigidbody;
+        private VideoPlayer[] FVideoPlayers;
 
         private bool IsActive = false;
         private bool fired = false;
@@ -70,6 +74,7 @@ namespace RemoteFiringSystem {
         private List<int> ids = new List<int>();
         private bool confirm = false;
         private bool remote = true;
+        private int AudioChnl;
 
 
         public void FireButton(bool withSound)
@@ -84,33 +89,33 @@ namespace RemoteFiringSystem {
             int input = 0;
             if (ShowmakerActive)
             {
+                float AC = 0;
                 //input = startChannel;
                 SetAudioPlayers();
                 SetAudioTimes();
                 StartCoroutine(Timer());
                 if (ToolActive) ToggleTool();
-                foreach (AudioSource Player in FAudioPlayers)
-                {
-                    Player.Play();
-                }
                 //Debug.Log("Parsing Channels");
                 List<int> channelids = new List<int>();
                 for (int i = 0; i <= Channels.Count - 1; i++)
                 {
                     TMP_InputField[] fields;
                     fields = Channels[i].GetComponentsInChildren<TMP_InputField>();
-
-                    int j = 0;
-                    foreach (TMP_InputField T in fields)
-                    {
-                        if (T.gameObject.name.Contains("ChannelInputField (TMP)"))
+                    int CID = int.Parse(fields[0].text);
+                    AC = float.Parse(fields[1].text);
+                    //foreach (TMP_InputField T in fields)
+                    //{
+                     //   if (T.gameObject.name.Contains("ChannelInputField (TMP)"))
+                      //  {
+                            //Debug.Log($"Adding {fields[0].text} to list");
+                            channelids.Add(CID);
+                       // }
+                        if (int.Parse(fields[0].text) == AudioChnl)
                         {
-                            //Debug.Log($"Adding {fields[j].text} to list");
-                            channelids.Add(int.Parse(fields[j].text));
-
+                            StartCoroutine(ChannelCount(CID, AC));
                         }
-                        j++;
-                    }
+                        //j++;
+                   // }
                 }
 
                 input = channelids.IndexOf(startChannel);
@@ -523,6 +528,14 @@ namespace RemoteFiringSystem {
             SetAudioTimes();
         }
 
+        public void SetAudioChannel(string start)
+        {
+            AudioChnl = Mathf.Clamp(int.Parse(start), 0, 1000);
+            Debug.Log($"Set Audio Channel to: {AudioChnl}, value in = {start}");
+            SetAudioPlayers();
+            SetAudioTimes();
+        }
+
         public void SetStartChannel(int start)
         {
             startChannel = start;
@@ -551,6 +564,19 @@ namespace RemoteFiringSystem {
             }
             FAudioPlayers = players.ToArray();
             AudioChnnls.text = $"Audio Players In Show: {FAudioPlayers.Length}";
+
+            List<VideoPlayer> Vplayers = new List<VideoPlayer>();
+            foreach (Transform T in FManager)
+            {
+                    VideoPlayer Player;
+                    if (T.gameObject.TryGetComponent(out Player))
+                    {
+                        Debug.Log("Found Audio Player");
+                        Vplayers.Add(Player);
+                    }
+            }
+            FVideoPlayers = Vplayers.ToArray();
+            AudioChnnls.text = $"Video Players In Show: {FVideoPlayers.Length}";
         }
 
         private void SetAudioTimes()
@@ -607,6 +633,14 @@ namespace RemoteFiringSystem {
                 {
                     if (Player.isPlaying) continue;
                     Player.time = startTime;
+                }
+                foreach (VideoPlayer Player in FVideoPlayers)
+                {
+                    if (Player.isPlaying) continue;
+                    if (Player.isPrepared || Player.isPaused)
+                    {
+                        Player.time = startTime;
+                    }
                 }
             }
         }
