@@ -157,6 +157,10 @@ namespace RemoteFiringSystem {
             {
                 TotalTime = FAudioPlayers[0].clip.length + 30;
             }
+            else if (FVideoPlayers.Length > 0)
+            {
+                TotalTime = (float)FVideoPlayers[0].length + 30;
+            }
             else
             {
                 TotalTime = 9999;
@@ -642,14 +646,8 @@ namespace RemoteFiringSystem {
                     if (Player.isPlaying) continue;
                     Player.time = startTime;
                 }
-                foreach (VideoPlayer Player in FVideoPlayers)
-                {
-                    if (Player.isPlaying) continue;
-                    if (Player.isPrepared || Player.isPaused)
-                    {
-                        Player.gameObject.transform.parent.gameObject.BroadcastMessage("SetVideoStartTime", time);
-                    }
-                }
+                
+                this.gameObject.transform.parent.gameObject.BroadcastMessage("SetVideoStartTime", time);
             }
         }
 
