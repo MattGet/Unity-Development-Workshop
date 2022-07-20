@@ -536,6 +536,14 @@ namespace RemoteFiringSystem {
             SetAudioTimes();
         }
 
+        public void SetAudioChannel(int start)
+        {
+            AudioChnl = start;
+            AudioChannel.text = start.ToString();
+            SetAudioPlayers();
+            SetAudioTimes();
+        }
+
         public void SetStartChannel(int start)
         {
             startChannel = start;
@@ -703,6 +711,8 @@ namespace RemoteFiringSystem {
 
             entitydata.Add<int>("StartChnnl", startChannel);
 
+            entitydata.Add<int>("AudioChnnl", AudioChnl);
+
 
 
             return entitydata;
@@ -758,10 +768,12 @@ namespace RemoteFiringSystem {
 
             bool showactive = customComponentData.Get<bool>("ShowMaker");
             int srtchnl = customComponentData.Get<int>("StartChnnl");
+            int audiochnl = customComponentData.Get<int>("AudioChnnl");
             if (showactive)
             {
                 ToggleShowmaker();
                 SetStartChannel(srtchnl);
+                SetAudioChannel(audiochnl);
                 SetAudioTimes();
                 if (ToolActive) ToggleTool();
             }

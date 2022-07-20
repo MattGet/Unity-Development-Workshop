@@ -181,6 +181,7 @@ public class StartVideo : MonoBehaviour
     {
         if (videoQuality != VideoQuality.UltraHighQuality)
         {
+            Debug.Log($"Setting Video Start Time To: {time}");
             StartCoroutine(VST(time));
         }
     }
@@ -188,7 +189,10 @@ public class StartVideo : MonoBehaviour
     private IEnumerator VST(float time)
     {
         yield return new WaitForSeconds(Time.deltaTime);
-        yield return new WaitUntil(() => player.isPrepared);
+        if (!player.isPrepared)
+        {
+            yield return new WaitUntil(() => player.isPrepared);
+        }
         PlayVideo();
         player.time = time;
         player.Pause();
