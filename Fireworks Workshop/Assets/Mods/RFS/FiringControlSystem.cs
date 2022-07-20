@@ -576,7 +576,7 @@ namespace RemoteFiringSystem {
                     }
             }
             FVideoPlayers = Vplayers.ToArray();
-            AudioChnnls.text = $"Video Players In Show: {FVideoPlayers.Length}";
+            VideoChnnls.text = $"Video Players In Show: {FVideoPlayers.Length}";
         }
 
         private void SetAudioTimes()
@@ -639,7 +639,7 @@ namespace RemoteFiringSystem {
                     if (Player.isPlaying) continue;
                     if (Player.isPrepared || Player.isPaused)
                     {
-                        Player.gameObject.SendMessage("SetVideoStartTime", time);
+                        Player.gameObject.transform.parent.gameObject.BroadcastMessage("SetVideoStartTime", time);
                     }
                 }
             }
