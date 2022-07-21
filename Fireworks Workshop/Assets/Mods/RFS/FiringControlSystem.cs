@@ -411,23 +411,8 @@ namespace RemoteFiringSystem {
             GameObject Tile = Instantiate(TilePrefab, TileParent.transform);
             Channels.Add(Tile);
 
-            foreach (Transform T in Tile.transform)
-            {
-                TMP_InputField field;
-                if (T.gameObject.TryGetComponent<TMP_InputField>(out field))
-                {
-                    field.text = (Channels.Count - 1).ToString();
-                    field.ForceLabelUpdate();
-                    break;
-                }
-            }
-        }
-        public void AddChnl(int chnl)
-        {
-            GameObject Tile = Instantiate(TilePrefab, TileParent.transform);
-            TMP_InputField prior = Channels[Channels.Count].GetComponentInChildren<TMP_InputField>();
+            TMP_InputField prior = Channels[Channels.Count-2].GetComponentInChildren<TMP_InputField>();
             float priorid = float.Parse(prior.text);
-            Channels.Add(Tile);
 
             foreach (Transform T in Tile.transform)
             {
@@ -438,6 +423,31 @@ namespace RemoteFiringSystem {
                     {
                         //Debug.Log("\tUpdating Channel Feild");
                         field.text = (priorid + 1f).ToString();
+                        continue;
+                    }
+                    if (T.gameObject.name.Contains("DelayInputField (TMP)"))
+                    {
+                        //Debug.Log("\tUpdating Delay Feild");
+                        field.text = "0";
+                        continue;
+                    }
+                }
+            }
+        }
+        public void AddChnl(int chnl)
+        {
+            GameObject Tile = Instantiate(TilePrefab, TileParent.transform);
+            Channels.Add(Tile);
+
+            foreach (Transform T in Tile.transform)
+            {
+                TMP_InputField field;
+                if (T.gameObject.TryGetComponent<TMP_InputField>(out field))
+                {
+                    if (T.gameObject.name.Contains("ChannelInputField (TMP)"))
+                    {
+                        //Debug.Log("\tUpdating Channel Feild");
+                        field.text = (chnl).ToString();
                         continue;
                     }
                     if (T.gameObject.name.Contains("DelayInputField (TMP)"))
