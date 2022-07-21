@@ -425,6 +425,8 @@ namespace RemoteFiringSystem {
         public void AddChnl(int chnl)
         {
             GameObject Tile = Instantiate(TilePrefab, TileParent.transform);
+            TMP_InputField prior = Channels[Channels.Count].GetComponentInChildren<TMP_InputField>();
+            float priorid = float.Parse(prior.text);
             Channels.Add(Tile);
 
             foreach (Transform T in Tile.transform)
@@ -432,9 +434,18 @@ namespace RemoteFiringSystem {
                 TMP_InputField field;
                 if (T.gameObject.TryGetComponent<TMP_InputField>(out field))
                 {
-                    field.text = (chnl).ToString();
-                    field.ForceLabelUpdate();
-                    break;
+                    if (T.gameObject.name.Contains("ChannelInputField (TMP)"))
+                    {
+                        //Debug.Log("\tUpdating Channel Feild");
+                        field.text = (priorid + 1f).ToString();
+                        continue;
+                    }
+                    if (T.gameObject.name.Contains("DelayInputField (TMP)"))
+                    {
+                        //Debug.Log("\tUpdating Delay Feild");
+                        field.text = "0";
+                        continue;
+                    }
                 }
             }
         }

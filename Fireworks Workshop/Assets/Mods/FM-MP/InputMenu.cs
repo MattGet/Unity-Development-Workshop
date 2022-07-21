@@ -95,6 +95,7 @@ public class InputMenu : MonoBehaviour
             loop.image.sprite = loopoff;
         }
         volume.value = volnumb;
+        Svolume(volnumb);
         volume.onValueChanged.AddListener(Svolume);
         if (videocontroller.player.isPrepared || videocontroller.isPlaying)
         {
