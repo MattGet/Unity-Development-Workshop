@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class NumericDisplay : MonoBehaviour
 {
 
-    public int Number = 0;
+    public float Number = 0;
     public TMP_Text DisplayText;
     private string fmtstring = "00";
     private string fmtstring2 = "0";
@@ -20,7 +20,7 @@ public class NumericDisplay : MonoBehaviour
     public bool up = false;
     [HideInInspector]
     public bool down = false;
-    public UnityEvent<int> updateid;
+    public UnityEvent<float> updateid;
     
 
     public enum digits
@@ -29,6 +29,7 @@ public class NumericDisplay : MonoBehaviour
         doubleDigit,
         tripleDigit,
         quadDigit,
+        infDigit,
     }
 
 
@@ -91,16 +92,18 @@ public class NumericDisplay : MonoBehaviour
                 StartCoroutine(Count(true));
             }
         }
-
     }
     public void DownButton()
     {
-        if (Number > 0)
+        if (NumberOfDigits != digits.infDigit)
         {
-            down = true;
-            Number -= 1;
-            UpdateDisplay(Number);
-            StartCoroutine(Count(false));
+            if (Number > 0)
+            {
+                down = true;
+                Number -= 1;
+                UpdateDisplay(Number);
+                StartCoroutine(Count(false));
+            }
         }
     }
 
@@ -167,7 +170,7 @@ public class NumericDisplay : MonoBehaviour
         }
     }
 
-    public void UpdateDisplay(int chnl)
+    public void UpdateDisplay(float chnl)
     {
         if (DisplayText != null)
         {
@@ -239,6 +242,13 @@ public class NumericDisplay : MonoBehaviour
                 {
                     DisplayText.text = "0000";
                 }
+            }
+            else if (NumberOfDigits == digits.infDigit)
+            {
+                //Debug.Log("channel: " + chnl + " string: " + chnl.ToString(formatstring4));
+                    Number = chnl;
+                    string displayint = chnl.ToString();
+                    DisplayText.text = displayint;
             }
 
         }

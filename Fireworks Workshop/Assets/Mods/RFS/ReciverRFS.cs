@@ -18,7 +18,7 @@ namespace RemoteFiringSystem
 
         public NumericDisplay RRchannelDis;
         [HideInInspector]
-        public int Rchannel = 0;
+        public float Rchannel = 0f;
         [HideInInspector]
         public int min = 0;
         [HideInInspector]
@@ -37,7 +37,7 @@ namespace RemoteFiringSystem
         public TMP_InputField InputField;
         public Button RClose;
 
-        public void FIRE(int chnl)
+        public void FIRE(float chnl)
         {
             if (chnl == Rchannel)
             {
@@ -75,7 +75,7 @@ namespace RemoteFiringSystem
                 W = this.transform.rotation.w
             });
             Rchannel = RRchannelDis.Number;
-            entitydata.Add<int>("Channel", Rchannel);
+            entitydata.Add<float>("Channel", Rchannel);
 
             return entitydata;
         }
@@ -91,7 +91,7 @@ namespace RemoteFiringSystem
             if (!((UnityEngine.Object)component != (UnityEngine.Object)null))
                 return;
             component.isKinematic = flag;
-            Rchannel = customComponentData.Get<int>("Channel");
+            Rchannel = customComponentData.Get<float>("Channel");
             RRchannelDis.UpdateDisplay(Rchannel);
         }
 
@@ -113,7 +113,7 @@ namespace RemoteFiringSystem
             if (UseUI) RUiController.SetActive(false);
         }
 
-        public void updateID(int id)
+        public void updateID(float id)
         {
             Rchannel = id;
         }
@@ -203,18 +203,7 @@ namespace RemoteFiringSystem
                     int x = 10000;
                     if (int.TryParse(InputField.text, out x))
                     {
-                        if (x <= 10000 && x >= 0)
-                        {
-                            RRchannelDis.UpdateDisplay(x);
-                        }
-                        if (x < 0)
-                        {
-                            RRchannelDis.UpdateDisplay(0);
-                        }
-                        if (x > 9999)
-                        {
-                            RRchannelDis.UpdateDisplay(9999);
-                        }
+                        RRchannelDis.UpdateDisplay(x);
                     }
                     else
                     {

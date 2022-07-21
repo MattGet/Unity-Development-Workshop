@@ -59,7 +59,7 @@ namespace RemoteFiringSystem {
 
         private bool ToolActive = false;
         private bool ShowmakerActive = false;
-        private int startChannel = 0;
+        private float startChannel = 0;
         private float startTime = 0;
 
         private AudioSource[] FAudioPlayers;
@@ -71,10 +71,12 @@ namespace RemoteFiringSystem {
         private bool IsFiring = false;
         [SerializeField]
         private bool destroy = true;
-        private List<int> ids = new List<int>();
+        private List<float> ids = new List<float>();
         private bool confirm = false;
         private bool remote = true;
-        private int AudioChnl;
+        private float AudioChnl;
+
+        private Dictionary<float, float> ChannelDic = new Dictionary<float, float>();
 
 
         public void FireButton(bool withSound)
@@ -96,12 +98,12 @@ namespace RemoteFiringSystem {
                 StartCoroutine(Timer());
                 if (ToolActive) ToggleTool();
                 //Debug.Log("Parsing Channels");
-                List<int> channelids = new List<int>();
+                List<float> channelids = new List<float>();
                 for (int i = 0; i <= Channels.Count - 1; i++)
                 {
                     TMP_InputField[] fields;
                     fields = Channels[i].GetComponentsInChildren<TMP_InputField>();
-                    int CID = int.Parse(fields[0].text);
+                    float CID = float.Parse(fields[0].text);
                     AC = float.Parse(fields[1].text);
                     //foreach (TMP_InputField T in fields)
                     //{
@@ -110,7 +112,7 @@ namespace RemoteFiringSystem {
                             //Debug.Log($"Adding {fields[0].text} to list");
                             channelids.Add(CID);
                        // }
-                        if (int.Parse(fields[0].text) == AudioChnl)
+                        if (float.Parse(fields[0].text) == AudioChnl)
                         {
                             StartCoroutine(ChannelCount(CID, AC));
                         }
@@ -173,7 +175,7 @@ namespace RemoteFiringSystem {
             } while (CurrTime < TotalTime);
         }
 
-        public IEnumerator ChannelCount(int channel, float time)
+        public IEnumerator ChannelCount(float channel, float time)
         {
             ids.Add(channel);
             if (ShowmakerActive)
@@ -194,9 +196,9 @@ namespace RemoteFiringSystem {
 
         }
 
-        private IEnumerator RemoveId(int chnl)
+        private IEnumerator RemoveId(float chnl)
         {
-            List<int> temp = ids.ToList();
+            List<float> temp = ids.ToList();
             foreach (int id in temp)
             {
                 //Debug.Log("ID = " + id);
@@ -355,6 +357,7 @@ namespace RemoteFiringSystem {
             }
         }
 
+
         public void CYES()
         {
             PlayButtonClick();
@@ -380,7 +383,7 @@ namespace RemoteFiringSystem {
                 RemoveChnl();
             } while (Channels.Count > 0);
 
-            List<int> ids2 = new List<int>();
+            List<float> ids2 = new List<float>();
 
             foreach (Transform T in this.gameObject.transform.parent.transform)
             {
@@ -394,7 +397,7 @@ namespace RemoteFiringSystem {
                 }
             }
 
-            foreach (int id in ids2)
+            foreach (float id in ids2)
             {
                 AddChnl(id);
             }
@@ -402,6 +405,31 @@ namespace RemoteFiringSystem {
             if (Channels.Count == 0)
             {
                 AddChnl(0);
+            }
+        }
+
+        public void ReorderChannels()
+        {
+            List<float> channelids = new List<float>();
+            foreach (GameObject G in Channels)
+            {
+                TMP_InputField[] fields = G.GetComponentsInChildren<TMP_InputField>();
+                float chnl = float.Parse(fields[0].text);
+                float time = float.Parse(fields[1].text);
+                channelids.Add(chnl);
+                ChannelDic.Add(chnl, time);
+            }
+
+            channelids.Sort();
+            foreach (Transform T in TileParent.transform)
+            {
+                Destroy(T.gameObject);
+            }
+            Channels.Clear();
+
+            foreach (int i in channelids)
+            {
+                AddChnl(i, ChannelDic[i]);
             }
         }
 
@@ -434,11 +462,10 @@ namespace RemoteFiringSystem {
                 }
             }
         }
-        public void AddChnl(int chnl)
+        public void AddChnl(float chnl)
         {
             GameObject Tile = Instantiate(TilePrefab, TileParent.transform);
             Channels.Add(Tile);
-
             foreach (Transform T in Tile.transform)
             {
                 TMP_InputField field;
@@ -460,11 +487,35 @@ namespace RemoteFiringSystem {
             }
         }
 
+        public void AddChnl(float chnl, float time)
+        {
+            GameObject Tile = Instantiate(TilePrefab, TileParent.transform);
+            Channels.Add(Tile);
+            foreach (Transform T in Tile.transform)
+            {
+                TMP_InputField field;
+                if (T.gameObject.TryGetComponent<TMP_InputField>(out field))
+                {
+                    if (T.gameObject.name.Contains("ChannelInputField (TMP)"))
+                    {
+                        //Debug.Log("\tUpdating Channel Feild");
+                        field.text = (chnl).ToString();
+                        continue;
+                    }
+                    if (T.gameObject.name.Contains("DelayInputField (TMP)"))
+                    {
+                        //Debug.Log("\tUpdating Delay Feild");
+                        field.text = (time).ToString();
+                        continue;
+                    }
+                }
+            }
+        }
+
         public void AddChnl(string chnl, string time)
         {
             GameObject Tile = Instantiate(TilePrefab, TileParent.transform);
             Channels.Add(Tile);
-
             foreach (Transform T in Tile.transform)
             {
                 TMP_InputField field;
@@ -547,7 +598,7 @@ namespace RemoteFiringSystem {
 
         public void SetStartChannel(string start)
         {
-            startChannel = Mathf.Clamp(int.Parse(start), 0, 1000);
+            startChannel = Mathf.Clamp(float.Parse(start), 0, 1000);
             Debug.Log($"Set Start Channel to: {startChannel}, value in = {start}");
             SetAudioPlayers();
             SetAudioTimes();
@@ -555,13 +606,13 @@ namespace RemoteFiringSystem {
 
         public void SetAudioChannel(string start)
         {
-            AudioChnl = Mathf.Clamp(int.Parse(start), 0, 1000);
+            AudioChnl = Mathf.Clamp(float.Parse(start), 0, 1000);
             Debug.Log($"Set Audio Channel to: {AudioChnl}, value in = {start}");
             SetAudioPlayers();
             SetAudioTimes();
         }
 
-        public void SetAudioChannel(int start)
+        public void SetAudioChannel(float start)
         {
             AudioChnl = start;
             AudioChannel.text = start.ToString();
@@ -569,7 +620,7 @@ namespace RemoteFiringSystem {
             SetAudioTimes();
         }
 
-        public void SetStartChannel(int start)
+        public void SetStartChannel(float start)
         {
             startChannel = start;
             StartChannel.text = start.ToString();
@@ -620,7 +671,7 @@ namespace RemoteFiringSystem {
                 float time = 0;
 
                 //Debug.Log("Parsing Channels Set Time");
-                List<int> channelids = new List<int>();
+                List<float> channelids = new List<float>();
                 for (int i = 0; i <= Channels.Count - 1; i++)
                 {
                     TMP_InputField[] fields;
@@ -632,7 +683,7 @@ namespace RemoteFiringSystem {
                         if (T.gameObject.name.Contains("ChannelInputField (TMP)"))
                         {
                             //Debug.Log($"Adding {fields[j].text} to list");
-                            channelids.Add(int.Parse(fields[j].text));
+                            channelids.Add(float.Parse(fields[j].text));
 
                         }
                         j++;
@@ -728,9 +779,9 @@ namespace RemoteFiringSystem {
 
             entitydata.Add<bool>("ShowMaker", ShowmakerActive);
 
-            entitydata.Add<int>("StartChnnl", startChannel);
+            entitydata.Add<float>("StartChnnl", startChannel);
 
-            entitydata.Add<int>("AudioChnnl", AudioChnl);
+            entitydata.Add<float>("AudioChnnl", AudioChnl);
 
 
 
@@ -786,8 +837,8 @@ namespace RemoteFiringSystem {
             }
 
             bool showactive = customComponentData.Get<bool>("ShowMaker");
-            int srtchnl = customComponentData.Get<int>("StartChnnl");
-            int audiochnl = customComponentData.Get<int>("AudioChnnl");
+            float srtchnl = customComponentData.Get<int>("StartChnnl");
+            float audiochnl = customComponentData.Get<int>("AudioChnnl");
             if (showactive)
             {
                 ToggleShowmaker();

@@ -35,8 +35,8 @@ namespace RemoteFiringSystem
             {
                 if (RDminDis != null && RDsecDis != null)
                 {
-                    RDmin = RDminDis.Number;
-                    RDseconds = RDsecDis.Number;
+                    RDmin = Mathf.RoundToInt(RDminDis.Number);
+                    RDseconds = Mathf.RoundToInt(RDsecDis.Number);
                 }
 
                 if (RDseconds == 0 && RDmin == 0)
@@ -55,8 +55,8 @@ namespace RemoteFiringSystem
         public IEnumerator Countdown()
         {
             int i = RDmin;
-            RDmin = RDminDis.Number;
-            RDseconds = RDsecDis.Number;
+            RDmin = Mathf.RoundToInt(RDminDis.Number);
+            RDseconds = Mathf.RoundToInt(RDsecDis.Number);
             while (i >= 0)
             {
                 //Debug.Log("RDminutes: " + i);
@@ -128,14 +128,14 @@ namespace RemoteFiringSystem
                 W = this.transform.rotation.w
             });
 
-            RDchannel = RDchannelDis.Number;
+            RDchannel = Mathf.RoundToInt(RDchannelDis.Number);
 
             entitydata.Add<int>("Channel", RDchannel);
 
             if (RDminDis != null && RDsecDis != null)
             {
-                RDmin = RDminDis.Number;
-                RDseconds = RDsecDis.Number;
+                RDmin = Mathf.RoundToInt(RDminDis.Number);
+                RDseconds = Mathf.RoundToInt(RDsecDis.Number);
                 entitydata.Add<int>("Mins", RDmin);
                 entitydata.Add<int>("Seconds", RDseconds);
             }
@@ -184,9 +184,9 @@ namespace RemoteFiringSystem
             RDchannelDis.updateid.AddListener(updateID);
         }
 
-        public void updateID(int id)
+        public void updateID(float id)
         {
-            RDchannel = id;
+            RDchannel = Mathf.RoundToInt(id);
         }
 
         protected override void OnValidate()
