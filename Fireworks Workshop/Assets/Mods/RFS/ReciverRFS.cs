@@ -193,7 +193,7 @@ namespace RemoteFiringSystem
                     Messenger.Broadcast(new MessengerEventChangeUIMode(true, false));
                     RUiController.SetActive(true);
                     RClose.onClick.AddListener(UpdateUI);
-                    InputField.text = Rchannel.ToString("0000");
+                    InputField.text = Rchannel.ToString();
                     IsActive = true;
                 }
                 else
@@ -213,7 +213,6 @@ namespace RemoteFiringSystem
                     RUiController.SetActive(false);
                 }
             }
-
         }
 
 

@@ -144,7 +144,7 @@ namespace RemoteFiringSystem {
                     //Debug.Log("Caught Channel: " + data[0] + " Caught Time: " + data[1]);
                     if (data[0] <= 9999f)
                     {
-                        StartCoroutine(ChannelCount(Mathf.RoundToInt(data[0]), data[1]));
+                        StartCoroutine(ChannelCount((data[0]), data[1]));
                     }
                 }
             }
