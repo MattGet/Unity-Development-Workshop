@@ -195,7 +195,7 @@ public class CustomSpriteFromPrefab : UnityEditor.Editor
         ti.textureType = TextureImporterType.Sprite;
         ti.spriteImportMode = SpriteImportMode.Single;
         ti.textureCompression = TextureImporterCompression.CompressedHQ;
-        ti.maxTextureSize = 1024;
+        ti.maxTextureSize = 512;
 
         EditorUtility.SetDirty(ti);
         ti.SaveAndReimport();
