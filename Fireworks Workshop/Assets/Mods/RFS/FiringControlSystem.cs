@@ -55,6 +55,7 @@ namespace RemoteFiringSystem {
         public TMP_Text VideoChnnls;
         public TMP_Text AudioChnnls;
         public TMP_Text ShowTime;
+        public TMP_Text ChannelNumber;
         public Button ShowMakerToggle;
 
         private bool ToolActive = false;
@@ -75,8 +76,6 @@ namespace RemoteFiringSystem {
         private bool confirm = false;
         private bool remote = true;
         private float AudioChnl;
-
-        private Dictionary<float, float> ChannelDic = new Dictionary<float, float>();
 
 
         public void FireButton(bool withSound)
@@ -187,6 +186,8 @@ namespace RemoteFiringSystem {
             this.transform.parent.gameObject.BroadcastMessage("FIRE", channel);
             string text = "Firing Channel     " + channel.ToString();
             ComputerDisplay.text = text;
+            string text2 = $"Firing Channel: {channel}";
+            ChannelNumber.text = text2;
         }
 
         public void FIRED(int chnl)
@@ -411,6 +412,7 @@ namespace RemoteFiringSystem {
         public void ReorderChannels()
         {
             List<float> channelids = new List<float>();
+            Dictionary<float, float> ChannelDic = new Dictionary<float, float>();
             foreach (GameObject G in Channels)
             {
                 TMP_InputField[] fields = G.GetComponentsInChildren<TMP_InputField>();
@@ -600,6 +602,8 @@ namespace RemoteFiringSystem {
         {
             startChannel = Mathf.Clamp(float.Parse(start), 0, 1000);
             Debug.Log($"Set Start Channel to: {startChannel}, value in = {start}");
+            string text2 = $"Firing Channel: {startChannel}";
+            ChannelNumber.text = text2;
             SetAudioPlayers();
             SetAudioTimes();
         }
@@ -624,6 +628,8 @@ namespace RemoteFiringSystem {
         {
             startChannel = start;
             StartChannel.text = start.ToString();
+            string text2 = $"Firing Channel: {start}";
+            ChannelNumber.text = text2;
             SetAudioPlayers();
             SetAudioTimes();
         }
