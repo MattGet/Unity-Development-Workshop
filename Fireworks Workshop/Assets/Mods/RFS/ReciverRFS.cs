@@ -200,8 +200,8 @@ namespace RemoteFiringSystem
                 {
                     Messenger.Broadcast(new MessengerEventChangeUIMode(false, true));
                     RClose.onClick.RemoveAllListeners();
-                    int x = 10000;
-                    if (int.TryParse(InputField.text, out x))
+                    float x = 0f;
+                    if (float.TryParse(InputField.text, out x))
                     {
                         RRchannelDis.UpdateDisplay(x);
                     }

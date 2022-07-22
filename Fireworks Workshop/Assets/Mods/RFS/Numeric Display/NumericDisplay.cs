@@ -250,7 +250,6 @@ public class NumericDisplay : MonoBehaviour
                     string displayint = chnl.ToString();
                     DisplayText.text = displayint;
             }
-
         }
         updateid.Invoke(Number);
     }
