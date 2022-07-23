@@ -20564,7 +20564,7 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 0.75
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 0}
+    m_Position: {x: 0, y: 0, z: -1}
     m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
@@ -51455,6 +51455,7 @@ GameObject:
   - component: {fileID: 1019197476138073128}
   - component: {fileID: 4467385306703772198}
   - component: {fileID: 1288876557359120069}
+  - component: {fileID: 3685203656998679820}
   m_Layer: 0
   m_Name: 11 Shot Charcoal Willow To White Strobe
   m_TagString: Untagged
@@ -51697,6 +51698,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sound: SFX_Impact_GeneralMedium
+--- !u!65 &3685203656998679820
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7428738661252612354}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.7112384, y: 1.2808652, z: 0.39064026}
+  m_Center: {x: 0.008315384, y: -0.1526773, z: 0.003856659}
 --- !u!1 &7539423714289128356
 GameObject:
   m_ObjectHideFlags: 0

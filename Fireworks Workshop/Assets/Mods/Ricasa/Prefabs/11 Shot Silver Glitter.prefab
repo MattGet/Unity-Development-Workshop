@@ -10270,7 +10270,7 @@ MonoBehaviour:
   TotalEffects: 11 effects
   TimePerCycle: 0.55 seconds
   TotalDuration: 0.6 seconds
-  LocalTime: 000.00 Seconds
+  LocalTime: 000.25 Seconds
   FanType: 4
   MainSystem: {fileID: 6990019009570817448}
   NumberOfBursts: 11
@@ -11265,6 +11265,7 @@ GameObject:
   - component: {fileID: 6618056520208676518}
   - component: {fileID: 7495030636809384104}
   - component: {fileID: 4908896678480065611}
+  - component: {fileID: 5095364966830746943}
   m_Layer: 0
   m_Name: 11 Shot Silver Glitter
   m_TagString: Untagged
@@ -11507,6 +11508,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sound: SFX_Impact_GeneralMedium
+--- !u!65 &5095364966830746943
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3667279847035341708}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.7112384, y: 1.2808652, z: 0.39064026}
+  m_Center: {x: 0.008315384, y: -0.1526773, z: 0.003856659}
 --- !u!1 &3978394630566902369
 GameObject:
   m_ObjectHideFlags: 0
@@ -23741,7 +23755,7 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 0.75
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 0}
+    m_Position: {x: 0, y: 0, z: 0.35}
     m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0

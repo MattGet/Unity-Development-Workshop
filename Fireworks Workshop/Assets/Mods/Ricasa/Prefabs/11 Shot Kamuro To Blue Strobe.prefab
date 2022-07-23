@@ -652,6 +652,7 @@ GameObject:
   - component: {fileID: 8788205682073738768}
   - component: {fileID: 5345288360755501086}
   - component: {fileID: 7363968490887961853}
+  - component: {fileID: 5010164655104256504}
   m_Layer: 0
   m_Name: 11 Shot Kamuro To Blue Strobe
   m_TagString: Untagged
@@ -894,6 +895,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sound: SFX_Impact_GeneralMedium
+--- !u!65 &5010164655104256504
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209566427796759354}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.7112384, y: 1.2808652, z: 0.39064026}
+  m_Center: {x: 0.008315384, y: -0.1526773, z: 0.003856659}
 --- !u!1 &1425528556599788737
 GameObject:
   m_ObjectHideFlags: 0
@@ -38666,7 +38680,7 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 0.75
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 0}
+    m_Position: {x: 0, y: 0, z: -1}
     m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0

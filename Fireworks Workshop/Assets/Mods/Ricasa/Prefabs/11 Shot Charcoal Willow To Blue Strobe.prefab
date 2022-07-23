@@ -5342,7 +5342,7 @@ MonoBehaviour:
   TotalEffects: 11 effects
   TimePerCycle: 0.55 seconds
   TotalDuration: 0.6 seconds
-  LocalTime: 000.00 Seconds
+  LocalTime: 000.50 Seconds
   FanType: 0
   MainSystem: {fileID: 9100721803600844274}
   NumberOfBursts: 11
@@ -11166,6 +11166,7 @@ GameObject:
   - component: {fileID: 4942072036794787580}
   - component: {fileID: 8596942489452339442}
   - component: {fileID: 6580370965452268561}
+  - component: {fileID: 9033059692263961566}
   m_Layer: 0
   m_Name: 11 Shot Charcoal Willow To Blue Strobe
   m_TagString: Untagged
@@ -11408,6 +11409,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sound: SFX_Impact_GeneralMedium
+--- !u!65 &9033059692263961566
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3290161643384216534}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.7112384, y: 1.2808652, z: 0.39064026}
+  m_Center: {x: 0.008315384, y: -0.1526773, z: 0.003856659}
 --- !u!1 &3362008038920043565
 GameObject:
   m_ObjectHideFlags: 0
@@ -22517,7 +22531,7 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 0.75
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 0}
+    m_Position: {x: 0, y: 0, z: -1}
     m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
