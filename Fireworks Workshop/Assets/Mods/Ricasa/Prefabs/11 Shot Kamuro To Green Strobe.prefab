@@ -10151,7 +10151,7 @@ ParticleSystem:
   LightsModule:
     enabled: 1
     ratio: 1
-    light: {fileID: 8029605928816306706}
+    light: {fileID: 0}
     randomDistribution: 1
     color: 0
     range: 0
@@ -10212,7 +10212,7 @@ ParticleSystem:
     intensityCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -10262,7 +10262,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    maxLights: 1
+    maxLights: 20
   TrailModule:
     enabled: 0
     mode: 0
@@ -11211,7 +11211,7 @@ MonoBehaviour:
   TotalEffects: 11 effects
   TimePerCycle: 0.55 seconds
   TotalDuration: 0.6 seconds
-  LocalTime: 000.00 Seconds
+  LocalTime: 000.50 Seconds
   FanType: 0
   MainSystem: {fileID: 5687322937979364468}
   NumberOfBursts: 11
@@ -36887,8 +36887,8 @@ ParticleSystem:
       emitProbability: 1
   LightsModule:
     enabled: 1
-    ratio: 1
-    light: {fileID: 8029605928816306706}
+    ratio: 0.25
+    light: {fileID: 0}
     randomDistribution: 1
     color: 1
     range: 1
@@ -36999,7 +36999,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    maxLights: 1
+    maxLights: 20
   TrailModule:
     enabled: 0
     mode: 0
