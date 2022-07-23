@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UMod.Shared;
 using UMod;
-
+using UMod.Interface;
+using NaughtyAttributes;
+#if UNITY_EDITOR
 public class JoeyTowerExample : MonoBehaviour
 {
     public string TowerName;
@@ -14,12 +16,15 @@ public class JoeyTowerExample : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+    
+
 }
+#endif
