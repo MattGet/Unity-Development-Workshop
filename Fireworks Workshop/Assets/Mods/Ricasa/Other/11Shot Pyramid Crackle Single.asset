@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 1615081461, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
   m_Name: 11Shot Pyramid Crackle Single
   m_EditorClassIdentifier: 
-  _audioVariationClips: []
+  _audioVariationClips:
+  - {fileID: 8300000, guid: cf02153f12cfad84da6bcf03ba545c29, type: 3}
   _volume: 1
-  _minDistance: 0
-  _maxDistance: 100
+  _minDistance: 150
+  _maxDistance: 450
   _fadeInTime: 0
   _fadeOutTime: 0
-  _randomPitchMin: -0.1
-  _randomPitchMax: 0.1
+  _randomPitchMin: -0.15
+  _randomPitchMax: 0.15
