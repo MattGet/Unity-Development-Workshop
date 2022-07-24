@@ -419,7 +419,6 @@ GameObject:
   - component: {fileID: 2549483276819539426}
   - component: {fileID: 9100721803600844274}
   - component: {fileID: 8577542662837127279}
-  - component: {fileID: 5999936752026339378}
   - component: {fileID: 550886433767595171}
   - component: {fileID: 6927242315370049923}
   - component: {fileID: 4081537187229872324}
@@ -5284,22 +5283,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &5999936752026339378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282233044701974650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 841284212, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _particleSpawnedSound: Comet Launch 1
-  _playSingleSpawnSound: 0
-  _particleDestroyedSound: '[None]'
-  _playSingleDestroySound: 0
 --- !u!114 &550886433767595171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5342,7 +5325,7 @@ MonoBehaviour:
   TotalEffects: 11 effects
   TimePerCycle: 0.462 seconds
   TotalDuration: 0.504 seconds
-  LocalTime: 000.50 Seconds
+  LocalTime: 000.42 Seconds
   FanType: 0
   MainSystem: {fileID: 9100721803600844274}
   NumberOfBursts: 11

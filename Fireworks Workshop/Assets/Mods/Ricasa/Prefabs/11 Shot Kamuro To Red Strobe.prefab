@@ -6710,7 +6710,6 @@ GameObject:
   - component: {fileID: 229328415978842967}
   - component: {fileID: 6774376126446115655}
   - component: {fileID: 6288895253673445082}
-  - component: {fileID: 8289763370247489159}
   - component: {fileID: 2876125846546829846}
   - component: {fileID: 4642555210707599158}
   - component: {fileID: 1795705900066995825}
@@ -6728,8 +6727,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3568048668114706127}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.007, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.38268346, w: 0.9238795}
+  m_LocalPosition: {x: 1.5909091, y: -0.007, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7731955238321322397}
@@ -11575,22 +11574,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &8289763370247489159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3568048668114706127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 841284212, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _particleSpawnedSound: Comet Launch 1
-  _playSingleSpawnSound: 0
-  _particleDestroyedSound: '[None]'
-  _playSingleDestroySound: 0
 --- !u!114 &2876125846546829846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11633,7 +11616,7 @@ MonoBehaviour:
   TotalEffects: 11 effects
   TimePerCycle: 0.462 seconds
   TotalDuration: 0.504 seconds
-  LocalTime: 000.00 Seconds
+  LocalTime: 000.42 Seconds
   FanType: 0
   MainSystem: {fileID: 6774376126446115655}
   NumberOfBursts: 11

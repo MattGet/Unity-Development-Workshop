@@ -32158,7 +32158,7 @@ MonoBehaviour:
   m_Script: {fileID: 249385142, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityDefinition: {fileID: 11400000, guid: 2f731f5a992f0fa4199fb7f5a776e572, type: 2}
+  _entityDefinition: {fileID: 11400000, guid: 3a34e348b78116347ada4feb2fb2a5b1, type: 2}
 --- !u!114 &1089418379197336622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32171,7 +32171,7 @@ MonoBehaviour:
   m_Script: {fileID: 1661691935, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityDefinition: {fileID: 11400000, guid: 2f731f5a992f0fa4199fb7f5a776e572, type: 2}
+  _entityDefinition: {fileID: 11400000, guid: 3a34e348b78116347ada4feb2fb2a5b1, type: 2}
   _fuse: {fileID: 5825743626507253636}
   _effect: {fileID: 1712725575808277821}
   _recoilForce: 100
@@ -32764,7 +32764,6 @@ GameObject:
   - component: {fileID: 6055756487619883608}
   - component: {fileID: 659647309876740680}
   - component: {fileID: 27661941574164437}
-  - component: {fileID: 2607519688236621704}
   - component: {fileID: 8128697927199984409}
   - component: {fileID: 1677953526251562553}
   - component: {fileID: 5750889513037277054}
@@ -33047,7 +33046,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5
+      scalar: 5
       minScalar: 1.5
       maxCurve:
         serializedVersion: 2
@@ -33744,35 +33743,53 @@ ParticleSystem:
     m_BurstCount: 0
     m_Bursts: []
   SizeModule:
-    enabled: 0
+    enabled: 1
     curve:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 1
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 1
-          tangentMode: 0
+          value: 0.55405426
+          inSlope: -1.0340768
+          outSlope: -1.0340768
+          tangentMode: 34
           weightedMode: 0
-          inWeight: 0.33333334
+          inWeight: 0
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 0
+          time: 0.1160488
+          value: 0.4340509
+          inSlope: 0.031426243
+          outSlope: 0.031426243
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.33333334
+          outWeight: 0.8282401
+        - serializedVersion: 3
+          time: 0.28840297
+          value: 0.6348876
+          inSlope: -0.038016148
+          outSlope: -0.038016148
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.80176073
+        - serializedVersion: 3
+          time: 0.41305542
+          value: 0.5675659
+          inSlope: -0.5400749
+          outSlope: -0.5400749
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0
         m_PreInfinity: 2
-        m_PostInfinity: 2
+        m_PostInfinity: 1
         m_RotationOrder: 4
       minCurve:
         serializedVersion: 2
@@ -37582,7 +37599,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e083e61c69f4a9b4e91c18c8c4a21e67, type: 2}
+  - {fileID: 2100000, guid: 473c718609d557741acca5fbeb668cc4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -37616,34 +37633,18 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 0
+  m_UseCustomVertexStreams: 1
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
-  m_VertexStreams: 00010304
+  m_VertexStreams: 0001030409
   m_Mesh: {fileID: 1609945119554850432, guid: 7a0295d595e04b6499354e9889a06464, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &2607519688236621704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7395090708832683968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 841284212, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _particleSpawnedSound: Comet Launch 1
-  _playSingleSpawnSound: 0
-  _particleDestroyedSound: '[None]'
-  _playSingleDestroySound: 0
 --- !u!114 &8128697927199984409
 MonoBehaviour:
   m_ObjectHideFlags: 0
