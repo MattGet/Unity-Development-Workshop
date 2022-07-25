@@ -5,6 +5,7 @@ using FireworksMania.Core.Behaviors.Fireworks;
 using FireworksMania.Core.Definitions.EntityDefinitions;
 using FireworksMania.Core.Definitions;
 using FireworksMania.Core.Messaging;
+using CustomCandles;
 
 [RequireComponent(typeof(CapsuleCollider))]
 public class CandleManager : MonoBehaviour
@@ -26,7 +27,10 @@ public class CandleManager : MonoBehaviour
     public Vector3 ZipPos2 = new Vector3(0f, 0.402999997f, 0.00510000018f);
     public GameSoundDefinition ZipperSound;
 
-   
+    private GameObject Zip1;
+    private GameObject Zip2;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,8 +70,10 @@ public class CandleManager : MonoBehaviour
     {
         float candleheight = GetCapsuleHeight(prefabcandle);
         GameObject candle = Instantiate(prefabcandle, this.gameObject.transform);
+        candle.transform.localPosition = this.gameObject.transform.localPosition;
         candle.transform.localPosition = new Vector3(candle.transform.localPosition.x, candle.transform.localPosition.y + candleheight / 2, candle.transform.localPosition.z);
         Candle = candle;
+
 
         Rigidbody rigidbody;
         if (candle.TryGetComponent(out rigidbody))
@@ -80,8 +86,16 @@ public class CandleManager : MonoBehaviour
         }
 
         StartCoroutine(AddZippers(true));
+        CandleRuntimeHelper helper = candle.AddComponent<CandleRuntimeHelper>();
+        helper.Destroyed.AddListener(OnCandleDestroy);
+    }
 
-        
+    private void OnCandleDestroy()
+    {
+        Destroy(Zip1);
+        Destroy(Zip2);
+        HasCandle = false;
+        Debug.Log("Destroyed Candle");
     }
 
     private IEnumerator AddZippers(bool withsoud)
@@ -90,7 +104,7 @@ public class CandleManager : MonoBehaviour
         {
             if (ZipperSound != null)
             {
-                GameObject Zip1 = Instantiate(ZipTiePrefab, this.gameObject.transform);
+                Zip1 = Instantiate(ZipTiePrefab, this.gameObject.transform);
                 Zip1.transform.localPosition = ZipPos1;
 
                 if (withsoud) Messenger.Broadcast(new MessengerEventPlaySound(ZipperSound.name, Candle.transform, true, true));
@@ -98,7 +112,7 @@ public class CandleManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             if (ZipperSound != null)
             {
-                GameObject Zip2 = Instantiate(ZipTiePrefab, this.gameObject.transform);
+                Zip2 = Instantiate(ZipTiePrefab, this.gameObject.transform);
                 Zip2.transform.localPosition = ZipPos2;
 
                 if (withsoud) Messenger.Broadcast(new MessengerEventPlaySound(ZipperSound.name, Candle.transform, true, true));
