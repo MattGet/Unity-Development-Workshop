@@ -14,19 +14,19 @@ namespace CustomCandles {
         private void Start()
         {
             candleFuse = this.gameObject.GetComponentInChildren<Fuse>();
-            Debug.Log($"Found Fuse: {candleFuse}");
+            //Debug.Log($"Found Fuse: {candleFuse}");
             MeshRenderer[] models = this.gameObject.GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer M in models)
             {
                 if (M.gameObject.name.Contains("Cap") || M.gameObject.name.Contains("cap"))
                 {
                     Cap = M.gameObject;
-                    Debug.Log($"Cap Found = {Cap}");
+                   // Debug.Log($"Cap Found = {Cap}");
                     break;
                 }
             }
 
-            Debug.Log("Cangle Runtime Helper Intialized");
+            //Debug.Log("Cangle Runtime Helper Intialized");
         }
 
         private void Update()
@@ -36,7 +36,7 @@ namespace CustomCandles {
                 if (candleFuse.IsUsed)
                 {
                     Destroy(Cap);
-                    Debug.Log("Candle Runtime Helper Destroyed Cap");
+                    //Debug.Log("Candle Runtime Helper Destroyed Cap");
                 }
             }
         }

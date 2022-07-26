@@ -30,7 +30,7 @@ public class CandleManager : MonoBehaviour
     private GameObject Zip1;
     private GameObject Zip2;
     [HideInInspector]
-    public bool IsBluePrint = false;
+    public bool DCIsBluePrint = true;
 
 
     // Start is called before the first frame update
@@ -59,19 +59,12 @@ public class CandleManager : MonoBehaviour
             RomanCandleBehavior Candlescript;
             if (other.gameObject.TryGetComponent(out Candlescript) && other.gameObject != Candle)
             {
-                if (!HasCandle)
+                if (!other.gameObject.name.Contains("DC Enabled"))
                 {
-                    HasCandle = true;
-                    if (IsBluePrint)
+                    if (!HasCandle)
                     {
+                        HasCandle = true;
                         StartCoroutine(LoadCandle(other.gameObject));
-                    }
-                    else
-                    {
-                        BaseEntityDefinition definition = Candlescript.EntityDefinition;
-                        GameObject candle = definition.PrefabGameObject;
-                        Destroy(other.gameObject);
-                        StartCoroutine(SpawnCandle(candle));
                     }
                 }
             }
@@ -80,7 +73,7 @@ public class CandleManager : MonoBehaviour
 
     public IEnumerator SpawnCandle(GameObject prefabcandle)
     {
-        Debug.Log($"Spawning Candle {prefabcandle}");
+        //Debug.Log($"Spawning Candle {prefabcandle}");
         float candleheight = GetCapsuleHeight(prefabcandle);
         GameObject candle = Instantiate(prefabcandle, this.gameObject.transform);
         candle.transform.localPosition = Vector3.zero;
@@ -106,7 +99,7 @@ public class CandleManager : MonoBehaviour
 
     public IEnumerator LoadCandle(GameObject candle)
     {
-        Debug.Log($"Loading Candle {candle}");
+        //Debug.Log($"Loading Candle {candle}");
         float candleheight = GetCapsuleHeight(candle);
         candle.transform.parent = this.gameObject.transform;
         candle.transform.localRotation = Quaternion.identity;
@@ -136,7 +129,7 @@ public class CandleManager : MonoBehaviour
         Destroy(Zip1);
         Destroy(Zip2);
         HasCandle = false;
-        Debug.Log("Destroyed Candle");
+        //Debug.Log("Destroyed Candle");
     }
 
     private IEnumerator AddZippers(bool withsoud)

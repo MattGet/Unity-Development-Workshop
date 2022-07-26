@@ -35,9 +35,10 @@ public class CandleRackData : MonoBehaviour, ISaveableComponent
     public void RestoreState(CustomEntityComponentData customComponentData)
     {
         List<bool> candles = customComponentData.Get<List<bool>>("candles");
+        //Debug.Log($"Calling Restore Stare On Rack: {candles}");
         for (int i = 0; i <= Managers.Count - 1; i++)
         {
-            Managers[i].IsBluePrint = candles[i];
+            Managers[i].DCIsBluePrint = candles[i];
         }
     }
 

@@ -795,7 +795,7 @@ MonoBehaviour:
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
   ZipperSound: {fileID: 11400000, guid: 33ad010de80832f45a4aef5a80afd19f, type: 2}
-  IsBluePrint: 1
+  DCIsBluePrint: 1
 --- !u!1 &2706060197082794953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1082,7 +1082,7 @@ MonoBehaviour:
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
   ZipperSound: {fileID: 11400000, guid: 33ad010de80832f45a4aef5a80afd19f, type: 2}
-  IsBluePrint: 1
+  DCIsBluePrint: 1
 --- !u!1 &3292889784068753670
 GameObject:
   m_ObjectHideFlags: 0
@@ -1259,7 +1259,7 @@ MonoBehaviour:
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
   ZipperSound: {fileID: 11400000, guid: 33ad010de80832f45a4aef5a80afd19f, type: 2}
-  IsBluePrint: 1
+  DCIsBluePrint: 1
 --- !u!1 &3832134471181073705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1436,7 +1436,7 @@ MonoBehaviour:
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
   ZipperSound: {fileID: 11400000, guid: 33ad010de80832f45a4aef5a80afd19f, type: 2}
-  IsBluePrint: 1
+  DCIsBluePrint: 1
 --- !u!1 &3899464809258300842
 GameObject:
   m_ObjectHideFlags: 0
@@ -1538,7 +1538,7 @@ MonoBehaviour:
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
   ZipperSound: {fileID: 11400000, guid: 33ad010de80832f45a4aef5a80afd19f, type: 2}
-  IsBluePrint: 1
+  DCIsBluePrint: 1
 --- !u!1 &4543644238668174437
 GameObject:
   m_ObjectHideFlags: 0
@@ -1854,7 +1854,7 @@ MonoBehaviour:
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
   ZipperSound: {fileID: 11400000, guid: 33ad010de80832f45a4aef5a80afd19f, type: 2}
-  IsBluePrint: 1
+  DCIsBluePrint: 1
 --- !u!1 &5982953373725971283
 GameObject:
   m_ObjectHideFlags: 0
@@ -1921,7 +1921,7 @@ MonoBehaviour:
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
   ZipperSound: {fileID: 11400000, guid: 33ad010de80832f45a4aef5a80afd19f, type: 2}
-  IsBluePrint: 1
+  DCIsBluePrint: 1
 --- !u!1 &6850910713143459736
 GameObject:
   m_ObjectHideFlags: 0
@@ -1940,7 +1940,6 @@ GameObject:
   - component: {fileID: 2175400523782742728}
   - component: {fileID: 4372239223131922170}
   - component: {fileID: 3016049463838821352}
-  - component: {fileID: 7283675066705189682}
   m_Layer: 0
   m_Name: 30mmCandleRack
   m_TagString: Untagged
@@ -2081,33 +2080,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1707f50c9811cc346a4593fd012f8d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7283675066705189682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6850910713143459736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 733bff95640129647a1432cf88918937, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CandleManagerParent: {fileID: 4676290219225258628}
-  Managers:
-  - {fileID: 587665176510922779}
-  - {fileID: 2815797977299312183}
-  - {fileID: 4779202981784075843}
-  - {fileID: 6690636841100433032}
-  - {fileID: 8176546172786679078}
-  - {fileID: 6132742493115852403}
-  - {fileID: 4555595194106150365}
-  - {fileID: 5745458592529871132}
-  - {fileID: 6159429448142618005}
-  - {fileID: 7202470800611156475}
-  - {fileID: 7454851943660445558}
-  - {fileID: 2467900093206085962}
-  - {fileID: 7828706067179220285}
 --- !u!1 &6868876301005426555
 GameObject:
   m_ObjectHideFlags: 0
@@ -2174,7 +2146,7 @@ MonoBehaviour:
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
   ZipperSound: {fileID: 11400000, guid: 33ad010de80832f45a4aef5a80afd19f, type: 2}
-  IsBluePrint: 1
+  DCIsBluePrint: 1
 --- !u!1 &6889301788235578933
 GameObject:
   m_ObjectHideFlags: 0
@@ -2284,7 +2256,7 @@ MonoBehaviour:
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
   ZipperSound: {fileID: 11400000, guid: 33ad010de80832f45a4aef5a80afd19f, type: 2}
-  IsBluePrint: 1
+  DCIsBluePrint: 1
 --- !u!1 &7700055305917396120
 GameObject:
   m_ObjectHideFlags: 0
@@ -2351,7 +2323,7 @@ MonoBehaviour:
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
   ZipperSound: {fileID: 11400000, guid: 33ad010de80832f45a4aef5a80afd19f, type: 2}
-  IsBluePrint: 1
+  DCIsBluePrint: 1
 --- !u!1 &7737345390288283621
 GameObject:
   m_ObjectHideFlags: 0
@@ -2528,7 +2500,7 @@ MonoBehaviour:
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
   ZipperSound: {fileID: 11400000, guid: 33ad010de80832f45a4aef5a80afd19f, type: 2}
-  IsBluePrint: 1
+  DCIsBluePrint: 1
 --- !u!1 &8176020027153052356
 GameObject:
   m_ObjectHideFlags: 0
@@ -2705,7 +2677,7 @@ MonoBehaviour:
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
   ZipperSound: {fileID: 11400000, guid: 33ad010de80832f45a4aef5a80afd19f, type: 2}
-  IsBluePrint: 1
+  DCIsBluePrint: 1
 --- !u!1 &8764358417093549319
 GameObject:
   m_ObjectHideFlags: 0
@@ -2882,7 +2854,7 @@ MonoBehaviour:
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
   ZipperSound: {fileID: 11400000, guid: 33ad010de80832f45a4aef5a80afd19f, type: 2}
-  IsBluePrint: 1
+  DCIsBluePrint: 1
 --- !u!1 &9162474994457966221
 GameObject:
   m_ObjectHideFlags: 0
