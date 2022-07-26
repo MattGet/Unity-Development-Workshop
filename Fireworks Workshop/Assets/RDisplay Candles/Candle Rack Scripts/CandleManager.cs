@@ -29,21 +29,14 @@ public class CandleManager : MonoBehaviour
 
     private GameObject Zip1;
     private GameObject Zip2;
-    private bool IsStart = false;
+    [HideInInspector]
+    public bool IsBluePrint = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
         GetCollider();
-        StartCoroutine(wait());
-    }
-
-    private IEnumerator wait()
-    {
-        IsStart = true;
-        yield return new WaitForSeconds(0.5f + Time.deltaTime);
-        IsStart = false;
     }
 
     private void OnValidate()
@@ -69,7 +62,7 @@ public class CandleManager : MonoBehaviour
                 if (!HasCandle)
                 {
                     HasCandle = true;
-                    if (IsStart)
+                    if (IsBluePrint)
                     {
                         StartCoroutine(LoadCandle(other.gameObject));
                     }
@@ -87,6 +80,7 @@ public class CandleManager : MonoBehaviour
 
     public IEnumerator SpawnCandle(GameObject prefabcandle)
     {
+        Debug.Log($"Spawning Candle {prefabcandle}");
         float candleheight = GetCapsuleHeight(prefabcandle);
         GameObject candle = Instantiate(prefabcandle, this.gameObject.transform);
         candle.transform.localPosition = Vector3.zero;
@@ -112,8 +106,10 @@ public class CandleManager : MonoBehaviour
 
     public IEnumerator LoadCandle(GameObject candle)
     {
+        Debug.Log($"Loading Candle {candle}");
         float candleheight = GetCapsuleHeight(candle);
         candle.transform.parent = this.gameObject.transform;
+        candle.transform.localRotation = Quaternion.identity;
         candle.transform.localPosition = Vector3.zero;
         candle.transform.localPosition = new Vector3(candle.transform.localPosition.x, candle.transform.localPosition.y + candleheight / 2, candle.transform.localPosition.z);
         Candle = candle;
