@@ -8,21 +8,24 @@ namespace CustomCandles {
     public class CandleRuntimeHelper : MonoBehaviour
     {
         public GameObject Cap;
-        public UnityEvent Destroyed;
+        public UnityEvent Destroyed = new UnityEvent();
         public Fuse candleFuse;
 
         private void Start()
         {
             candleFuse = this.gameObject.GetComponentInChildren<Fuse>();
-
-            foreach (Transform T in this.gameObject.transform)
+            Debug.Log($"Found Fuse: {candleFuse}");
+            MeshRenderer[] models = this.gameObject.GetComponentsInChildren<MeshRenderer>();
+            foreach (MeshRenderer M in models)
             {
-                if (T.gameObject.name.Contains("Cap") || T.gameObject.name.Contains("cap"))
+                if (M.gameObject.name.Contains("Cap") || M.gameObject.name.Contains("cap"))
                 {
-                    Cap = T.gameObject;
+                    Cap = M.gameObject;
+                    Debug.Log($"Cap Found = {Cap}");
                     break;
                 }
             }
+
             Debug.Log("Cangle Runtime Helper Intialized");
         }
 
