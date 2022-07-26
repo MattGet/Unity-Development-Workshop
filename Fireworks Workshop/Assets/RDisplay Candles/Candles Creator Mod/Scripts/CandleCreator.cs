@@ -13,10 +13,12 @@ public class CandleCreator : ModScriptBehaviour
     private Camera SceneCamera;
     public Dictionary<string, GameObject> CandleLibrary = new Dictionary<string, GameObject>();
 
-    public override void OnModLoaded()
+    public void Start()
     {
-        SceneCamera = Camera.main;
+        SceneCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         Debug.Log("\n\nCandle Creator Loaded... Waiting For Initialization\n\n");
+        Debug.Log($"Candle Creator Camera = {SceneCamera}\n\n");
+        StartCoroutine(wait());
     }
 
     IEnumerator wait()
@@ -30,6 +32,7 @@ public class CandleCreator : ModScriptBehaviour
         CandleLibrary.Clear();
 
         List<BaseInventoryEntityDefinition> definitions = FindObjectsOfType<BaseInventoryEntityDefinition>().ToList();
+        Debug.Log($"Candles Collection Size = {definitions.Count}");
         foreach (BaseInventoryEntityDefinition def in definitions)
         {
             if (def.EntityDefinitionType.Id == "Fireworks_Novelty")
