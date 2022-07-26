@@ -34720,8 +34720,9 @@ GameObject:
   - component: {fileID: 5907154167270886130}
   - component: {fileID: 6904946511770470109}
   - component: {fileID: 7315338365807319540}
-  - component: {fileID: 3780186319623846478}
+  - component: {fileID: 8968108199914253845}
   - component: {fileID: 1872386526655442019}
+  - component: {fileID: 3780186319623846478}
   m_Layer: 0
   m_Name: 30mm Gold Glitter Display Candle
   m_TagString: Untagged
@@ -34804,18 +34805,20 @@ CapsuleCollider:
   m_Height: 0.7994733
   m_Direction: 1
   m_Center: {x: -0.00009992719, y: 0.00021886826, z: 0}
---- !u!114 &3780186319623846478
-MonoBehaviour:
+--- !u!136 &8968108199914253845
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6581317913645867384}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1853490775, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Radius: 0.03023073
+  m_Height: 0.7994733
+  m_Direction: 1
+  m_Center: {x: -0.00009992719, y: 0.00021886826, z: 0}
 --- !u!65 &1872386526655442019
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34829,6 +34832,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.041605234, y: 0.7994495, z: 0.04588437}
   m_Center: {x: 0.00021058321, y: 0.00014331937, z: -0.00010895729}
+--- !u!114 &3780186319623846478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6581317913645867384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1853490775, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7107544789909901550
 GameObject:
   m_ObjectHideFlags: 0

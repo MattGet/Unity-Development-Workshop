@@ -60,6 +60,10 @@ namespace FireworksMania.Core.Behaviors
                 //Debug.Log("Destroying prefab2");
                 Object.Destroy((Object)erasableBehavior.gameObject);
             }
+            else
+            {
+                this.gameObject.BroadcastMessage("OnCandleDestroy");
+            }
             await UniTask.WaitForEndOfFrame();
         }
     }

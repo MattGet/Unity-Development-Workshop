@@ -23,6 +23,7 @@ namespace CustomCandles {
                     break;
                 }
             }
+            Debug.Log("Cangle Runtime Helper Intialized");
         }
 
         private void Update()
@@ -32,6 +33,7 @@ namespace CustomCandles {
                 if (candleFuse.IsUsed)
                 {
                     Destroy(Cap);
+                    Debug.Log("Candle Runtime Helper Destroyed Cap");
                 }
             }
         }

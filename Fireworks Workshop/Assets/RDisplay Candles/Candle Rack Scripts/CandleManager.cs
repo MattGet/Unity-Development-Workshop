@@ -52,25 +52,29 @@ public class CandleManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        RomanCandleBehavior Candlescript;
-        if (other.gameObject.TryGetComponent(out Candlescript) && other.gameObject != Candle)
+        if (!HasCandle)
         {
-            if (!HasCandle)
+            RomanCandleBehavior Candlescript;
+            if (other.gameObject.TryGetComponent(out Candlescript) && other.gameObject != Candle)
             {
-                HasCandle = true;
-                BaseEntityDefinition definition = Candlescript.EntityDefinition;
-                GameObject candle = definition.PrefabGameObject;
-                Destroy(other.gameObject);
-                SpawnCandle(candle);
+                if (!HasCandle)
+                {
+                    HasCandle = true;
+                    BaseEntityDefinition definition = Candlescript.EntityDefinition;
+                    GameObject candle = definition.PrefabGameObject;
+                    Destroy(other.gameObject);
+                    StartCoroutine(SpawnCandle(candle));
+                }
             }
         }
+        
     }
 
-    public void SpawnCandle(GameObject prefabcandle)
+    public IEnumerator SpawnCandle(GameObject prefabcandle)
     {
         float candleheight = GetCapsuleHeight(prefabcandle);
         GameObject candle = Instantiate(prefabcandle, this.gameObject.transform);
-        candle.transform.localPosition = this.gameObject.transform.localPosition;
+        candle.transform.localPosition = Vector3.zero;
         candle.transform.localPosition = new Vector3(candle.transform.localPosition.x, candle.transform.localPosition.y + candleheight / 2, candle.transform.localPosition.z);
         Candle = candle;
 
@@ -78,7 +82,7 @@ public class CandleManager : MonoBehaviour
         Rigidbody rigidbody;
         if (candle.TryGetComponent(out rigidbody))
         {
-            rigidbody.isKinematic = true;
+            Destroy(rigidbody);
         }
         else
         {
@@ -87,6 +91,7 @@ public class CandleManager : MonoBehaviour
 
         StartCoroutine(AddZippers(true));
         CandleRuntimeHelper helper = candle.AddComponent<CandleRuntimeHelper>();
+        yield return new WaitForSeconds(Time.deltaTime);
         helper.Destroyed.AddListener(OnCandleDestroy);
     }
 
@@ -102,6 +107,7 @@ public class CandleManager : MonoBehaviour
     {
         if (Candle != null)
         {
+            yield return new WaitForSeconds(0.5f);
             if (ZipperSound != null)
             {
                 Zip1 = Instantiate(ZipTiePrefab, this.gameObject.transform);
