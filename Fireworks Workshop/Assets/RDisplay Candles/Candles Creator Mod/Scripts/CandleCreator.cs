@@ -10,20 +10,19 @@ using Newtonsoft;
 
 public class CandleCreator : ModScriptBehaviour
 {
-    private Camera SceneCamera;
     public Dictionary<string, GameObject> CandleLibrary = new Dictionary<string, GameObject>();
+    private bool Initialized = false;
 
     public void Start()
     {
-        SceneCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         Debug.Log("\n\nCandle Creator Loaded... Waiting For Initialization\n\n");
-        Debug.Log($"Candle Creator Camera = {SceneCamera}\n\n");
         StartCoroutine(wait());
     }
 
     IEnumerator wait()
     {
-        yield return new WaitUntil(() => SceneCamera.enabled);
+        yield return new WaitUntil(() => (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Q)));
+        Debug.Log("\n\nStarting Initialization...\n\n");
         InitializeDictionary();
     }
 
@@ -31,7 +30,7 @@ public class CandleCreator : ModScriptBehaviour
     {
         CandleLibrary.Clear();
 
-        List<BaseInventoryEntityDefinition> definitions = FindObjectsOfType<BaseInventoryEntityDefinition>().ToList();
+        List<BaseInventoryEntityDefinition> definitions = FindObjectsOfType<BaseInventoryEntityDefinition>(true).ToList();
         Debug.Log($"Candles Collection Size = {definitions.Count}");
         foreach (BaseInventoryEntityDefinition def in definitions)
         {
@@ -43,6 +42,8 @@ public class CandleCreator : ModScriptBehaviour
                 }
             }
         }
+
+        Initialized = true;
 
         Debug.Log("\n\nInitialized Candle Dictionary\n\n");
         foreach (KeyValuePair<string, GameObject> kvp in CandleLibrary)
