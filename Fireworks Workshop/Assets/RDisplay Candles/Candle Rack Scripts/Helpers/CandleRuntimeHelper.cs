@@ -45,6 +45,7 @@ namespace CustomCandles {
         {
             Destroyed.Invoke();
         }
+
     }
 
 }

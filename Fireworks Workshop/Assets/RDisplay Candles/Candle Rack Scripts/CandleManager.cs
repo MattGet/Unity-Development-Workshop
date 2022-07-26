@@ -29,12 +29,21 @@ public class CandleManager : MonoBehaviour
 
     private GameObject Zip1;
     private GameObject Zip2;
+    private bool IsStart = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
         GetCollider();
+        StartCoroutine(wait());
+    }
+
+    private IEnumerator wait()
+    {
+        IsStart = true;
+        yield return new WaitForSeconds(0.5f + Time.deltaTime);
+        IsStart = false;
     }
 
     private void OnValidate()
@@ -60,14 +69,20 @@ public class CandleManager : MonoBehaviour
                 if (!HasCandle)
                 {
                     HasCandle = true;
-                    BaseEntityDefinition definition = Candlescript.EntityDefinition;
-                    GameObject candle = definition.PrefabGameObject;
-                    Destroy(other.gameObject);
-                    StartCoroutine(SpawnCandle(candle));
+                    if (IsStart)
+                    {
+                        StartCoroutine(LoadCandle(other.gameObject));
+                    }
+                    else
+                    {
+                        BaseEntityDefinition definition = Candlescript.EntityDefinition;
+                        GameObject candle = definition.PrefabGameObject;
+                        Destroy(other.gameObject);
+                        StartCoroutine(SpawnCandle(candle));
+                    }
                 }
             }
         }
-        
     }
 
     public IEnumerator SpawnCandle(GameObject prefabcandle)
@@ -77,7 +92,32 @@ public class CandleManager : MonoBehaviour
         candle.transform.localPosition = Vector3.zero;
         candle.transform.localPosition = new Vector3(candle.transform.localPosition.x, candle.transform.localPosition.y + candleheight / 2, candle.transform.localPosition.z);
         Candle = candle;
+        candle.name = $"{candle.name} - DC Enabled";
 
+        Rigidbody rigidbody;
+        if (candle.TryGetComponent(out rigidbody))
+        {
+            Destroy(rigidbody);
+        }
+        else
+        {
+            Debug.LogError($"Failed to locate Ridgidbody on {candle.name}");
+        }
+
+        StartCoroutine(AddZippers(true));
+        CandleRuntimeHelper helper = candle.AddComponent<CandleRuntimeHelper>();
+        yield return new WaitForSeconds(Time.deltaTime);
+        helper.Destroyed.AddListener(OnCandleDestroy);
+    }
+
+    public IEnumerator LoadCandle(GameObject candle)
+    {
+        float candleheight = GetCapsuleHeight(candle);
+        candle.transform.parent = this.gameObject.transform;
+        candle.transform.localPosition = Vector3.zero;
+        candle.transform.localPosition = new Vector3(candle.transform.localPosition.x, candle.transform.localPosition.y + candleheight / 2, candle.transform.localPosition.z);
+        Candle = candle;
+        candle.name = $"{candle.name} - DC Enabled";
 
         Rigidbody rigidbody;
         if (candle.TryGetComponent(out rigidbody))
