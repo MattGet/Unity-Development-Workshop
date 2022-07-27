@@ -9,6 +9,7 @@ using FireworksMania.Core.Messaging;
 using System.Linq;
 using Newtonsoft.Json;
 using TMPro;
+using UnityEngine.UI;
 
 public class CandleCreator : ModScriptBehaviour
 {
@@ -24,6 +25,13 @@ public class CandleCreator : ModScriptBehaviour
     [Header("Preset Inventory Settings")]
     public GameObject PresetInventory;
     public GameObject RackPanelPrefab;
+    public TMP_InputField SearchBar;
+    public Button CloseToggle;
+    public Sprite SliderOff;
+    public Sprite SliderOn;
+    private string SearchParameter = "";
+    private bool UpdatingInventory = false;
+    private bool CloseOnLoad = false;
 
     [Header("Preset Save Menu Settings")]
     public GameObject PresetSaveMenu;
@@ -38,6 +46,7 @@ public class CandleCreator : ModScriptBehaviour
     public TMP_Text RemovePrompt;
     private bool RemoveMenuActive = false;
     private string PresetToRemove;
+
 
 
     public void Start()
@@ -86,6 +95,7 @@ public class CandleCreator : ModScriptBehaviour
             if (Rack != null) return;
             ManagerActive = false;
             CandleManagerMenu.SetActive(false);
+            ModPersistentData.SaveBool("CloseOnLoad", CloseOnLoad);
             Messenger.Broadcast<MessengerEventChangeUIMode>(new MessengerEventChangeUIMode(false, true));
             RackItem = null;
         }
@@ -100,6 +110,15 @@ public class CandleCreator : ModScriptBehaviour
                 {
                     CandleManagerMenu.SetActive(true);
                     Messenger.Broadcast<MessengerEventChangeUIMode>(new MessengerEventChangeUIMode(true, false));
+                    CloseOnLoad = ModPersistentData.LoadBool("CloseOnLoad");
+                    if (CloseOnLoad)
+                    {
+                        CloseToggle.image.sprite = SliderOn;
+                    }
+                    else
+                    {
+                        CloseToggle.image.sprite = SliderOff;
+                    }
                     StartCoroutine(UpdateInventory());
                 }
                 else
@@ -145,6 +164,22 @@ public class CandleCreator : ModScriptBehaviour
         }
     }
 
+    public void ToggleCloseOnLoad()
+    {
+        if (CloseOnLoad)
+        {
+            CloseOnLoad = false;
+            CloseToggle.image.sprite = SliderOff;
+            ModPersistentData.SaveBool("CloseOnLoad", CloseOnLoad);
+        }
+        else
+        {
+            CloseOnLoad = true;
+            CloseToggle.image.sprite = SliderOn;
+            ModPersistentData.SaveBool("CloseOnLoad", CloseOnLoad);
+        }
+    }
+
     public void SavePreset()
     {
         List<string> presetdata = GetPresetData();
@@ -184,9 +219,10 @@ public class CandleCreator : ModScriptBehaviour
         return presetData;
     }
 
-    public void LoadPreset(string preset)
+    public bool LoadPreset(string preset)
     {
         PanelData data;
+        bool loadSuccess = true;
         if (this.PresetLibrary.TryGetValue(preset, out data))
         {
             Debug.Log($"Load data = {data}");
@@ -210,6 +246,7 @@ public class CandleCreator : ModScriptBehaviour
                 if (j > presData.Count - 1)
                 {
                     Debug.Log($"CC ERROR: SIZE OF RACK DIDNT MATCH SIZE OF PRESET, PRESET NAME = {preset}, RACK = {RackItem}");
+                    loadSuccess = false;
                     break;
                 }
                 if (presData[j] == "Empty")
@@ -228,11 +265,17 @@ public class CandleCreator : ModScriptBehaviour
                     j++;
                 }
             }
+            if (CloseOnLoad && loadSuccess)
+            {
+                ToggleCandleCreator();
+            }
         }
         else
         {
             Debug.Log("CC FATAL ERROR: COULD NOT LOAD PRESET, PRESET NOT FOUND");
+            loadSuccess = false;
         }
+        return loadSuccess;
     }
 
     public void ToggleOnRemoveMenu(string preset)
@@ -266,13 +309,44 @@ public class CandleCreator : ModScriptBehaviour
         StartCoroutine(UpdateInventory());
     }
 
+    public void UpdateSearch(string search)
+    {
+        SearchParameter = search;
+        if (!UpdatingInventory) StartCoroutine(UpdateInventory());
+    }
+
+    public void ClearSearch()
+    {
+        SearchParameter = "";
+        StartCoroutine(UpdateInventory());
+    }
+
     private IEnumerator UpdateInventory()
     {
+        UpdatingInventory = true;
         foreach (Transform T in PresetInventory.transform)
         {
             Destroy(T.gameObject);
         }
-        foreach (KeyValuePair<string, PanelData> preset in PresetLibrary)
+
+        Dictionary<string, PanelData> CurrentPresets = new Dictionary<string, PanelData>();
+        if (SearchParameter == "")
+        {
+            CurrentPresets = PresetLibrary;
+        }
+        else
+        {
+            foreach (KeyValuePair<string, PanelData> preset in PresetLibrary)
+            {
+                if (preset.Key.Contains(SearchParameter))
+                {
+                    CurrentPresets.Add(preset.Key, preset.Value);
+                }
+            }
+        }
+        
+
+        foreach (KeyValuePair<string, PanelData> preset in CurrentPresets)
         {
             GameObject Panel = Instantiate(RackPanelPrefab, PresetInventory.transform);
             Panel.name = preset.Key;
@@ -285,7 +359,7 @@ public class CandleCreator : ModScriptBehaviour
             data.InitializeData();
         }
         PersistentSaveLibrary();
-
+        UpdatingInventory = false;
     }
 
     private void PersistentSaveLibrary()
