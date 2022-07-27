@@ -57,6 +57,7 @@ public class CandleCreator : ModScriptBehaviour
 
     private void InitializeDictionary()
     {
+        if (Initialized) return;
         CandleLibrary.Clear();
         List<RomanCandleBehavior> candles = FindObjectsOfType<RomanCandleBehavior>(true).ToList();
         Debug.Log($"Candles Collection Size = {candles.Count}");
@@ -99,6 +100,7 @@ public class CandleCreator : ModScriptBehaviour
                 {
                     CandleManagerMenu.SetActive(true);
                     Messenger.Broadcast<MessengerEventChangeUIMode>(new MessengerEventChangeUIMode(true, false));
+                    StartCoroutine(UpdateInventory());
                 }
                 else
                 {
@@ -119,7 +121,7 @@ public class CandleCreator : ModScriptBehaviour
             if (save)
             {
                 SavePreset();
-                UpdateInventory();
+                StartCoroutine(UpdateInventory());
             }
             PresetMenuActive = false;
             PresetSaveMenu.SetActive(false);
@@ -143,7 +145,9 @@ public class CandleCreator : ModScriptBehaviour
         string name = presetname.text;
 
         PanelData preset = new PanelData(name, caliber, count, presetdata);
-        if (!PresetLibrary.ContainsKey(name))
+        Debug.Log($"Data = {preset.Title}, {preset.Caliber}, {preset.CandleCount}");
+        Debug.Log(this.PresetLibrary);
+        if (!this.PresetLibrary.ContainsKey(name))
         {
             PresetLibrary.Add(name, preset);
         }
@@ -238,14 +242,14 @@ public class CandleCreator : ModScriptBehaviour
     public void RemovePreset(string preset)
     {
         PresetLibrary.Remove(preset);
-        UpdateInventory();
+        StartCoroutine(UpdateInventory());
     }
 
-    private void UpdateInventory()
+    private IEnumerator UpdateInventory()
     {
         foreach (Transform T in PresetInventory.transform)
         {
-            Destroy(T);
+            Destroy(T.gameObject);
         }
         foreach (KeyValuePair<string, PanelData> preset in PresetLibrary)
         {
@@ -253,9 +257,14 @@ public class CandleCreator : ModScriptBehaviour
             Panel.name = preset.Key;
 
             CustomRackPanel data = Panel.GetComponent<CustomRackPanel>();
-            data = new CustomRackPanel(preset.Value);
+            data.data = preset.Value;
+            yield return new WaitForSeconds(Time.deltaTime);
+            data.GetUI();
+            yield return new WaitForSeconds(Time.deltaTime);
+            data.InitializeData();
         }
         PersistentSaveLibrary();
+
     }
 
     private void PersistentSaveLibrary()
@@ -272,9 +281,17 @@ public class CandleCreator : ModScriptBehaviour
             string jsontemp = JsonConvert.SerializeObject(PresetLibrary, Formatting.Indented);
             ModPersistentData.SaveString("CCLibrary", jsontemp);
         }
-        string json = ModPersistentData.LoadString("CCLibrary", "NULL");
-        Debug.Log("Loaded JSON: \n\n" + json);
-        PresetLibrary = JsonConvert.DeserializeObject<Dictionary<string, PanelData>>(json);
+        string json = ModPersistentData.LoadString("CCLibrary", "Error Loading Data");
+        Debug.Log("Loaded JSON: \n\n" + json + "\n\n");
+        Dictionary<string, PanelData> tempDic = JsonConvert.DeserializeObject<Dictionary<string, PanelData>>(json);
+        if (tempDic != null)
+        {
+            PresetLibrary = tempDic;
+        }
+        else
+        {
+            PresetLibrary = new Dictionary<string, PanelData>();
+        }
     }
 
 }

@@ -10,17 +10,7 @@ public class CustomRackPanel: MonoBehaviour
     public TMP_Text TitleBlock;
     public TMP_Text CaliberBlock;
     public TMP_Text CountBlock;
-    public CandleCreator Manager;
-
-    public CustomRackPanel(PanelData data)
-    {
-        this.data.Title = data.Title;
-        this.data.Caliber = data.Caliber;
-        this.data.CandleCount = data.CandleCount;
-        this.data.Data = data.Data;
-        GetUI();
-        InitializeData();
-    }
+    public GameObject Manager;
 
     private void OnValidate()
     {
@@ -28,11 +18,11 @@ public class CustomRackPanel: MonoBehaviour
         InitializeData();
     }
 
-    private void GetUI()
+    public void GetUI()
     {
         if (TitleBlock == null)
         {
-            foreach (Transform T in this.transform)
+            foreach (Transform T in this.gameObject.transform)
             {
                 if (T.gameObject.name == "Title")
                 {
@@ -42,7 +32,7 @@ public class CustomRackPanel: MonoBehaviour
         }
         if (CaliberBlock == null)
         {
-            foreach (Transform T in this.transform)
+            foreach (Transform T in this.gameObject.transform)
             {
                 if (T.gameObject.name == "Caliber")
                 {
@@ -52,7 +42,7 @@ public class CustomRackPanel: MonoBehaviour
         }
         if (CountBlock == null)
         {
-            foreach (Transform T in this.transform)
+            foreach (Transform T in this.gameObject.transform)
             {
                 if (T.gameObject.name == "Count")
                 {
@@ -60,13 +50,18 @@ public class CustomRackPanel: MonoBehaviour
                 }
             }
         }
+        FindManger();
+    }
+
+    private void FindManger()
+    {
         if (Manager == null)
         {
-            Manager = this.transform.root.gameObject.GetComponent<CandleCreator>();
+            Manager = GameObject.Find("Candle Library Manager");
         }
     }
 
-    private void InitializeData()
+    public void InitializeData()
     {
         if (TitleBlock != null)
         {
@@ -84,11 +79,29 @@ public class CustomRackPanel: MonoBehaviour
 
     public void LOAD()
     {
-        Manager.LoadPreset(data.Title);
+        try
+        {
+            FindManger();
+            Manager.SendMessage("LoadPreset", data.Title);
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogException(ex);
+        }
+
+
     }
 
     public void DELETE()
     {
-        Manager.ToggleOnRemoveMenu(data.Title);
+        try
+        {
+            FindManger();
+            Manager.SendMessage("ToggleOnRemoveMenu", data.Title);
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogException(ex);
+        }
     }
 }
