@@ -348,7 +348,7 @@ public class CandleCreator : ModScriptBehaviour
                 }
             }
         }
-        
+
 
         foreach (KeyValuePair<string, PanelData> preset in CurrentPresets)
         {
@@ -393,4 +393,14 @@ public class CandleCreator : ModScriptBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (ManagerActive)
+        {
+            if (Cursor.lockState != CursorLockMode.None)
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+        }
+    }
 }
