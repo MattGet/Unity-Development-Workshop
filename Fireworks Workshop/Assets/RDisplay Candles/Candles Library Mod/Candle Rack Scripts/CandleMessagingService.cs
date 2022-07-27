@@ -8,7 +8,7 @@ public class CandleMessagingService : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CandleManager = GameObject.Find("Candle Creator Manager");
+        CandleManager = GameObject.Find("Candle Library Manager");
     }
 
     public void OpenCC()

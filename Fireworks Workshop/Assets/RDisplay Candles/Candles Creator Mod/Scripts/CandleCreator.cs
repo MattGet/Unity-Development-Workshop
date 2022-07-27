@@ -42,6 +42,7 @@ public class CandleCreator : ModScriptBehaviour
     public void Start()
     {
         Debug.Log("\n\nCandle Creator Loaded... Waiting For Initialization\n\n");
+        this.gameObject.name = "Candle Library Manager";
         StartCoroutine(wait());
         CandleManagerMenu.SetActive(false);
     }
