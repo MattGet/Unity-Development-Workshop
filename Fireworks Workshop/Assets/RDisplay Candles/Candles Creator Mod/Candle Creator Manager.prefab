@@ -1624,12 +1624,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7535363770369395929}
-  m_Father: {fileID: 7012124228417990053}
-  m_RootOrder: 0
+  m_Father: {fileID: 6288426000202008168}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1135, y: 0.79992676}
+  m_AnchoredPosition: {x: -506, y: 240}
   m_SizeDelta: {x: 100, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1248607767643312228
@@ -1713,7 +1713,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5276715093865779446}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6615401877441107008}
+        m_TargetAssemblyTypeName: CandleCreator, Assembly-CSharp
+        m_MethodName: ToggleCloseOnLoad
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3048422749382064162
 GameObject:
   m_ObjectHideFlags: 0
@@ -2326,7 +2338,9 @@ RectTransform:
   - {fileID: 5990831385582503013}
   - {fileID: 6070380284292534048}
   - {fileID: 516674341743737358}
+  - {fileID: 7247276264964008921}
   - {fileID: 4101425924521125765}
+  - {fileID: 7012124228417990053}
   m_Father: {fileID: 4732395044976328348}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2529,14 +2543,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7247276264964008921}
   - {fileID: 5201716372913126797}
-  m_Father: {fileID: 4101425924521125765}
-  m_RootOrder: 2
+  m_Father: {fileID: 6288426000202008168}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 531, y: -0.799942}
+  m_AnchoredPosition: {x: 629, y: 239.20006}
   m_SizeDelta: {x: 150, y: 57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5264445698650687938
@@ -3938,9 +3951,8 @@ RectTransform:
   m_Children:
   - {fileID: 4734502957867033134}
   - {fileID: 8730156837967804694}
-  - {fileID: 7012124228417990053}
   m_Father: {fileID: 6288426000202008168}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4041,7 +4053,7 @@ MonoBehaviour:
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 6
-  m_RegexValue: ^[a-zA-Z0-9_- ]*$
+  m_RegexValue: ^[a-zA-Z0-9 _-]*$
   m_GlobalPointSize: 14
   m_CharacterLimit: 0
   m_OnEndEdit:
@@ -4177,7 +4189,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7012124228417990053}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4762,7 +4774,7 @@ MonoBehaviour:
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 6
-  m_RegexValue: ^[a-zA-Z0-9_- ]*$
+  m_RegexValue: ^[a-zA-Z0-9 _-]*$
   m_GlobalPointSize: 14
   m_CharacterLimit: 0
   m_OnEndEdit:
