@@ -29,17 +29,13 @@ public class CandleCreator : ModScriptBehaviour
     private void InitializeDictionary()
     {
         CandleLibrary.Clear();
-
-        List<BaseInventoryEntityDefinition> definitions = FindObjectsOfType<BaseInventoryEntityDefinition>(true).ToList();
-        Debug.Log($"Candles Collection Size = {definitions.Count}");
-        foreach (BaseInventoryEntityDefinition def in definitions)
+        List<RomanCandleBehavior> candles = FindObjectsOfType<RomanCandleBehavior>(true).ToList();
+        Debug.Log($"Candles Collection Size = {candles.Count}");
+        foreach (RomanCandleBehavior def in candles)
         {
-            if (def.EntityDefinitionType.Id == "Fireworks_Novelty")
+            if (!CandleLibrary.ContainsKey(def.EntityDefinition.Id))
             {
-                if (!CandleLibrary.ContainsKey(def.Id))
-                {
-                    CandleLibrary.Add(def.Id, def.PrefabGameObject);
-                }
+                CandleLibrary.Add(def.EntityDefinition.Id, def.EntityDefinition.PrefabGameObject);
             }
         }
 
