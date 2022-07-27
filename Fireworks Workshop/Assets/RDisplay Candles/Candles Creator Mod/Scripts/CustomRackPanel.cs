@@ -73,7 +73,7 @@ public class CustomRackPanel: MonoBehaviour
         }
         if (CountBlock != null)
         {
-            CountBlock.text = $"Candle Count = {data.CandleCount}";
+            CountBlock.text = $"Rack Size = {data.CandleCount}";
         }
     }
 

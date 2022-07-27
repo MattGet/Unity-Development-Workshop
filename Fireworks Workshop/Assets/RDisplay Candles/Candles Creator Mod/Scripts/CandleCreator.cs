@@ -10,6 +10,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class CandleCreator : ModScriptBehaviour
 {
@@ -342,7 +343,7 @@ public class CandleCreator : ModScriptBehaviour
         {
             foreach (KeyValuePair<string, PanelData> preset in PresetLibrary)
             {
-                if (preset.Key.Contains(SearchParameter))
+                if (preset.Key.Contains(SearchParameter, StringComparison.OrdinalIgnoreCase))
                 {
                     CurrentPresets.Add(preset.Key, preset.Value);
                 }
@@ -402,5 +403,28 @@ public class CandleCreator : ModScriptBehaviour
                 Cursor.lockState = CursorLockMode.None;
             }
         }
+        if (ManagerActive)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+            {
+                ToggleCandleCreator();
+            }
+        }
+    }
+}
+
+public static class StringExtensions
+{
+    public static bool Contains(this string source, string toCheck, StringComparison comp)
+    {
+        if (source != null)
+        {
+            return source?.IndexOf(toCheck, comp) >= 0;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 }
