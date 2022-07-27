@@ -134,7 +134,7 @@ public class CandleCreator : ModScriptBehaviour
             int caliber = int.Parse(RackItem.name.Substring(0, 2));
             caliberid.text = caliber.ToString();
             countid.text = preset.Count.ToString();
-            string RackDescription = $"{RackItem.name}\n";
+            string RackDescription = $"Rack Name: {RackItem.name}\n";
             int i = 0;
             foreach (string item in preset)
             {
