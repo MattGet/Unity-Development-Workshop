@@ -82,6 +82,7 @@ public class CustomRackPanel: MonoBehaviour
         try
         {
             FindManger();
+            Debug.Log($"Sending Load Request For {data.Title}");
             Manager.SendMessage("LoadPreset", data.Title);
         }
         catch (System.Exception ex)

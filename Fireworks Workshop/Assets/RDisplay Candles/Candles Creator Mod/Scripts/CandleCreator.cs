@@ -179,12 +179,21 @@ public class CandleCreator : ModScriptBehaviour
     public void LoadPreset(string preset)
     {
         PanelData data;
-        if (PresetLibrary.TryGetValue(preset, out data))
+        if (this.PresetLibrary.TryGetValue(preset, out data))
         {
+            Debug.Log($"Load data = {data}");
             List<string> presData = data.Data;
-            Transform Candlemanager = RackItem.transform.Find("Candle Manager Parent");
+            GameObject Candlemanagers = new GameObject();
+            foreach (Transform T in RackItem.transform)
+            {
+                if (T.gameObject.name == "Candle Managers Parent")
+                {
+                    Candlemanagers = T.gameObject;
+                }
+            }
+            Debug.Log($"Candle Manager = {Candlemanagers}");
             int j = 0;
-            foreach (Transform T in Candlemanager)
+            foreach (Transform T in Candlemanagers.transform)
             {
                 foreach (Transform K in T)
                 {
@@ -211,6 +220,10 @@ public class CandleCreator : ModScriptBehaviour
                     j++;
                 }
             }
+        }
+        else
+        {
+            Debug.Log("CC FATAL ERROR: COULD NOT LOAD PRESET, PRESET NOT FOUND");
         }
     }
 
