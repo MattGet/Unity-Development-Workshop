@@ -110,14 +110,17 @@ public class CandleCreator : ModScriptBehaviour
                 {
                     CandleManagerMenu.SetActive(true);
                     Messenger.Broadcast<MessengerEventChangeUIMode>(new MessengerEventChangeUIMode(true, false));
-                    CloseOnLoad = ModPersistentData.LoadBool("CloseOnLoad");
-                    if (CloseOnLoad)
+                    if (ModPersistentData.Exists("CloseOnLoad"))
                     {
-                        CloseToggle.image.sprite = SliderOn;
-                    }
-                    else
-                    {
-                        CloseToggle.image.sprite = SliderOff;
+                        CloseOnLoad = ModPersistentData.LoadBool("CloseOnLoad");
+                        if (CloseOnLoad)
+                        {
+                            CloseToggle.image.sprite = SliderOn;
+                        }
+                        else
+                        {
+                            CloseToggle.image.sprite = SliderOff;
+                        }
                     }
                     StartCoroutine(UpdateInventory());
                 }
