@@ -265,6 +265,11 @@ public class CandleCreator : ModScriptBehaviour
 
     private void PersistentLoadLibrary()
     {
+        if (!ModPersistentData.Exists("CCLibrary"))
+        {
+            string jsontemp = JsonConvert.SerializeObject(PresetLibrary, Formatting.Indented);
+            ModPersistentData.SaveString("CCLibrary", jsontemp);
+        }
         string json = ModPersistentData.LoadString("CCLibrary", "NULL");
         Debug.Log("Loaded JSON: \n\n" + json);
         PresetLibrary = JsonConvert.DeserializeObject<Dictionary<string, PanelData>>(json);
