@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PanelData : MonoBehaviour
+public struct PanelData
 {
     [Header("Data")]
-    public string Title = "Default Block Title";
-    public int Caliber = 30;
-    public int CandleCount = 5;
-    public List<string> Data = new List<string>();
+    public string Title;
+    public int Caliber;
+    public int CandleCount;
+    public List<string> Data;
 
     public PanelData(string title, int caliber, int candleCount, List<string> data)
     {
@@ -24,13 +24,5 @@ public class PanelData : MonoBehaviour
         this.Caliber = data.Caliber;
         this.CandleCount = data.CandleCount;
         this.Data = data.Data;
-    }
-
-    public PanelData()
-    {
-        Title = "Default Block Title";
-        Caliber = 30;
-        CandleCount = 5;
-        Data = new List<string>();
     }
 }

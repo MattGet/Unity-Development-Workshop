@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class CustomRackPanel : PanelData
+public class CustomRackPanel: MonoBehaviour
 {
+    public PanelData data;
     [Header("UI Objects")]
     public TMP_Text TitleBlock;
     public TMP_Text CaliberBlock;
@@ -13,10 +14,10 @@ public class CustomRackPanel : PanelData
 
     public CustomRackPanel(PanelData data)
     {
-        this.Title = data.Title;
-        this.Caliber = data.Caliber;
-        this.CandleCount = data.CandleCount;
-        Data = data.Data;
+        this.data.Title = data.Title;
+        this.data.Caliber = data.Caliber;
+        this.data.CandleCount = data.CandleCount;
+        this.data.Data = data.Data;
         GetUI();
         InitializeData();
     }
@@ -69,25 +70,25 @@ public class CustomRackPanel : PanelData
     {
         if (TitleBlock != null)
         {
-            TitleBlock.text = Title;
+            TitleBlock.text = data.Title;
         }
         if (CaliberBlock != null)
         {
-            CaliberBlock.text = $"Caliber = {Caliber}mm";
+            CaliberBlock.text = $"Caliber = {data.Caliber}mm";
         }
         if (CountBlock != null)
         {
-            CountBlock.text = $"Candle Count = {CandleCount}";
+            CountBlock.text = $"Candle Count = {data.CandleCount}";
         }
     }
 
     public void LOAD()
     {
-        Manager.LoadPreset(Title);
+        Manager.LoadPreset(data.Title);
     }
 
     public void DELETE()
     {
-        Manager.ToggleOnRemoveMenu(Title);
+        Manager.ToggleOnRemoveMenu(data.Title);
     }
 }
