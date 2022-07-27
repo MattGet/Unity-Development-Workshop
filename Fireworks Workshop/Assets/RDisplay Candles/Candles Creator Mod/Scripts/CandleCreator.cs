@@ -321,6 +321,7 @@ public class CandleCreator : ModScriptBehaviour
     public void ClearSearch()
     {
         SearchParameter = "";
+        SearchBar.SetTextWithoutNotify("");
         StartCoroutine(UpdateInventory());
     }
 
