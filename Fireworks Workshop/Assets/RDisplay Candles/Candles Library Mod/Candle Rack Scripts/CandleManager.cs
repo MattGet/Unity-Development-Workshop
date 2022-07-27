@@ -42,6 +42,11 @@ public class CandleManager : MonoBehaviour
     private void OnValidate()
     {
         GetCollider();
+
+        if (this.gameObject.transform.parent.gameObject.name != "Candle Managers Parent")
+        {
+            this.gameObject.transform.parent.gameObject.name = "Candle Managers Parent";
+        }
     }
 
     private void GetCollider()

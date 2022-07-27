@@ -5,6 +5,7 @@ using UMod;
 using FireworksMania.Core.Definitions.EntityDefinitions;
 using FireworksMania.Core.Behaviors.Fireworks;
 using FireworksMania.Core.Persistence;
+using FireworksMania.Core.Messaging;
 using System.Linq;
 using Newtonsoft.Json;
 using TMPro;
@@ -81,8 +82,10 @@ public class CandleCreator : ModScriptBehaviour
     {
         if (ManagerActive)
         {
+            if (Rack != null) return;
             ManagerActive = false;
             CandleManagerMenu.SetActive(false);
+            Messenger.Broadcast<MessengerEventChangeUIMode>(new MessengerEventChangeUIMode(false, true));
             RackItem = null;
         }
         else
@@ -95,6 +98,7 @@ public class CandleCreator : ModScriptBehaviour
                 if (RackItem != null)
                 {
                     CandleManagerMenu.SetActive(true);
+                    Messenger.Broadcast<MessengerEventChangeUIMode>(new MessengerEventChangeUIMode(true, false));
                 }
                 else
                 {
@@ -105,7 +109,6 @@ public class CandleCreator : ModScriptBehaviour
             {
                 Debug.LogError("CC FATAL ERROR: FAILED TO LOAD PERSISTENT LIBRARY");
             }
-            
         }
     }
 
@@ -127,8 +130,8 @@ public class CandleCreator : ModScriptBehaviour
             PresetSaveMenu.SetActive(true);
             List<string> preset = GetPresetData();
             int caliber = int.Parse(RackItem.name.Substring(0, 2));
-            caliberid.text = $"Caliber = {caliber}mm";
-            countid.text = $"Rack Size = {preset.Count}";
+            caliberid.text = caliber.ToString();
+            countid.text = preset.Count.ToString();
         }
     }
 
@@ -140,9 +143,9 @@ public class CandleCreator : ModScriptBehaviour
         string name = presetname.text;
 
         PanelData preset = new PanelData(name, caliber, count, presetdata);
-        if (!PresetLibrary.ContainsKey(preset.name))
+        if (!PresetLibrary.ContainsKey(name))
         {
-            PresetLibrary.Add(preset.name, preset);
+            PresetLibrary.Add(name, preset);
         }
         else
         {
@@ -153,7 +156,7 @@ public class CandleCreator : ModScriptBehaviour
     private List<string> GetPresetData()
     {
         List<string> presetData = new List<string>();
-        Transform Candlemanager = RackItem.transform.Find("Candle Manager Parent");
+        Transform Candlemanager = RackItem.transform.Find("Candle Managers Parent");
         foreach (Transform T in Candlemanager)
         {
             RomanCandleBehavior candle = T.gameObject.GetComponentInChildren<RomanCandleBehavior>();
@@ -166,7 +169,6 @@ public class CandleCreator : ModScriptBehaviour
                 presetData.Add(candle.EntityDefinition.Id);
             }
         }
-
         return presetData;
     }
 
