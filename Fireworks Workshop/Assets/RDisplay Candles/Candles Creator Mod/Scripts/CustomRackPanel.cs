@@ -9,13 +9,14 @@ public class CustomRackPanel : PanelData
     public TMP_Text TitleBlock;
     public TMP_Text CaliberBlock;
     public TMP_Text CountBlock;
+    public CandleCreator Manager;
 
-    public CustomRackPanel(string title, int caliber, int count, List<string> data)
+    public CustomRackPanel(PanelData data)
     {
-        Title = title;
-        Caliber = caliber;
-        CandleCount = count;
-        Data = data;
+        this.Title = data.Title;
+        this.Caliber = data.Caliber;
+        this.CandleCount = data.CandleCount;
+        Data = data.Data;
         GetUI();
         InitializeData();
     }
@@ -58,6 +59,10 @@ public class CustomRackPanel : PanelData
                 }
             }
         }
+        if (Manager == null)
+        {
+            Manager = this.transform.root.gameObject.GetComponent<CandleCreator>();
+        }
     }
 
     private void InitializeData()
@@ -74,5 +79,15 @@ public class CustomRackPanel : PanelData
         {
             CountBlock.text = $"Candle Count = {CandleCount}";
         }
+    }
+
+    public void LOAD()
+    {
+        Manager.LoadPreset(Title);
+    }
+
+    public void DELETE()
+    {
+        Manager.ToggleOnRemoveMenu(Title);
     }
 }

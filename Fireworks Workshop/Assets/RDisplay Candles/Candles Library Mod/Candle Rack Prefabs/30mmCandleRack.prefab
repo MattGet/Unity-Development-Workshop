@@ -1940,6 +1940,8 @@ GameObject:
   - component: {fileID: 2175400523782742728}
   - component: {fileID: 4372239223131922170}
   - component: {fileID: 3016049463838821352}
+  - component: {fileID: 6641590018881277734}
+  - component: {fileID: 8967224763220313574}
   m_Layer: 0
   m_Name: 30mmCandleRack
   m_TagString: Untagged
@@ -2080,6 +2082,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1707f50c9811cc346a4593fd012f8d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6641590018881277734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6850910713143459736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fb6cfaae29b6424a935f170302b4677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8967224763220313574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6850910713143459736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 426763944, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _customText: Open UI
+  _showHighlight: 1
+  _showInteractionUI: 1
+  OnBeginUse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6641590018881277734}
+        m_TargetAssemblyTypeName: CandleMessagingService, Assembly-CSharp
+        m_MethodName: OpenCC
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnEndUse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6868876301005426555
 GameObject:
   m_ObjectHideFlags: 0
