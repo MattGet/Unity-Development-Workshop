@@ -18,6 +18,7 @@ public class CandleCreator : ModScriptBehaviour
     private bool Initialized = false;
     private GameObject RackItem;
     public Dictionary<string, PanelData> PresetLibrary = new Dictionary<string, PanelData>();
+    private Dictionary<string, PanelData> UsablePresets = new Dictionary<string, PanelData>();
 
     [Header("Candle Creator Settings")]
     public GameObject CandleManagerMenu;
@@ -123,6 +124,7 @@ public class CandleCreator : ModScriptBehaviour
                             CloseToggle.image.sprite = SliderOff;
                         }
                     }
+                    GetUsablePresets();
                     StartCoroutine(UpdateInventory());
                 }
                 else
@@ -133,6 +135,20 @@ public class CandleCreator : ModScriptBehaviour
             catch
             {
                 Debug.LogError("CC FATAL ERROR: FAILED TO LOAD PERSISTENT LIBRARY");
+            }
+        }
+    }
+
+    private void GetUsablePresets()
+    {
+        UsablePresets.Clear();
+        List<string> presetData = GetPresetData();
+        int caliber = int.Parse(RackItem.name.Substring(0, 2));
+        foreach (KeyValuePair<string, PanelData> preset in PresetLibrary)
+        {
+            if (preset.Value.CandleCount == presetData.Count && preset.Value.Caliber == caliber)
+            {
+                UsablePresets.Add(preset.Key, preset.Value);
             }
         }
     }
@@ -337,11 +353,11 @@ public class CandleCreator : ModScriptBehaviour
         Dictionary<string, PanelData> CurrentPresets = new Dictionary<string, PanelData>();
         if (SearchParameter == "")
         {
-            CurrentPresets = PresetLibrary;
+            CurrentPresets = UsablePresets;
         }
         else
         {
-            foreach (KeyValuePair<string, PanelData> preset in PresetLibrary)
+            foreach (KeyValuePair<string, PanelData> preset in UsablePresets)
             {
                 if (preset.Key.Contains(SearchParameter, StringComparison.OrdinalIgnoreCase))
                 {
