@@ -160,6 +160,7 @@ public class CandleCreator : ModScriptBehaviour
             if (save)
             {
                 SavePreset();
+                GetUsablePresets();
                 StartCoroutine(UpdateInventory());
             }
             PresetMenuActive = false;
