@@ -327,6 +327,7 @@ public class CandleCreator : ModScriptBehaviour
     public void RemovePreset(string preset)
     {
         PresetLibrary.Remove(preset);
+        GetUsablePresets();
         StartCoroutine(UpdateInventory());
     }
 
