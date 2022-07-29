@@ -7,6 +7,10 @@ using FireworksMania.Core.Definitions;
 using FireworksMania.Core.Messaging;
 using CustomCandles;
 
+#if UNITY_EDITOR
+using NaughtyAttributes;
+#endif
+
 [RequireComponent(typeof(CapsuleCollider))]
 public class CandleManager : MonoBehaviour
 {
@@ -20,11 +24,30 @@ public class CandleManager : MonoBehaviour
     [Header("Manager Settings")]
     [SerializeField]
     private CapsuleCollider Ctrigger;
+    public bool IncludeZippers = false;
+    public GameSoundDefinition LoadSound;
 
+
+#if UNITY_EDITOR
+    [ShowIf("IncludeZippers")]
+    [Foldout("Zip Ties")]
+#endif
     [Header("Zip Tie Settings")]
     public GameObject ZipTiePrefab;
+#if UNITY_EDITOR
+    [ShowIf("IncludeZippers")]
+    [Foldout("Zip Ties")]
+#endif
     public Vector3 ZipPos1 = new Vector3(0f, 0.0549999997f, 0.00510000018f);
+#if UNITY_EDITOR
+    [ShowIf("IncludeZippers")]
+    [Foldout("Zip Ties")]
+#endif
     public Vector3 ZipPos2 = new Vector3(0f, 0.402999997f, 0.00510000018f);
+#if UNITY_EDITOR
+    [ShowIf("IncludeZippers")]
+    [Foldout("Zip Ties")]
+#endif
     public GameSoundDefinition ZipperSound;
 
     private GameObject Zip1;
@@ -76,32 +99,6 @@ public class CandleManager : MonoBehaviour
         }
     }
 
-    public IEnumerator SpawnCandle(GameObject prefabcandle)
-    {
-        //Debug.Log($"Spawning Candle {prefabcandle}");
-        float candleheight = GetCapsuleHeight(prefabcandle);
-        GameObject candle = Instantiate(prefabcandle, this.gameObject.transform);
-        candle.transform.localPosition = Vector3.zero;
-        candle.transform.localPosition = new Vector3(candle.transform.localPosition.x, candle.transform.localPosition.y + candleheight / 2, candle.transform.localPosition.z);
-        Candle = candle;
-        candle.name = $"{candle.name} - DC Enabled";
-
-        Rigidbody rigidbody;
-        if (candle.TryGetComponent(out rigidbody))
-        {
-            Destroy(rigidbody);
-        }
-        else
-        {
-            Debug.LogError($"Failed to locate Ridgidbody on {candle.name}");
-        }
-
-        StartCoroutine(AddZippers(true));
-        CandleRuntimeHelper helper = candle.AddComponent<CandleRuntimeHelper>();
-        yield return new WaitForSeconds(Time.deltaTime);
-        helper.Destroyed.AddListener(OnCandleDestroy);
-    }
-
     public IEnumerator LoadCandle(GameObject candle)
     {
         //Debug.Log($"Loading Candle {candle}");
@@ -123,7 +120,8 @@ public class CandleManager : MonoBehaviour
             Debug.LogError($"Failed to locate Ridgidbody on {candle.name}");
         }
 
-        StartCoroutine(AddZippers(true));
+        if (IncludeZippers) StartCoroutine(AddZippers(true));
+        if (LoadSound != null) Messenger.Broadcast(new MessengerEventPlaySound(LoadSound.name, Candle.transform));
         CandleRuntimeHelper helper = candle.AddComponent<CandleRuntimeHelper>();
         yield return new WaitForSeconds(Time.deltaTime);
         helper.Destroyed.AddListener(OnCandleDestroy);
