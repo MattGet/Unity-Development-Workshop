@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 3037725697616754097}
   - component: {fileID: 8176909130720302293}
   - component: {fileID: 7648067489004092436}
+  - component: {fileID: 723790188086752505}
   m_Layer: 0
   m_Name: Explosion (1)
   m_TagString: Untagged
@@ -4033,7 +4034,7 @@ ParticleSystem:
     randomDistribution: 1
     color: 1
     range: 1
-    intensity: 0
+    intensity: 1
     rangeCurve:
       serializedVersion: 2
       minMaxState: 0
@@ -4090,7 +4091,7 @@ ParticleSystem:
     intensityCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.25
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4140,7 +4141,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    maxLights: 20
+    maxLights: 2
   TrailModule:
     enabled: 0
     mode: 0
@@ -5057,6 +5058,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particleSpawnedPhysicsEffect: {fileID: 1175953192158713300}
   _particleDestroyedPhysicsEffect: {fileID: 0}
+--- !u!114 &723790188086752505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724333377095996678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 841284212, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleSpawnedSound: 40mm Roman Candle Single
+  _playSingleSpawnSound: 0
+  _particleDestroyedSound: 
+  _playSingleDestroySound: 0
 --- !u!1 &1965950012402971861
 GameObject:
   m_ObjectHideFlags: 0
@@ -5943,7 +5960,7 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 0.75
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: -1}
+    m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
@@ -25048,7 +25065,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6462056283316115772}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.01787, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6250036295081179113}
@@ -25094,7 +25111,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7075119782975135185}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0278, y: 0.4333, z: 0}
+  m_LocalPosition: {x: 0.0341, y: 0.5288, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8681757865423984146}
