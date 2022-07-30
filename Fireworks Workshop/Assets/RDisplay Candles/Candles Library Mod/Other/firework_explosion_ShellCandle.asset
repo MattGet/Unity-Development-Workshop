@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1615081461, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 40mm Roman Candle Single
+  m_Name: firework_explosion_ShellCandle
   m_EditorClassIdentifier: 
   _audioVariationClips:
-  - {fileID: 8300000, guid: 50d288b69564f1340b81156904dcfedc, type: 3}
-  - {fileID: 8300000, guid: 823d8dc81d3437f49baa38b62bdec97f, type: 3}
-  - {fileID: 8300000, guid: c756a600fa653d143b84a6b581f6eafb, type: 3}
-  _volume: 0.25
-  _minDistance: 0
-  _maxDistance: 250
+  - {fileID: 8300000, guid: dbb89f1c6d58bc44593663b16711a00c, type: 3}
+  - {fileID: 8300000, guid: dff8faca8da095a43a416b8e7cec45dc, type: 3}
+  _volume: 1
+  _minDistance: 100
+  _maxDistance: 350
   _fadeInTime: 0
   _fadeOutTime: 0
   _randomPitchMin: -0.1
