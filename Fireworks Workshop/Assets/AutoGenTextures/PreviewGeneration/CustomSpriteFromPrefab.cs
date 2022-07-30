@@ -7,10 +7,11 @@ using System;
 using System.IO;
 using UnityEditor.SceneManagement;
 
+
 public class CustomSpriteFromPrefab : UnityEditor.Editor
 {
-    static int width = 1024;
-    static int height = 1024;
+    static int width = 512;
+    static int height = 512;
 
 
     [MenuItem("GameObject/Prefab/PrefabToPNG Orthographic/Front")]
