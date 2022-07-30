@@ -24689,8 +24689,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
-      minScalar: 1.5
+      scalar: 1.75
+      minScalar: 1.35
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -29718,7 +29718,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 75
+      scalar: 125
       minScalar: 75
       maxCurve:
         serializedVersion: 2
@@ -34534,7 +34534,7 @@ MonoBehaviour:
   m_Script: {fileID: 841284212, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particleSpawnedSound: 40mm Roman Candle Single
+  _particleSpawnedSound: 48mm Shell Candle Single Shot
   _playSingleSpawnSound: 0
   _particleDestroyedSound: firework_explosion_ShellCandle
   _playSingleDestroySound: 0
