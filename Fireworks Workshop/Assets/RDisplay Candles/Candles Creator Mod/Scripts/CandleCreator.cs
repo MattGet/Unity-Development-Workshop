@@ -250,6 +250,7 @@ public class CandleCreator : ModScriptBehaviour
             ShowAll = true;
             ShowToggle.image.sprite = SliderOn;
             ModPersistentData.SaveBool("Showall", ShowAll);
+            GetUsablePresets();
             StartCoroutine(UpdateInventory());
         }
     }
@@ -418,26 +419,41 @@ public class CandleCreator : ModScriptBehaviour
             Destroy(T.gameObject);
         }
 
-        if (ShowAll)
-        {
-            UsablePresets.Clear();
-            UsablePresets = PresetLibrary;
-        }
-
         Dictionary<string, PanelData> CurrentPresets = new Dictionary<string, PanelData>();
         if (SearchParameter == "")
         {
-            CurrentPresets = UsablePresets;
+            if (ShowAll)
+            {
+                CurrentPresets = PresetLibrary;
+            }
+            else
+            {
+                CurrentPresets = UsablePresets;
+            }
         }
         else
         {
-            foreach (KeyValuePair<string, PanelData> preset in UsablePresets)
+            if (ShowAll)
             {
-                if (preset.Key.Contains(SearchParameter, StringComparison.OrdinalIgnoreCase))
+                foreach (KeyValuePair<string, PanelData> preset in PresetLibrary)
                 {
-                    CurrentPresets.Add(preset.Key, preset.Value);
+                    if (preset.Key.Contains(SearchParameter, StringComparison.OrdinalIgnoreCase))
+                    {
+                        CurrentPresets.Add(preset.Key, preset.Value);
+                    }
                 }
             }
+            else
+            {
+                foreach (KeyValuePair<string, PanelData> preset in UsablePresets)
+                {
+                    if (preset.Key.Contains(SearchParameter, StringComparison.OrdinalIgnoreCase))
+                    {
+                        CurrentPresets.Add(preset.Key, preset.Value);
+                    }
+                }
+            }
+
         }
 
 
