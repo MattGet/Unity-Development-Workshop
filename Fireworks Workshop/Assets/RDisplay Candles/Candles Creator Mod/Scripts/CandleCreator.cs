@@ -23,6 +23,9 @@ public class CandleCreator : ModScriptBehaviour
     [Header("Candle Creator Settings")]
     public GameObject CandleManagerMenu;
     private bool ManagerActive = false;
+    public AudioClip ClickSound;
+    public AudioClip ErrorSound;
+    public AudioSource source1;
 
     [Header("Preset Inventory Settings")]
     public GameObject PresetInventory;
@@ -31,9 +34,11 @@ public class CandleCreator : ModScriptBehaviour
     public Button CloseToggle;
     public Sprite SliderOff;
     public Sprite SliderOn;
+    public Button ShowToggle;
     private string SearchParameter = "";
     private bool UpdatingInventory = false;
     private bool CloseOnLoad = false;
+    private bool ShowAll = false;
 
     [Header("Preset Save Menu Settings")]
     public GameObject PresetSaveMenu;
@@ -41,6 +46,7 @@ public class CandleCreator : ModScriptBehaviour
     public TMP_InputField presetname;
     public TMP_InputField caliberid;
     public TMP_InputField countid;
+    public TMP_Text UniquePrompt;
     private bool PresetMenuActive = false;
 
     [Header("Remove Menu Settings")]
@@ -98,8 +104,10 @@ public class CandleCreator : ModScriptBehaviour
             ManagerActive = false;
             CandleManagerMenu.SetActive(false);
             ModPersistentData.SaveBool("CloseOnLoad", CloseOnLoad);
+            ModPersistentData.SaveBool("Showall", ShowAll);
             Messenger.Broadcast<MessengerEventChangeUIMode>(new MessengerEventChangeUIMode(false, true));
             RackItem = null;
+            PlayClick();
         }
         else
         {
@@ -112,6 +120,7 @@ public class CandleCreator : ModScriptBehaviour
                 {
                     CandleManagerMenu.SetActive(true);
                     Messenger.Broadcast<MessengerEventChangeUIMode>(new MessengerEventChangeUIMode(true, false));
+                    PlayClick();
                     if (ModPersistentData.Exists("CloseOnLoad"))
                     {
                         CloseOnLoad = ModPersistentData.LoadBool("CloseOnLoad");
@@ -124,17 +133,31 @@ public class CandleCreator : ModScriptBehaviour
                             CloseToggle.image.sprite = SliderOff;
                         }
                     }
+                    if (ModPersistentData.Exists("Showall"))
+                    {
+                        ShowAll = ModPersistentData.LoadBool("Showall");
+                        if (ShowAll)
+                        {
+                            ShowToggle.image.sprite = SliderOn;
+                        }
+                        else
+                        {
+                            ShowToggle.image.sprite = SliderOff;
+                        }
+                    }
                     GetUsablePresets();
                     StartCoroutine(UpdateInventory());
                 }
                 else
                 {
                     Debug.LogError("CC FATAL ERROR: GAMEOBJECT NOT PASSED ON INITIALIZE");
+                    PlayError();
                 }
             }
             catch
             {
                 Debug.LogError("CC FATAL ERROR: FAILED TO LOAD PERSISTENT LIBRARY");
+                PlayError();
             }
         }
     }
@@ -159,9 +182,16 @@ public class CandleCreator : ModScriptBehaviour
         {
             if (save)
             {
-                SavePreset();
-                GetUsablePresets();
-                StartCoroutine(UpdateInventory());
+                if (SavePreset())
+                {
+                    UniquePrompt.gameObject.SetActive(false);
+                    GetUsablePresets();
+                    StartCoroutine(UpdateInventory());
+                }
+                else
+                {
+                    return;
+                }
             }
             PresetMenuActive = false;
             PresetSaveMenu.SetActive(false);
@@ -182,11 +212,14 @@ public class CandleCreator : ModScriptBehaviour
                 i++;
             }
             SavePrompt.text = RackDescription;
+            UniquePrompt.gameObject.SetActive(false);
+            PlayClick();
         }
     }
 
     public void ToggleCloseOnLoad()
     {
+        PlayClick();
         if (CloseOnLoad)
         {
             CloseOnLoad = false;
@@ -201,7 +234,24 @@ public class CandleCreator : ModScriptBehaviour
         }
     }
 
-    public void SavePreset()
+    public void ToggleShowAll()
+    {
+        PlayClick();
+        if (ShowAll)
+        {
+            ShowAll = false;
+            ShowToggle.image.sprite = SliderOff;
+            ModPersistentData.SaveBool("Showall", CloseOnLoad);
+        }
+        else
+        {
+            ShowAll = true;
+            ShowToggle.image.sprite = SliderOn;
+            ModPersistentData.SaveBool("Showall", CloseOnLoad);
+        }
+    }
+
+    public bool SavePreset()
     {
         List<string> presetdata = GetPresetData();
         int caliber = int.Parse(caliberid.text);
@@ -214,10 +264,15 @@ public class CandleCreator : ModScriptBehaviour
         if (!this.PresetLibrary.ContainsKey(name))
         {
             PresetLibrary.Add(name, preset);
+            PlayClick();
+            return true;
         }
         else
         {
             Debug.Log("CC ERROR: PRESET ALREADY EXISTS!!!");
+            PlayError();
+            UniquePrompt.gameObject.SetActive(true);
+            return false;
         }
     }
 
@@ -268,6 +323,7 @@ public class CandleCreator : ModScriptBehaviour
                 {
                     Debug.Log($"CC ERROR: SIZE OF RACK DIDNT MATCH SIZE OF PRESET, PRESET NAME = {preset}, RACK = {RackItem}");
                     loadSuccess = false;
+                    PlayError();
                     break;
                 }
                 if (presData[j] == "Empty")
@@ -290,11 +346,16 @@ public class CandleCreator : ModScriptBehaviour
             {
                 ToggleCandleCreator();
             }
+            else if (loadSuccess)
+            {
+                PlayClick();
+            }
         }
         else
         {
             Debug.Log("CC FATAL ERROR: COULD NOT LOAD PRESET, PRESET NOT FOUND");
             loadSuccess = false;
+            PlayError();
         }
         return loadSuccess;
     }
@@ -303,6 +364,7 @@ public class CandleCreator : ModScriptBehaviour
     {
         if (!RemoveMenuActive)
         {
+            PlayClick();
             RemoveMenu.SetActive(true);
             RemovePrompt.text = $"Permanetly Delete The Preset: {preset}?";
             RemoveMenuActive = true;
@@ -318,6 +380,7 @@ public class CandleCreator : ModScriptBehaviour
             {
                 RemovePreset(PresetToRemove);
             }
+            PlayClick();
             RemoveMenuActive = false;
             RemoveMenu.SetActive(false);
             PresetToRemove = "";
@@ -350,6 +413,11 @@ public class CandleCreator : ModScriptBehaviour
         foreach (Transform T in PresetInventory.transform)
         {
             Destroy(T.gameObject);
+        }
+
+        if (ShowAll)
+        {
+            UsablePresets = PresetLibrary;
         }
 
         Dictionary<string, PanelData> CurrentPresets = new Dictionary<string, PanelData>();
@@ -428,6 +496,16 @@ public class CandleCreator : ModScriptBehaviour
                 ToggleCandleCreator();
             }
         }
+    }
+
+    private void PlayClick()
+    {
+        source1.PlayOneShot(ClickSound);
+    }
+
+    private void PlayError()
+    {
+        source1.PlayOneShot(ErrorSound);
     }
 }
 
