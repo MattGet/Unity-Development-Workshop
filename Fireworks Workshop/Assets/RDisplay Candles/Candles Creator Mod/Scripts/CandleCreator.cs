@@ -241,13 +241,16 @@ public class CandleCreator : ModScriptBehaviour
         {
             ShowAll = false;
             ShowToggle.image.sprite = SliderOff;
-            ModPersistentData.SaveBool("Showall", CloseOnLoad);
+            ModPersistentData.SaveBool("Showall", ShowAll);
+            GetUsablePresets();
+            StartCoroutine(UpdateInventory());
         }
         else
         {
             ShowAll = true;
             ShowToggle.image.sprite = SliderOn;
-            ModPersistentData.SaveBool("Showall", CloseOnLoad);
+            ModPersistentData.SaveBool("Showall", ShowAll);
+            StartCoroutine(UpdateInventory());
         }
     }
 
@@ -417,6 +420,7 @@ public class CandleCreator : ModScriptBehaviour
 
         if (ShowAll)
         {
+            UsablePresets.Clear();
             UsablePresets = PresetLibrary;
         }
 
