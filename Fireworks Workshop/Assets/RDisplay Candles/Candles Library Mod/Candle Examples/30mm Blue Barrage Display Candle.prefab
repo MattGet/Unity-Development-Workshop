@@ -964,7 +964,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 4
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4843,7 +4843,7 @@ ParticleSystemRenderer:
   m_MinParticleSize: 0
   m_MaxParticleSize: 10
   m_CameraVelocityScale: 0
-  m_VelocityScale: 0.05
+  m_VelocityScale: 0.01
   m_LengthScale: 2
   m_SortingFudge: 0
   m_NormalDirection: 1
@@ -4855,7 +4855,7 @@ ParticleSystemRenderer:
   m_EnableGPUInstancing: 0
   m_ApplyActiveColorSpace: 0
   m_AllowRoll: 1
-  m_FreeformStretching: 0
+  m_FreeformStretching: 1
   m_RotateWithStretchDirection: 1
   m_VertexStreams: 00010304
   m_Mesh: {fileID: 0}
