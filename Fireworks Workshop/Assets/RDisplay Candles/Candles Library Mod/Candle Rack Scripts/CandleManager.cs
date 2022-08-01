@@ -25,8 +25,24 @@ public class CandleManager : MonoBehaviour
     [SerializeField]
     private CapsuleCollider Ctrigger;
     public bool IncludeZippers = false;
+    public bool IsCandleCube = false;
     public GameSoundDefinition LoadSound;
 
+#if UNITY_EDITOR
+    [ShowIf("IsCandleCube")]
+    [Foldout("Candle Cube")]
+#endif
+    public GameObject CubeTensionPart;
+#if UNITY_EDITOR
+    [ShowIf("IsCandleCube")]
+    [Foldout("Candle Cube")]
+#endif
+    public float CubeRadius = 0f;
+#if UNITY_EDITOR
+    [ShowIf("IsCandleCube")]
+    [Foldout("Candle Cube")]
+#endif
+    public float CubeCrossSection = 0f;
 
 #if UNITY_EDITOR
     [ShowIf("IncludeZippers")]
@@ -91,22 +107,65 @@ public class CandleManager : MonoBehaviour
                 {
                     if (!HasCandle)
                     {
-                        HasCandle = true;
-                        StartCoroutine(LoadCandle(other.gameObject));
+                        if (IsCandleCube)
+                        {
+
+                        }
+                        else
+                        {
+                            HasCandle = true;
+                            StartCoroutine(LoadCandle(other.gameObject));
+                        }
+
                     }
                 }
             }
         }
     }
 
+    public IEnumerator LoadInCube(GameObject candle)
+    {
+        float candleheight = GetCapsuleHeight(candle);
+        float Candleradius = GetCapsuleradius(candle);
+        float modifier = CubeRadius - Candleradius;
+        candle.transform.parent = this.gameObject.transform;
+        candle.transform.localRotation = Quaternion.identity;
+        candle.transform.localPosition = Vector3.zero;
+        candle.transform.localPosition = new Vector3(candle.transform.localPosition.x + modifier, candle.transform.localPosition.y + candleheight / 2, candle.transform.localPosition.z - modifier);
+        Candle = candle;
+        candle.name = $"{candle.name} - DC Enabled";
+
+        float angle = Mathf.Asin((CubeCrossSection - Candleradius) / (CubeTensionPart.transform.lossyScale.y)) * Mathf.Rad2Deg;
+        if (Mathf.Abs(angle) > 90) angle = 90;
+        if (Mathf.Abs(angle) < 0) angle = 0;
+        CubeTensionPart.transform.localEulerAngles = new Vector3(360 - angle, 315, 0);
+
+        Rigidbody rigidbody;
+        if (candle.TryGetComponent(out rigidbody))
+        {
+            Destroy(rigidbody);
+        }
+        else
+        {
+            Debug.LogError($"Failed to locate Ridgidbody on {candle.name}");
+        }
+
+        if (LoadSound != null) Messenger.Broadcast(new MessengerEventPlaySound(LoadSound.name, Candle.transform));
+        CandleRuntimeHelper helper = candle.AddComponent<CandleRuntimeHelper>();
+        yield return new WaitForSeconds(Time.deltaTime);
+        helper.Destroyed.AddListener(OnCandleDestroy);
+    }
+
+
     public IEnumerator LoadCandle(GameObject candle)
     {
         //Debug.Log($"Loading Candle {candle}");
         float candleheight = GetCapsuleHeight(candle);
+
         candle.transform.parent = this.gameObject.transform;
         candle.transform.localRotation = Quaternion.identity;
         candle.transform.localPosition = Vector3.zero;
-        candle.transform.localPosition = new Vector3(candle.transform.localPosition.x, candle.transform.localPosition.y + candleheight / 2, candle.transform.localPosition.z);
+        candle.transform.localPosition = new Vector3(candle.transform.localPosition.x, candle.transform.localPosition.y + candleheight / 2, candle.transform.localPosition.z );
         Candle = candle;
         candle.name = $"{candle.name} - DC Enabled";
 
@@ -156,6 +215,22 @@ public class CandleManager : MonoBehaviour
                 if (withsoud) Messenger.Broadcast(new MessengerEventPlaySound(ZipperSound.name, Candle.transform, true, true));
             }
         }
+    }
+
+    private float GetCapsuleradius(GameObject candle)
+    {
+        CapsuleCollider capsule;
+        float radius = 0;
+        if (candle.TryGetComponent(out capsule))
+        {
+           radius = capsule.radius;
+        }
+        else
+        {
+            radius = 0.05f;
+            Debug.LogError($"Failed To Get Height for Candle: {candle.name}");
+        }
+        return radius;
     }
 
     private float GetCapsuleHeight(GameObject candle)
