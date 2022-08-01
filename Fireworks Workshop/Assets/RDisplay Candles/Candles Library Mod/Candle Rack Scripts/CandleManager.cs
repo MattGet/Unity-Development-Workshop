@@ -31,24 +31,8 @@ public class CandleManager : MonoBehaviour
 
 #if UNITY_EDITOR
     [ShowIf("IsCandleCube")]
-    [Foldout("Candle Cube")]
-#endif
-    public GameObject CubeTensionPart;
-#if UNITY_EDITOR
-    [ShowIf("IsCandleCube")]
-    [Foldout("Candle Cube")]
-#endif
-    public float TensionPartSize = 0.1f;
-#if UNITY_EDITOR
-    [ShowIf("IsCandleCube")]
-    [Foldout("Candle Cube")]
 #endif
     public float CubeRadius = 0f;
-#if UNITY_EDITOR
-    [ShowIf("IsCandleCube")]
-    [Foldout("Candle Cube")]
-#endif
-    public float CubeCrossSection = 0f;
 
 #if UNITY_EDITOR
     [ShowIf("IncludeZippers")]
@@ -146,9 +130,6 @@ public class CandleManager : MonoBehaviour
         Candle = candle;
         candle.name = $"{candle.name} - DC Enabled";
 
-        float angle = Mathf.Asin((CubeCrossSection - Candleradius) / TensionPartSize) * Mathf.Rad2Deg;
-        CubeTensionPart.transform.eulerAngles = new Vector3(-(90 -angle), -45, 0);
-        Debug.Log($"Angle = {angle}");
         Rigidbody rigidbody;
         if (candle.TryGetComponent(out rigidbody))
         {
