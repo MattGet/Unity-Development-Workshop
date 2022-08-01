@@ -327,14 +327,7 @@ public class CandleCreator : ModScriptBehaviour
         {
             Debug.Log($"Load data = {data}");
             List<string> presData = data.Data;
-            GameObject Candlemanagers = new GameObject();
-            foreach (Transform T in RackItem.transform)
-            {
-                if (T.gameObject.name == "Candle Managers Parent")
-                {
-                    Candlemanagers = T.gameObject;
-                }
-            }
+            Transform Candlemanagers = RackItem.transform.Find("Candle Managers Parent");
             Debug.Log($"Candle Manager = {Candlemanagers}");
             int j = 0;
             foreach (Transform T in Candlemanagers.transform)

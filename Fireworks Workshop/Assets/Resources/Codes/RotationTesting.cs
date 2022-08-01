@@ -5,8 +5,7 @@ using UnityEngine;
 public class RotationTesting : MonoBehaviour
 {
     public bool test = false;
-    public Vector3 Top;
-    public Vector3 Bottom;
+    public Vector3 angles;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +19,6 @@ public class RotationTesting : MonoBehaviour
     }
     private void OnValidate()
     {
-        Top = new Vector3(this.transform.up.x, this.transform.up.y, this.transform.up.z);
-        Bottom = new Vector3(-this.transform.up.x, -this.transform.up.y, -this.transform.up.z);
+        this.gameObject.transform.eulerAngles = angles;
     }
 }
