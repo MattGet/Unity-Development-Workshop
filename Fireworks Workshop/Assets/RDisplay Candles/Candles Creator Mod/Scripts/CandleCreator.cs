@@ -331,7 +331,7 @@ public class CandleCreator : ModScriptBehaviour
             Rigidbody RackBody;
             if (RackItem.TryGetComponent(out RackBody))
             {
-                Freeze(RackBody);
+                StartCoroutine(Freeze(RackBody));
             }
 
             Debug.Log($"Candle Manager = {Candlemanagers}");
@@ -390,8 +390,11 @@ public class CandleCreator : ModScriptBehaviour
     private IEnumerator Freeze(Rigidbody body)
     {
         body.constraints = RigidbodyConstraints.FreezeAll;
+        bool temp = body.isKinematic;
+        body.isKinematic = true;
         yield return new WaitForSeconds(0.5f);
         body.constraints = RigidbodyConstraints.None;
+        body.isKinematic = temp;
     }
 
     public void ToggleOnRemoveMenu(string preset)
