@@ -137,15 +137,13 @@ public class CandleManager : MonoBehaviour
         candle.transform.parent = this.gameObject.transform;
         candle.transform.localRotation = Quaternion.identity;
         candle.transform.localPosition = Vector3.zero;
-        candle.transform.localPosition = new Vector3(candle.transform.localPosition.x + modifier -0.001f, candle.transform.localPosition.y + candleheight / 2, candle.transform.localPosition.z - modifier -0.001f);
+        candle.transform.localPosition = new Vector3(candle.transform.localPosition.x + modifier -0.003f, candle.transform.localPosition.y + candleheight / 2, candle.transform.localPosition.z - modifier +0.003f);
         Candle = candle;
         candle.name = $"{candle.name} - DC Enabled";
 
         float angle = Mathf.Asin((CubeCrossSection - Candleradius) / TensionPartSize) * Mathf.Rad2Deg;
-        if (Mathf.Abs(angle) > 90) angle = 90;
-        if (Mathf.Abs(angle) < 0) angle = 0;
         CubeTensionPart.transform.eulerAngles = new Vector3(-angle, -45, 0);
-
+        Debug.Log($"Angle = {angle}");
         Rigidbody rigidbody;
         if (candle.TryGetComponent(out rigidbody))
         {

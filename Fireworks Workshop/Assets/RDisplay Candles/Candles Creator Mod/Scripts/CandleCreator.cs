@@ -328,13 +328,23 @@ public class CandleCreator : ModScriptBehaviour
             Debug.Log($"Load data = {data}");
             List<string> presData = data.Data;
             Transform Candlemanagers = RackItem.transform.Find("Candle Managers Parent");
+            Rigidbody RackBody;
+            if (RackItem.TryGetComponent(out RackBody))
+            {
+                Freeze(RackBody);
+            }
+
             Debug.Log($"Candle Manager = {Candlemanagers}");
             int j = 0;
             foreach (Transform T in Candlemanagers.transform)
             {
                 foreach (Transform K in T)
                 {
-                    Destroy(K.gameObject);
+                    RomanCandleBehavior Candlescript;
+                    if (K.gameObject.TryGetComponent(out Candlescript))
+                    {
+                        Destroy(K.gameObject);
+                    }
                 }
                 if (j > presData.Count - 1)
                 {
@@ -375,6 +385,13 @@ public class CandleCreator : ModScriptBehaviour
             PlayError();
         }
         return loadSuccess;
+    }
+
+    private IEnumerator Freeze(Rigidbody body)
+    {
+        body.constraints = RigidbodyConstraints.FreezeAll;
+        yield return new WaitForSeconds(0.5f);
+        body.constraints = RigidbodyConstraints.None;
     }
 
     public void ToggleOnRemoveMenu(string preset)
