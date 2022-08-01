@@ -27,6 +27,7 @@ public class CandleManager : MonoBehaviour
     public bool IncludeZippers = false;
     public bool IsCandleCube = false;
     public GameSoundDefinition LoadSound;
+    public Rigidbody RackBody;
 
 #if UNITY_EDITOR
     [ShowIf("IsCandleCube")]
@@ -90,6 +91,10 @@ public class CandleManager : MonoBehaviour
         if (this.gameObject.transform.parent.gameObject.name != "Candle Managers Parent")
         {
             this.gameObject.transform.parent.gameObject.name = "Candle Managers Parent";
+        }
+        if (RackBody == null)
+        {
+            RackBody = this.gameObject.transform.parent.parent.GetComponent<Rigidbody>();
         }
     }
 
@@ -196,6 +201,17 @@ public class CandleManager : MonoBehaviour
         Destroy(Zip2);
         HasCandle = false;
         //Debug.Log("Destroyed Candle");
+        if (RackBody != null) StartCoroutine(Freeze(RackBody));
+    }
+
+    private IEnumerator Freeze(Rigidbody body)
+    {
+        body.constraints = RigidbodyConstraints.FreezeAll;
+        bool temp = body.isKinematic;
+        body.isKinematic = true;
+        yield return new WaitForSeconds(0.5f);
+        body.constraints = RigidbodyConstraints.None;
+        body.isKinematic = temp;
     }
 
     private IEnumerator AddZippers(bool withsoud)
