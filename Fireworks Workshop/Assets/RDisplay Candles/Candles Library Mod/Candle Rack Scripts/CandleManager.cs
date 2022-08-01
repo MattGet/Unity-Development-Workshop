@@ -61,6 +61,8 @@ public class CandleManager : MonoBehaviour
     [HideInInspector]
     public bool DCIsBluePrint = true;
 
+    private CandleIgnitionComponent ignite;
+
 
     // Start is called before the first frame update
     void Start()
@@ -104,13 +106,11 @@ public class CandleManager : MonoBehaviour
                         if (IsCandleCube)
                         {
                             HasCandle = true;
-                            Ctrigger.enabled = false;
                             StartCoroutine(LoadInCube(other.gameObject));
                         }
                         else
                         {
                             HasCandle = true;
-                            Ctrigger.enabled = false;
                             StartCoroutine(LoadCandle(other.gameObject));
                         }
 
@@ -144,6 +144,7 @@ public class CandleManager : MonoBehaviour
 
         if (LoadSound != null) Messenger.Broadcast(new MessengerEventPlaySound(LoadSound.name, Candle.transform));
         CandleRuntimeHelper helper = candle.AddComponent<CandleRuntimeHelper>();
+        ignite = this.gameObject.AddComponent<CandleIgnitionComponent>();
         yield return new WaitForSeconds(Time.deltaTime);
         helper.Destroyed.AddListener(OnCandleDestroy);
     }
@@ -174,6 +175,7 @@ public class CandleManager : MonoBehaviour
         if (IncludeZippers) StartCoroutine(AddZippers(true));
         if (LoadSound != null) Messenger.Broadcast(new MessengerEventPlaySound(LoadSound.name, Candle.transform));
         CandleRuntimeHelper helper = candle.AddComponent<CandleRuntimeHelper>();
+        ignite = this.gameObject.AddComponent<CandleIgnitionComponent>();
         yield return new WaitForSeconds(Time.deltaTime);
         helper.Destroyed.AddListener(OnCandleDestroy);
     }
@@ -182,8 +184,8 @@ public class CandleManager : MonoBehaviour
     {
         Destroy(Zip1);
         Destroy(Zip2);
+        Destroy(ignite);
         HasCandle = false;
-        Ctrigger.enabled = false;
         //Debug.Log("Destroyed Candle");
     }
 
