@@ -146,7 +146,7 @@ public class CandleManager : MonoBehaviour
         Candle = candle;
         candle.name = $"{candle.name} - DC Enabled";
 
-        float angle = Mathf.Asin((CubeCrossSection - Candleradius) / CubeTensionPart.transform.localScale.z) * Mathf.Rad2Deg;
+        float angle = Mathf.Asin((CubeCrossSection - Candleradius) / TensionPartSize) * Mathf.Rad2Deg;
         CubeTensionPart.transform.eulerAngles = new Vector3(-(90 -angle), -45, 0);
         Debug.Log($"Angle = {angle}");
         Rigidbody rigidbody;
@@ -201,17 +201,6 @@ public class CandleManager : MonoBehaviour
         Destroy(Zip2);
         HasCandle = false;
         //Debug.Log("Destroyed Candle");
-        if (RackBody != null) StartCoroutine(Freeze(RackBody));
-    }
-
-    private IEnumerator Freeze(Rigidbody body)
-    {
-        body.constraints = RigidbodyConstraints.FreezeAll;
-        bool temp = body.isKinematic;
-        body.isKinematic = true;
-        yield return new WaitForSeconds(0.5f);
-        body.constraints = RigidbodyConstraints.None;
-        body.isKinematic = temp;
     }
 
     private IEnumerator AddZippers(bool withsoud)
