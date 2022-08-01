@@ -139,7 +139,7 @@ public class CandleManager : MonoBehaviour
         float angle = Mathf.Asin((CubeCrossSection - Candleradius) / (CubeTensionPart.transform.lossyScale.y)) * Mathf.Rad2Deg;
         if (Mathf.Abs(angle) > 90) angle = 90;
         if (Mathf.Abs(angle) < 0) angle = 0;
-        CubeTensionPart.transform.localEulerAngles = new Vector3(- angle, 45, 0);
+        CubeTensionPart.transform.eulerAngles = new Vector3(- angle, 45, 0);
 
         Rigidbody rigidbody;
         if (candle.TryGetComponent(out rigidbody))

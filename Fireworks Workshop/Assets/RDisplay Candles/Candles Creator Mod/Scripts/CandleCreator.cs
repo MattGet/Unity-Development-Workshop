@@ -174,7 +174,8 @@ public class CandleCreator : ModScriptBehaviour
         }
         catch
         {
-            caliber = 99;
+            caliber = 0;
+            Debug.Log("Rack Did not Idntify as 30mm, 40mm, or 48mm! Reverting to 0mm!");
         }
 
         if (caliber != 30 && caliber != 40 && caliber != 48) caliber = 99;
@@ -212,7 +213,15 @@ public class CandleCreator : ModScriptBehaviour
             PresetMenuActive = true;
             PresetSaveMenu.SetActive(true);
             List<string> preset = GetPresetData();
-            int caliber = int.Parse(RackItem.name.Substring(0, 2));
+            int caliber;
+            try
+            {
+                caliber = int.Parse(RackItem.name.Substring(0, 2));
+            }
+            catch
+            {
+                caliber = 0;
+            }
             caliberid.text = caliber.ToString();
             countid.text = preset.Count.ToString();
             string RackDescription = $"Rack Name: {RackItem.name}\n";
