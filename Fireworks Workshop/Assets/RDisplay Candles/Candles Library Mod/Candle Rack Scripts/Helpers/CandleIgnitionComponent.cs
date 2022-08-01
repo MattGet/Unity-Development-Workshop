@@ -11,7 +11,7 @@ public class CandleIgnitionComponent : MonoBehaviour, IHaveFuse, IHaveFuseConnec
     void Update()
     {
         if (_fuse == null)
-        {
+        {   
             _fuse = this.gameObject.GetComponentInChildren<Fuse>();
         }
         if (_fuse.IsUsed || _fuse.IsIgnited)

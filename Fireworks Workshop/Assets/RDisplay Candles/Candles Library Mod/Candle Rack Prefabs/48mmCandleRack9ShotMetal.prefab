@@ -850,7 +850,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3098651889820639194}
   serializedVersion: 2
-  m_Mass: 40
+  m_Mass: 1000
   m_Drag: 1
   m_AngularDrag: 1
   m_UseGravity: 1
@@ -1042,7 +1042,10 @@ MonoBehaviour:
   HasCandle: 0
   Ctrigger: {fileID: 8292875481046213192}
   IncludeZippers: 0
+  IsCandleCube: 0
   LoadSound: {fileID: 11400000, guid: 34199c4c438ff824789e12dc01dc15c2, type: 2}
+  RackBody: {fileID: 8141328550946863081}
+  CubeRadius: 0
   ZipTiePrefab: {fileID: 2948775569431814706, guid: df7db9583431f5d46aa5a20bd6f43d93, type: 3}
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
@@ -1522,7 +1525,10 @@ MonoBehaviour:
   HasCandle: 0
   Ctrigger: {fileID: 2710322094252812141}
   IncludeZippers: 0
+  IsCandleCube: 0
   LoadSound: {fileID: 11400000, guid: 34199c4c438ff824789e12dc01dc15c2, type: 2}
+  RackBody: {fileID: 8141328550946863081}
+  CubeRadius: 0
   ZipTiePrefab: {fileID: 2948775569431814706, guid: df7db9583431f5d46aa5a20bd6f43d93, type: 3}
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
@@ -1591,7 +1597,10 @@ MonoBehaviour:
   HasCandle: 0
   Ctrigger: {fileID: 5782252948200927431}
   IncludeZippers: 0
+  IsCandleCube: 0
   LoadSound: {fileID: 11400000, guid: 34199c4c438ff824789e12dc01dc15c2, type: 2}
+  RackBody: {fileID: 8141328550946863081}
+  CubeRadius: 0
   ZipTiePrefab: {fileID: 2948775569431814706, guid: df7db9583431f5d46aa5a20bd6f43d93, type: 3}
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
@@ -1660,7 +1669,10 @@ MonoBehaviour:
   HasCandle: 0
   Ctrigger: {fileID: 7211237013720859623}
   IncludeZippers: 0
+  IsCandleCube: 0
   LoadSound: {fileID: 11400000, guid: 34199c4c438ff824789e12dc01dc15c2, type: 2}
+  RackBody: {fileID: 8141328550946863081}
+  CubeRadius: 0
   ZipTiePrefab: {fileID: 2948775569431814706, guid: df7db9583431f5d46aa5a20bd6f43d93, type: 3}
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
@@ -2005,7 +2017,10 @@ MonoBehaviour:
   HasCandle: 0
   Ctrigger: {fileID: 2077356851188108361}
   IncludeZippers: 0
+  IsCandleCube: 0
   LoadSound: {fileID: 11400000, guid: 34199c4c438ff824789e12dc01dc15c2, type: 2}
+  RackBody: {fileID: 8141328550946863081}
+  CubeRadius: 0
   ZipTiePrefab: {fileID: 2948775569431814706, guid: df7db9583431f5d46aa5a20bd6f43d93, type: 3}
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
@@ -2074,7 +2089,10 @@ MonoBehaviour:
   HasCandle: 0
   Ctrigger: {fileID: 6448340939998431446}
   IncludeZippers: 0
+  IsCandleCube: 0
   LoadSound: {fileID: 11400000, guid: 34199c4c438ff824789e12dc01dc15c2, type: 2}
+  RackBody: {fileID: 8141328550946863081}
+  CubeRadius: 0
   ZipTiePrefab: {fileID: 2948775569431814706, guid: df7db9583431f5d46aa5a20bd6f43d93, type: 3}
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
@@ -2143,7 +2161,10 @@ MonoBehaviour:
   HasCandle: 0
   Ctrigger: {fileID: 1421410929185626377}
   IncludeZippers: 0
+  IsCandleCube: 0
   LoadSound: {fileID: 11400000, guid: 34199c4c438ff824789e12dc01dc15c2, type: 2}
+  RackBody: {fileID: 8141328550946863081}
+  CubeRadius: 0
   ZipTiePrefab: {fileID: 2948775569431814706, guid: df7db9583431f5d46aa5a20bd6f43d93, type: 3}
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
@@ -2212,7 +2233,10 @@ MonoBehaviour:
   HasCandle: 0
   Ctrigger: {fileID: 6272233958052359441}
   IncludeZippers: 0
+  IsCandleCube: 0
   LoadSound: {fileID: 11400000, guid: 34199c4c438ff824789e12dc01dc15c2, type: 2}
+  RackBody: {fileID: 8141328550946863081}
+  CubeRadius: 0
   ZipTiePrefab: {fileID: 2948775569431814706, guid: df7db9583431f5d46aa5a20bd6f43d93, type: 3}
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
@@ -2281,7 +2305,10 @@ MonoBehaviour:
   HasCandle: 0
   Ctrigger: {fileID: 9202400565057073875}
   IncludeZippers: 0
+  IsCandleCube: 0
   LoadSound: {fileID: 11400000, guid: 34199c4c438ff824789e12dc01dc15c2, type: 2}
+  RackBody: {fileID: 8141328550946863081}
+  CubeRadius: 0
   ZipTiePrefab: {fileID: 2948775569431814706, guid: df7db9583431f5d46aa5a20bd6f43d93, type: 3}
   ZipPos1: {x: 0, y: 0.055, z: 0.0051}
   ZipPos2: {x: 0, y: 0.403, z: 0.0051}
