@@ -104,11 +104,13 @@ public class CandleManager : MonoBehaviour
                         if (IsCandleCube)
                         {
                             HasCandle = true;
+                            Ctrigger.enabled = false;
                             StartCoroutine(LoadInCube(other.gameObject));
                         }
                         else
                         {
                             HasCandle = true;
+                            Ctrigger.enabled = false;
                             StartCoroutine(LoadCandle(other.gameObject));
                         }
 
@@ -181,6 +183,7 @@ public class CandleManager : MonoBehaviour
         Destroy(Zip1);
         Destroy(Zip2);
         HasCandle = false;
+        Ctrigger.enabled = false;
         //Debug.Log("Destroyed Candle");
     }
 
