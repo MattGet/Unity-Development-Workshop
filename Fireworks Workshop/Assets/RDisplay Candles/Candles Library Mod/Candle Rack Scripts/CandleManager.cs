@@ -109,7 +109,8 @@ public class CandleManager : MonoBehaviour
                     {
                         if (IsCandleCube)
                         {
-
+                            HasCandle = true;
+                            StartCoroutine(LoadInCube(other.gameObject));
                         }
                         else
                         {
