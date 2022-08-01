@@ -141,7 +141,7 @@ public class CandleManager : MonoBehaviour
         Candle = candle;
         candle.name = $"{candle.name} - DC Enabled";
 
-        float angle = Mathf.Asin((CubeCrossSection - Candleradius) / TensionPartSize) * Mathf.Rad2Deg;
+        float angle = Mathf.Asin((CubeCrossSection - Candleradius) / CubeTensionPart.transform.localScale.z) * Mathf.Rad2Deg;
         CubeTensionPart.transform.eulerAngles = new Vector3(-(90 -angle), -45, 0);
         Debug.Log($"Angle = {angle}");
         Rigidbody rigidbody;
