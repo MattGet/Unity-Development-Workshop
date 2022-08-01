@@ -154,9 +154,10 @@ public class CandleCreator : ModScriptBehaviour
                     PlayError();
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 Debug.LogError("CC FATAL ERROR: FAILED TO LOAD PERSISTENT LIBRARY");
+                Debug.LogException(ex);
                 PlayError();
             }
         }
