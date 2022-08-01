@@ -167,7 +167,16 @@ public class CandleCreator : ModScriptBehaviour
     {
         UsablePresets.Clear();
         List<string> presetData = GetPresetData();
-        int caliber = int.Parse(RackItem.name.Substring(0, 2));
+        int caliber = 0;
+        try
+        {
+            caliber = int.Parse(RackItem.name.Substring(0, 2));
+        }
+        catch
+        {
+            caliber = 99;
+        }
+
         if (caliber != 30 && caliber != 40 && caliber != 48) caliber = 99;
         foreach (KeyValuePair<string, PanelData> preset in PresetLibrary)
         {
