@@ -110,7 +110,6 @@ public class CandleCreator : ModScriptBehaviour
             ModPersistentData.SaveBool("CloseOnLoad", CloseOnLoad);
             ModPersistentData.SaveBool("UseDebug", UseDebug);
             ModPersistentData.SaveInt("SortingValue", SortingOption);
-            Sorting.onValueChanged.RemoveListener(ToggleSorting);
             Messenger.Broadcast<MessengerEventChangeUIMode>(new MessengerEventChangeUIMode(false, true));
             RackItem = null;
             PlayClick();
@@ -154,7 +153,6 @@ public class CandleCreator : ModScriptBehaviour
                     if (ModPersistentData.Exists("SortingValue"))
                     {
                         SortingOption = ModPersistentData.LoadInt("SortingValue");
-                        Sorting.onValueChanged.AddListener(ToggleSorting);
                         Sorting.value = SortingOption;
                     }
                     GetUsablePresets();
