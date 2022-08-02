@@ -110,6 +110,7 @@ public class CandleCreator : ModScriptBehaviour
             ModPersistentData.SaveBool("CloseOnLoad", CloseOnLoad);
             ModPersistentData.SaveBool("UseDebug", UseDebug);
             ModPersistentData.SaveInt("SortingValue", SortingOption);
+            Sorting.onValueChanged.RemoveListener(ToggleSorting);
             Messenger.Broadcast<MessengerEventChangeUIMode>(new MessengerEventChangeUIMode(false, true));
             RackItem = null;
             PlayClick();
@@ -140,7 +141,7 @@ public class CandleCreator : ModScriptBehaviour
                     }
                     if (ModPersistentData.Exists("UseDebug"))
                     {
-                        ShowAll = ModPersistentData.LoadBool("UseDebug");
+                        UseDebug = ModPersistentData.LoadBool("UseDebug");
                         if (UseDebug)
                         {
                             DebugToggle.image.sprite = SliderOn;
@@ -153,6 +154,7 @@ public class CandleCreator : ModScriptBehaviour
                     if (ModPersistentData.Exists("SortingValue"))
                     {
                         SortingOption = ModPersistentData.LoadInt("SortingValue");
+                        Sorting.onValueChanged.AddListener(ToggleSorting);
                         Sorting.value = SortingOption;
                     }
                     GetUsablePresets();
@@ -296,33 +298,25 @@ public class CandleCreator : ModScriptBehaviour
     public void ToggleSorting(int option)
     {
         PlayClick();
-        Debug.Log("test1");
         if (option == 0)
         {
             ShowAll = false;
             ShowOnlyRack = false;
-            Debug.Log("test2");
         }
         else if (option == 1)
         {
             ShowAll = false;
             ShowOnlyRack = true;
-            Debug.Log("test2.1");
         }
         else if (option == 2)
         {
             ShowAll = true;
             ShowOnlyRack = false;
-            Debug.Log("test2.2");
         }
-        Debug.Log("test3");
         SortingOption = option;
-        Debug.Log("test3.5");
         ModPersistentData.SaveInt("SortingValue", SortingOption);
-        Debug.Log("test4");
         GetUsablePresets();
-        Debug.Log("test5");
-        UpdateInventory();
+        StartCoroutine(UpdateInventory());
     }
 
     public bool SavePreset()
