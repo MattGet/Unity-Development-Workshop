@@ -65,7 +65,7 @@ public class CustomRackPanel: MonoBehaviour
     {
         if (TitleBlock != null)
         {
-            TitleBlock.text = data.Title;
+            TitleBlock.text = this.gameObject.name;
         }
         if (CaliberBlock != null)
         {
@@ -82,8 +82,8 @@ public class CustomRackPanel: MonoBehaviour
         try
         {
             FindManger();
-            Debug.Log($"Sending Load Request For {data.Title}");
-            Manager.SendMessage("LoadPreset", data.Title);
+            Debug.Log($"Sending Load Request For {this.gameObject.name}");
+            Manager.SendMessage("LoadPreset", this.gameObject.name);
         }
         catch (System.Exception ex)
         {
@@ -98,7 +98,7 @@ public class CustomRackPanel: MonoBehaviour
         try
         {
             FindManger();
-            Manager.SendMessage("ToggleOnRemoveMenu", data.Title);
+            Manager.SendMessage("ToggleOnRemoveMenu", this.gameObject.name);
         }
         catch (System.Exception ex)
         {

@@ -34,13 +34,15 @@ public class CandleCreator : ModScriptBehaviour
     public Button CloseToggle;
     public Sprite SliderOff;
     public Sprite SliderOn;
-    public Button ShowToggle;
+    public TMP_Dropdown Sorting;
     public Button DebugToggle;
     private string SearchParameter = "";
     private bool UpdatingInventory = false;
     private bool CloseOnLoad = false;
     private bool ShowAll = false;
+    private bool ShowOnlyRack = false;
     private bool UseDebug = false;
+    private int SortingOption = 1;
 
     [Header("Preset Save Menu Settings")]
     public GameObject PresetSaveMenu;
@@ -106,8 +108,8 @@ public class CandleCreator : ModScriptBehaviour
             ManagerActive = false;
             CandleManagerMenu.SetActive(false);
             ModPersistentData.SaveBool("CloseOnLoad", CloseOnLoad);
-            ModPersistentData.SaveBool("Showall", ShowAll);
             ModPersistentData.SaveBool("UseDebug", UseDebug);
+            ModPersistentData.SaveInt("SortingValue", SortingOption);
             Messenger.Broadcast<MessengerEventChangeUIMode>(new MessengerEventChangeUIMode(false, true));
             RackItem = null;
             PlayClick();
@@ -136,18 +138,6 @@ public class CandleCreator : ModScriptBehaviour
                             CloseToggle.image.sprite = SliderOff;
                         }
                     }
-                    if (ModPersistentData.Exists("Showall"))
-                    {
-                        ShowAll = ModPersistentData.LoadBool("Showall");
-                        if (ShowAll)
-                        {
-                            ShowToggle.image.sprite = SliderOn;
-                        }
-                        else
-                        {
-                            ShowToggle.image.sprite = SliderOff;
-                        }
-                    }
                     if (ModPersistentData.Exists("UseDebug"))
                     {
                         ShowAll = ModPersistentData.LoadBool("UseDebug");
@@ -159,6 +149,11 @@ public class CandleCreator : ModScriptBehaviour
                         {
                             DebugToggle.image.sprite = SliderOff;
                         }
+                    }
+                    if (ModPersistentData.Exists("SortingValue"))
+                    {
+                        SortingOption = ModPersistentData.LoadInt("SortingValue");
+                        ToggleSorting(SortingOption);
                     }
                     GetUsablePresets();
                     StartCoroutine(UpdateInventory());
@@ -194,11 +189,23 @@ public class CandleCreator : ModScriptBehaviour
         }
 
         if (caliber != 30 && caliber != 40 && caliber != 48) caliber = 99;
+
+        
         foreach (KeyValuePair<string, PanelData> preset in PresetLibrary)
         {
-            if (preset.Value.CandleCount == presetData.Count && (preset.Value.Caliber == caliber || caliber == 99))
+            if (ShowOnlyRack)
             {
-                UsablePresets.Add(preset.Key, preset.Value);
+                if (preset.Value.CandleCount == presetData.Count && (preset.Value.Caliber == caliber || caliber == 99) && preset.Value.Title == RackItem.name)
+                {
+                    UsablePresets.Add(preset.Key, preset.Value);
+                }
+            }
+            else
+            {
+                if (preset.Value.CandleCount == presetData.Count && (preset.Value.Caliber == caliber || caliber == 99))
+                {
+                    UsablePresets.Add(preset.Key, preset.Value);
+                }
             }
         }
     }
@@ -286,25 +293,28 @@ public class CandleCreator : ModScriptBehaviour
         }
     }
 
-    public void ToggleShowAll()
+    public void ToggleSorting(int option)
     {
         PlayClick();
-        if (ShowAll)
+        if (option == 0)
         {
             ShowAll = false;
-            ShowToggle.image.sprite = SliderOff;
-            ModPersistentData.SaveBool("Showall", ShowAll);
-            GetUsablePresets();
-            StartCoroutine(UpdateInventory());
+            ShowOnlyRack = false;
         }
-        else
+        else if (option == 1)
+        {
+            ShowAll = false;
+            ShowOnlyRack = true;
+        }
+        else if (option == 2)
         {
             ShowAll = true;
-            ShowToggle.image.sprite = SliderOn;
-            ModPersistentData.SaveBool("Showall", ShowAll);
-            GetUsablePresets();
-            StartCoroutine(UpdateInventory());
+            ShowOnlyRack = false;
         }
+        SortingOption = option;
+        ModPersistentData.SaveInt("SortingValue", SortingOption);
+        GetUsablePresets();
+        UpdateInventory();
     }
 
     public bool SavePreset()
@@ -314,10 +324,10 @@ public class CandleCreator : ModScriptBehaviour
         int count = int.Parse(countid.text);
         string name = presetname.text;
 
-        PanelData preset = new PanelData(name, caliber, count, presetdata);
+        PanelData preset = new PanelData(RackItem.name, caliber, count, presetdata);
         if (UseDebug)
         {
-            Debug.Log($"Data = {preset.Title}, {preset.Caliber}, {preset.CandleCount}");
+            Debug.Log($"Data = {RackItem.name}, {preset.Caliber}, {preset.CandleCount}");
             Debug.Log(this.PresetLibrary);
         }
         
