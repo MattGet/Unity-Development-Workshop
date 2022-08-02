@@ -35,10 +35,12 @@ public class CandleCreator : ModScriptBehaviour
     public Sprite SliderOff;
     public Sprite SliderOn;
     public Button ShowToggle;
+    public Button DebugToggle;
     private string SearchParameter = "";
     private bool UpdatingInventory = false;
     private bool CloseOnLoad = false;
     private bool ShowAll = false;
+    private bool UseDebug = false;
 
     [Header("Preset Save Menu Settings")]
     public GameObject PresetSaveMenu;
@@ -105,6 +107,7 @@ public class CandleCreator : ModScriptBehaviour
             CandleManagerMenu.SetActive(false);
             ModPersistentData.SaveBool("CloseOnLoad", CloseOnLoad);
             ModPersistentData.SaveBool("Showall", ShowAll);
+            ModPersistentData.SaveBool("UseDebug", UseDebug);
             Messenger.Broadcast<MessengerEventChangeUIMode>(new MessengerEventChangeUIMode(false, true));
             RackItem = null;
             PlayClick();
@@ -145,6 +148,18 @@ public class CandleCreator : ModScriptBehaviour
                             ShowToggle.image.sprite = SliderOff;
                         }
                     }
+                    if (ModPersistentData.Exists("UseDebug"))
+                    {
+                        ShowAll = ModPersistentData.LoadBool("UseDebug");
+                        if (UseDebug)
+                        {
+                            DebugToggle.image.sprite = SliderOn;
+                        }
+                        else
+                        {
+                            DebugToggle.image.sprite = SliderOff;
+                        }
+                    }
                     GetUsablePresets();
                     StartCoroutine(UpdateInventory());
                 }
@@ -175,7 +190,7 @@ public class CandleCreator : ModScriptBehaviour
         catch
         {
             caliber = 0;
-            Debug.Log("Rack Did not Idntify as 30mm, 40mm, or 48mm! Reverting to 0mm!");
+            if (UseDebug) Debug.Log("Rack Did not Idntify as 30mm, 40mm, or 48mm! Reverting to 0mm!");
         }
 
         if (caliber != 30 && caliber != 40 && caliber != 48) caliber = 99;
@@ -254,6 +269,23 @@ public class CandleCreator : ModScriptBehaviour
         }
     }
 
+    public void ToggleDebug()
+    {
+        PlayClick();
+        if (UseDebug)
+        {
+            UseDebug = false;
+            DebugToggle.image.sprite = SliderOff;
+            ModPersistentData.SaveBool("UseDebug", UseDebug);
+        }
+        else
+        {
+            UseDebug = true;
+            DebugToggle.image.sprite = SliderOn;
+            ModPersistentData.SaveBool("UseDebug", UseDebug);
+        }
+    }
+
     public void ToggleShowAll()
     {
         PlayClick();
@@ -283,8 +315,12 @@ public class CandleCreator : ModScriptBehaviour
         string name = presetname.text;
 
         PanelData preset = new PanelData(name, caliber, count, presetdata);
-        Debug.Log($"Data = {preset.Title}, {preset.Caliber}, {preset.CandleCount}");
-        Debug.Log(this.PresetLibrary);
+        if (UseDebug)
+        {
+            Debug.Log($"Data = {preset.Title}, {preset.Caliber}, {preset.CandleCount}");
+            Debug.Log(this.PresetLibrary);
+        }
+        
         if (!this.PresetLibrary.ContainsKey(name))
         {
             PresetLibrary.Add(name, preset);
@@ -325,7 +361,7 @@ public class CandleCreator : ModScriptBehaviour
         bool loadSuccess = true;
         if (this.PresetLibrary.TryGetValue(preset, out data))
         {
-            Debug.Log($"Load data = {data}");
+            if (UseDebug) Debug.Log($"Load data = {data}");
             List<string> presData = data.Data;
             Transform Candlemanagers = RackItem.transform.Find("Candle Managers Parent");
             Rigidbody RackBody;
@@ -334,7 +370,7 @@ public class CandleCreator : ModScriptBehaviour
                 StartCoroutine(Freeze(RackBody));
             }
 
-            Debug.Log($"Candle Manager = {Candlemanagers}");
+            if (UseDebug) Debug.Log($"Candle Manager = {Candlemanagers}");
             int j = 0;
             foreach (Transform T in Candlemanagers.transform)
             {
@@ -509,7 +545,7 @@ public class CandleCreator : ModScriptBehaviour
     private void PersistentSaveLibrary()
     {
         string json = JsonConvert.SerializeObject(PresetLibrary, Formatting.Indented);
-        Debug.Log("Saving JSON: \n\n" + json);
+        if (UseDebug) Debug.Log("Saving JSON: \n\n" + json);
         ModPersistentData.SaveString("CCLibrary", json);
     }
 
@@ -521,7 +557,7 @@ public class CandleCreator : ModScriptBehaviour
             ModPersistentData.SaveString("CCLibrary", jsontemp);
         }
         string json = ModPersistentData.LoadString("CCLibrary", "Error Loading Data");
-        Debug.Log("Loaded JSON: \n\n" + json + "\n\n");
+        if (UseDebug) Debug.Log("Loaded JSON: \n\n" + json + "\n\n");
         Dictionary<string, PanelData> tempDic = JsonConvert.DeserializeObject<Dictionary<string, PanelData>>(json);
         if (tempDic != null)
         {
