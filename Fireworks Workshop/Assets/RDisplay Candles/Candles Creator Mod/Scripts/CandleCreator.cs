@@ -153,7 +153,7 @@ public class CandleCreator : ModScriptBehaviour
                     if (ModPersistentData.Exists("SortingValue"))
                     {
                         SortingOption = ModPersistentData.LoadInt("SortingValue");
-                        ToggleSorting(SortingOption);
+                        Sorting.value = SortingOption;
                     }
                     GetUsablePresets();
                     StartCoroutine(UpdateInventory());
@@ -296,24 +296,32 @@ public class CandleCreator : ModScriptBehaviour
     public void ToggleSorting(int option)
     {
         PlayClick();
+        Debug.Log("test1");
         if (option == 0)
         {
             ShowAll = false;
             ShowOnlyRack = false;
+            Debug.Log("test2");
         }
         else if (option == 1)
         {
             ShowAll = false;
             ShowOnlyRack = true;
+            Debug.Log("test2.1");
         }
         else if (option == 2)
         {
             ShowAll = true;
             ShowOnlyRack = false;
+            Debug.Log("test2.2");
         }
+        Debug.Log("test3");
         SortingOption = option;
+        Debug.Log("test3.5");
         ModPersistentData.SaveInt("SortingValue", SortingOption);
+        Debug.Log("test4");
         GetUsablePresets();
+        Debug.Log("test5");
         UpdateInventory();
     }
 
