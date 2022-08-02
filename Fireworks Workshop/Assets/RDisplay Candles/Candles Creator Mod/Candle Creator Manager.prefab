@@ -530,7 +530,7 @@ MonoBehaviour:
   CloseToggle: {fileID: 2342933708785852111}
   SliderOff: {fileID: 21300000, guid: c03773fe82dedfa4e815f2685050213e, type: 3}
   SliderOn: {fileID: 21300000, guid: c771258b99e39f74ca26ab48980cd9a9, type: 3}
-  Sorting: {fileID: 3425394601441974953}
+  PSorting: {fileID: 3425394601441974953}
   DebugToggle: {fileID: 7959355281689350075}
   PresetSaveMenu: {fileID: 1418946920815324393}
   SavePrompt: {fileID: 2126445016674846742}
@@ -3133,9 +3133,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8696344893504851936}
-  - component: {fileID: 1167364333141302018}
   - component: {fileID: 1445098976997233714}
   - component: {fileID: 9184848577458779897}
+  - component: {fileID: 5630797070288948361}
   m_Layer: 0
   m_Name: Viewport
   m_TagString: Untagged
@@ -3163,19 +3163,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -17, y: 0}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &1167364333141302018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3615258947969778693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowMaskGraphic: 0
 --- !u!222 &1445098976997233714
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3214,6 +3201,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5630797070288948361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3615258947969778693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 1
 --- !u!1 &3658227964218265358
 GameObject:
   m_ObjectHideFlags: 0
@@ -4789,7 +4789,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &39417315083571781
 MonoBehaviour:
@@ -7821,7 +7821,7 @@ GameObject:
   - component: {fileID: 101032509713008085}
   - component: {fileID: 3425394601441974953}
   m_Layer: 0
-  m_Name: Dropdown
+  m_Name: Sort Options
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7945,19 +7945,7 @@ MonoBehaviour:
       m_Image: {fileID: 21300000, guid: 1c1bef4b40e990c42aed6432ebd324ef, type: 3}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6615401877441107008}
-        m_TargetAssemblyTypeName: CandleCreator, Assembly-CSharp
-        m_MethodName: ToggleSorting
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_AlphaFadeSpeed: 0.15
 --- !u!1 &8493275743248903764
 GameObject:

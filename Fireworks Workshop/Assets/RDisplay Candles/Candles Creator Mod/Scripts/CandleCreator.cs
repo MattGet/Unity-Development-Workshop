@@ -34,7 +34,7 @@ public class CandleCreator : ModScriptBehaviour
     public Button CloseToggle;
     public Sprite SliderOff;
     public Sprite SliderOn;
-    public TMP_Dropdown Sorting;
+    public TMP_Dropdown PSorting;
     public Button DebugToggle;
     private string SearchParameter = "";
     private bool UpdatingInventory = false;
@@ -110,6 +110,7 @@ public class CandleCreator : ModScriptBehaviour
             ModPersistentData.SaveBool("CloseOnLoad", CloseOnLoad);
             ModPersistentData.SaveBool("UseDebug", UseDebug);
             ModPersistentData.SaveInt("SortingValue", SortingOption);
+            PSorting.onValueChanged.RemoveAllListeners();
             Messenger.Broadcast<MessengerEventChangeUIMode>(new MessengerEventChangeUIMode(false, true));
             RackItem = null;
             PlayClick();
@@ -153,7 +154,8 @@ public class CandleCreator : ModScriptBehaviour
                     if (ModPersistentData.Exists("SortingValue"))
                     {
                         SortingOption = ModPersistentData.LoadInt("SortingValue");
-                        Sorting.value = SortingOption;
+                        PSorting.onValueChanged.AddListener(ToggleSorting);
+                        PSorting.value = SortingOption;
                     }
                     GetUsablePresets();
                     StartCoroutine(UpdateInventory());
