@@ -34641,6 +34641,7 @@ GameObject:
   - component: {fileID: 8958224244036388620}
   - component: {fileID: 1863102903057286522}
   - component: {fileID: 3770345174837007191}
+  - component: {fileID: 1753520491371585571}
   m_Layer: 0
   m_Name: 30mm Silver Glitter Display Candle
   m_TagString: Untagged
@@ -34762,6 +34763,19 @@ MonoBehaviour:
   m_Script: {fileID: -1853490775, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1753520491371585571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6589494534663178337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -432571082, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sound: SFX_Impact_GeneralMedium
 --- !u!1 &7098814082685270519
 GameObject:
   m_ObjectHideFlags: 0

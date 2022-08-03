@@ -5090,6 +5090,7 @@ GameObject:
   - component: {fileID: 4352977802758912952}
   - component: {fileID: 6476723249722210766}
   - component: {fileID: 8387980379755818979}
+  - component: {fileID: 1483316665164808570}
   m_Layer: 0
   m_Name: 40mm Red Comet Display Candle
   m_TagString: Untagged
@@ -5211,6 +5212,19 @@ MonoBehaviour:
   m_Script: {fileID: -1853490775, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1483316665164808570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965950012402971861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -432571082, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sound: SFX_Impact_GeneralMedium
 --- !u!1 &2665093813785597963
 GameObject:
   m_ObjectHideFlags: 0

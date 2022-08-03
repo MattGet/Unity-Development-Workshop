@@ -10092,6 +10092,7 @@ GameObject:
   - component: {fileID: 1511104878330907227}
   - component: {fileID: 8174480437623146541}
   - component: {fileID: 6699228038054698496}
+  - component: {fileID: 5337877449189808104}
   m_Layer: 0
   m_Name: 30mm Red Barrage Display Candle
   m_TagString: Untagged
@@ -10213,6 +10214,19 @@ MonoBehaviour:
   m_Script: {fileID: -1853490775, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5337877449189808104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3735756507093452086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -432571082, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sound: SFX_Impact_GeneralMedium
 --- !u!1 &5308754046083340688
 GameObject:
   m_ObjectHideFlags: 0
