@@ -10,9 +10,9 @@ public class StringListSearchProvider : ScriptableObject, ISearchWindowProvider
 {
 
     private string[] listItems;
-    private UnityEvent<string> onSetIndexCallback;
+    private UnityAction<string> onSetIndexCallback;
 
-    public void setCallback(UnityEvent<string> callback)
+    public void setCallback(UnityAction<string> callback)
     {
         onSetIndexCallback = callback;
     }
