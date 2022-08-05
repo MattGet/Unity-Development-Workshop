@@ -21,24 +21,26 @@ namespace FireworksMania.Core.Editor.PropertyDrawers
         private List<string> _selectableSoundItems;
         private HashSet<string> _soundOptions = new HashSet<string>();
         private string temp;
-
+        private UnityEvent<string> callBack = new UnityEvent<string>();
+        private SerializedProperty property1;
 
         public GameSoundDrawer()
         {
             PopulateFromGameSoundCollections();
+            callBack.AddListener(WriteChanges);
         }
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            GUI.Label(position, label);
             EditorGUI.BeginProperty(position, label, property);
-            EditorGUI.BeginChangeCheck();
-            if (temp != null)
-            {
-                property.stringValue = temp;
-            }
+            property1 = property;
+            //if (temp != null)
+            //{
+            //    property.stringValue = temp;
+            //}
             Rect button = new Rect(position.x + 200, position.y, position.width - 200, position.height);
 
+            GUI.Label(position, label);
 
             //Debug.Log("Current Property = " + property.stringValue);
 
@@ -46,12 +48,19 @@ namespace FireworksMania.Core.Editor.PropertyDrawers
             {
                 StringListSearchProvider provider = ScriptableObject.CreateInstance<StringListSearchProvider>();
                 provider.setItems(_selectableSoundItems.ToArray());
-                provider.setCallback((x) => { temp = x; });
+                provider.setCallback(callBack);
                 SearchWindow.Open(new SearchWindowContext(GUIUtility.GUIToScreenPoint(Event.current.mousePosition)), provider);
             }
-            EditorGUI.EndChangeCheck();
             EditorGUI.EndProperty();
+            //property.serializedObject.ApplyModifiedProperties();
             //write to undo finsihed
+        }
+
+        private void WriteChanges(string value)
+        {
+            property1.stringValue = value;
+            property1.serializedObject.Update();
+            property1.serializedObject.ApplyModifiedProperties();
         }
 
 
