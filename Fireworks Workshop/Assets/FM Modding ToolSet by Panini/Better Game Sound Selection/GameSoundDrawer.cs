@@ -36,6 +36,7 @@ namespace FireworksMania.Core.Editor.PropertyDrawers
             if (temp != null)
             {
                 property.stringValue = temp;
+                temp = null;
             }
             Rect button = new Rect(position.x + 200, position.y, position.width - 200, position.height);
 
@@ -51,6 +52,7 @@ namespace FireworksMania.Core.Editor.PropertyDrawers
             }
             EditorGUI.EndChangeCheck();
             EditorGUI.EndProperty();
+            property.serializedObject.ApplyModifiedProperties();
             //write to undo finsihed
         }
 
