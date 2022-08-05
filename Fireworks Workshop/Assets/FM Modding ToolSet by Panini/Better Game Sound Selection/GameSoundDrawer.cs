@@ -30,13 +30,16 @@ namespace FireworksMania.Core.Editor.PropertyDrawers
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
+            GUI.Label(position, label);
+            EditorGUI.BeginProperty(position, label, property);
+            EditorGUI.BeginChangeCheck();
             if (temp != null)
             {
                 property.stringValue = temp;
             }
             Rect button = new Rect(position.x + 200, position.y, position.width - 200, position.height);
 
-            GUI.Label(position, label);
+
             //Debug.Log("Current Property = " + property.stringValue);
 
             if (GUI.Button(button, property.stringValue, EditorStyles.popup))
@@ -46,6 +49,9 @@ namespace FireworksMania.Core.Editor.PropertyDrawers
                 provider.setCallback((x) => { temp = x; });
                 SearchWindow.Open(new SearchWindowContext(GUIUtility.GUIToScreenPoint(Event.current.mousePosition)), provider);
             }
+            EditorGUI.EndChangeCheck();
+            EditorGUI.EndProperty();
+            //write to undo finsihed
         }
 
 
