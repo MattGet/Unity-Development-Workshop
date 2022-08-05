@@ -25046,9 +25046,9 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 2
-      minScalar: 3.5
+      minMaxState: 3
+      scalar: 2.25
+      minScalar: 1.75
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -26305,14 +26305,14 @@ ParticleSystem:
         serializedVersion: 2
         key0: {r: 0.31132078, g: 0.10847701, b: 0.10396937, a: 1}
         key1: {r: 0.8867924, g: 0.19576357, b: 0.20479672, a: 0.9617647}
-        key2: {r: 1, g: 0, b: 0, a: 0.9644958}
+        key2: {r: 1, g: 0, b: 0, a: 0.96419704}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 64764
+        ctime1: 57247
         ctime2: 64764
         ctime3: 0
         ctime4: 0
@@ -26321,7 +26321,7 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 16191
-        atime2: 65535
+        atime2: 58596
         atime3: 65535
         atime4: 0
         atime5: 0
@@ -26329,7 +26329,7 @@ ParticleSystem:
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 3
+        m_NumAlphaKeys: 4
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -29857,7 +29857,7 @@ ParticleSystemRenderer:
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 1
-  m_RotateWithStretchDirection: 1
+  m_RotateWithStretchDirection: 0
   m_VertexStreams: 00010304
   m_Mesh: {fileID: 1609945119554850432, guid: 7a0295d595e04b6499354e9889a06464, type: 3}
   m_Mesh1: {fileID: 0}
