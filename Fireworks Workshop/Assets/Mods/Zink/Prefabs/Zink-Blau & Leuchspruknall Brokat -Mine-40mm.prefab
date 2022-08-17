@@ -14560,63 +14560,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!1 &990508561750484936
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2708509496528790043}
-  - component: {fileID: 8398058480368291998}
-  m_Layer: 0
-  m_Name: LaunchPhysicsForce
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2708509496528790043
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 990508561750484936}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 482109236069308236}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8398058480368291998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 990508561750484936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2030764095, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _range: 0.7
-  _upwardsmodifier: 0.2
-  _forceMode: 1
-  _explosionForce: 500
-  _applyForceRelativeToMass: 1
-  _ignoreKinematic: 1
-  _ignoreRigidbodies:
-  - {fileID: 9045491918281915587}
-  _affectedLayers:
-    serializedVersion: 2
-    m_Bits: 5633
-  _igniteSurroundingIgnitables: 1
-  _enableShakeEffect: 1
-  _shakeRangeMultipler: 5
 --- !u!1 &1098584996767222389
 GameObject:
   m_ObjectHideFlags: 0
@@ -14744,62 +14687,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &1825018635432283933
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6847414076808735389}
-  - component: {fileID: 4332683151862039601}
-  m_Layer: 0
-  m_Name: ExplosionPhysicsForce
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6847414076808735389
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1825018635432283933}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 482109236069308236}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4332683151862039601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1825018635432283933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2030764095, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _range: 1.5
-  _upwardsmodifier: 0.35
-  _forceMode: 1
-  _explosionForce: 1300
-  _applyForceRelativeToMass: 1
-  _ignoreKinematic: 1
-  _ignoreRigidbodies: []
-  _affectedLayers:
-    serializedVersion: 2
-    m_Bits: 5633
-  _igniteSurroundingIgnitables: 1
-  _enableShakeEffect: 1
-  _shakeRangeMultipler: 15
 --- !u!1 &2119924413156001787
 GameObject:
   m_ObjectHideFlags: 0
@@ -19895,7 +19782,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 482109236069308236}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &5037436883757159964
 ParticleSystem:
@@ -24794,8 +24681,6 @@ GameObject:
   - component: {fileID: 482109236069308236}
   - component: {fileID: 3424600034216102485}
   - component: {fileID: 6642879905866556152}
-  - component: {fileID: 5531266034617706841}
-  - component: {fileID: 3342381666085602959}
   m_Layer: 9
   m_Name: Crossete Effect
   m_TagString: Untagged
@@ -24814,8 +24699,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2708509496528790043}
-  - {fileID: 6847414076808735389}
   - {fileID: 7661138533848745537}
   - {fileID: 1024543725228363159}
   - {fileID: 4670871563675752450}
@@ -29831,32 +29714,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &5531266034617706841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4303732710174661646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -412979324, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3342381666085602959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4303732710174661646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -740855493, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _particleSpawnedPhysicsEffect: {fileID: 8398058480368291998}
-  _particleDestroyedPhysicsEffect: {fileID: 4332683151862039601}
 --- !u!1 &4855446218918623395
 GameObject:
   m_ObjectHideFlags: 0
@@ -34813,7 +34670,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 482109236069308236}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &8602955165643827057
 ParticleSystem:
@@ -49685,7 +49542,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 482109236069308236}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &5439023349128658239
 ParticleSystem:
@@ -54684,7 +54541,7 @@ Transform:
   - {fileID: 8811717502018726663}
   - {fileID: 6439833266394928725}
   m_Father: {fileID: 482109236069308236}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &1272505275033832280
 ParticleSystem:

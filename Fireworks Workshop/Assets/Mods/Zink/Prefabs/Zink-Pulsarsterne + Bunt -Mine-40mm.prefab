@@ -1,62 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &376659368736208531
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 792189391888916464}
-  - component: {fileID: 6232095376549286219}
-  m_Layer: 0
-  m_Name: BirthExplosionForce
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &792189391888916464
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 376659368736208531}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1406975871944083482}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6232095376549286219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 376659368736208531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2030764095, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _range: 0.2
-  _upwardsmodifier: 0.2
-  _forceMode: 1
-  _explosionForce: 100
-  _applyForceRelativeToMass: 1
-  _ignoreKinematic: 1
-  _ignoreRigidbodies:
-  - {fileID: 6326299619681493439}
-  _affectedLayers:
-    serializedVersion: 2
-    m_Bits: 5633
-  _igniteSurroundingIgnitables: 1
-  _enableShakeEffect: 1
-  _shakeRangeMultipler: 15
 --- !u!1 &1970613811104297870
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +123,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1406975871944083482}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &5000630092758204608
 ParticleSystem:
@@ -29337,7 +29280,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1406975871944083482}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &2578375610617134069
 Light:
@@ -49758,7 +49701,6 @@ Transform:
   m_Children:
   - {fileID: 9169277621711306316}
   - {fileID: 354721484750518912}
-  - {fileID: 792189391888916464}
   - {fileID: 7399143051517187504}
   - {fileID: 1008171481283489287}
   - {fileID: 1808926519686790266}
@@ -54698,7 +54640,7 @@ MonoBehaviour:
   m_Script: {fileID: -740855493, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particleSpawnedPhysicsEffect: {fileID: 6232095376549286219}
+  _particleSpawnedPhysicsEffect: {fileID: 0}
   _particleDestroyedPhysicsEffect: {fileID: 0}
 --- !u!1 &8850616750642950384
 GameObject:
@@ -54730,7 +54672,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1406975871944083482}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &84018370493200614
 ParticleSystem:
