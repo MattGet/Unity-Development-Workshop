@@ -1,4 +1,4 @@
-#PREFAB TO PNG V2.3.0
+# PREFAB TO PNG V2.3.0
 
 - Creates a PNG from a prefab in an instant
 - FULLY Customizable angle for taking the PNG photo
