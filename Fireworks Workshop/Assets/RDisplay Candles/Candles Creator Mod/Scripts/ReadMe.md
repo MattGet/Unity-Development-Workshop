@@ -1,7 +1,7 @@
 # Candle Creator Mod (Dynamic GUI)
 
 This mod adds the ability to create candle racks, which are racks of roman candle fireworks commonly used by firework professionals.
-Not only can users create a rack, but they can also save their created rack as a preset using the dynamic GUI and reload that preset into the rack betweeon
+Not only can users create a rack, but they can also save their created rack as a preset using the dynamic GUI and reload that preset into the rack between
 play sessions.
 
 CandleCreator.cs is the main script that handles the overall GUI and saving and loading data using Json.net
