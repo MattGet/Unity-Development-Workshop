@@ -568,16 +568,24 @@ public class CandleCreator : ModScriptBehaviour
             string jsontemp = JsonConvert.SerializeObject(PresetLibrary, Formatting.Indented);
             ModPersistentData.SaveString("CCLibrary", jsontemp);
         }
-        string json = ModPersistentData.LoadString("CCLibrary", "Error Loading Data");
-        if (UseDebug) Debug.Log("Loaded JSON: \n\n" + json + "\n\n");
-        Dictionary<string, PanelData> tempDic = JsonConvert.DeserializeObject<Dictionary<string, PanelData>>(json);
-        if (tempDic != null)
+        try
         {
-            PresetLibrary = tempDic;
+            string json = ModPersistentData.LoadString("CCLibrary", "Error Loading Data");
+            if (UseDebug) Debug.Log("Loaded JSON: \n\n" + json + "\n\n");
+            Dictionary<string, PanelData> tempDic = JsonConvert.DeserializeObject<Dictionary<string, PanelData>>(json);
+            if (tempDic != null)
+            {
+                PresetLibrary = tempDic;
+            }
+            else
+            {
+                PresetLibrary = new Dictionary<string, PanelData>();
+            }
         }
-        else
-        {
-            PresetLibrary = new Dictionary<string, PanelData>();
+        catch (Exception e) {
+            Debug.LogException(e);
+            Debug.LogError("CC FATAL ERROR: COULD NOT LOAD CCLibrary");
+            PlayError();
         }
     }
 

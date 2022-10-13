@@ -64,7 +64,7 @@ namespace FireworksMania.Core.Behaviors
             {
                 this.gameObject.BroadcastMessage("OnCandleDestroy");
             }
-            await UniTask.WaitForEndOfFrame();
+            await UniTask.WaitForEndOfFrame(this);
         }
     }
 }
