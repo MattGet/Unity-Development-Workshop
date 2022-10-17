@@ -52,8 +52,8 @@ namespace FireworksMania.Core.Behaviors
             if (erasedShells == false)
             {
                 //Debug.Log("Destroying prefab");
-                Tween shake = erasableBehavior.gameObject.transform.DOShakeScale(0.3f, 0.5f, 5, 50f);
-                await UniTask.WaitUntil(() => shake.IsActive() == false);
+                //Tween shake = erasableBehavior.gameObject.transform.DOShakeScale(0.3f, 0.5f, 5, 50f, true, ShakeRandomnessMode.Full);
+                //await UniTask.WaitUntil(() => shake.IsActive() == false);
                 //Debug.Log("Destroying prefab1");
                 Tween scale = erasableBehavior.gameObject.transform.DOScale(0.0f, UnityEngine.Random.Range(0.1f, 0.2f));
                 await UniTask.WaitUntil(() => scale.IsActive() == false);
@@ -64,7 +64,7 @@ namespace FireworksMania.Core.Behaviors
             {
                 this.gameObject.BroadcastMessage("OnCandleDestroy");
             }
-            await UniTask.WaitForEndOfFrame(this);
+            //await UniTask.WaitForEndOfFrame(this);
         }
     }
 }
