@@ -9,13 +9,17 @@ public class CandleMessagingService : MonoBehaviour
     void Start()
     {
         CandleManager = GameObject.Find("Candle Library Manager");
+        if (CandleManager == null) {
+            Debug.Log("SS: First Method Failed Trying Again!");
+            CandleManager = (GameObject)GameObject.FindObjectOfType(typeof(ShellsCreator));
+        }
     }
 
     public void OpenCC()
     {
         if (CandleManager != null)
         {
-            CandleManager.SendMessage("ToggleCandleCreator", this.gameObject);
+            CandleManager.SendMessage("ToggleShellsCreator", this.gameObject);
         }
         else
         {

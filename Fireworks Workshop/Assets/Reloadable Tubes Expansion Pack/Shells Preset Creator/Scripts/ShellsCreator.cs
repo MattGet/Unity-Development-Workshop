@@ -65,27 +65,31 @@ public class ShellsCreator : ModScriptBehaviour
     {
         Debug.Log("\n\nShell Creator Loaded... Waiting For Initialization\n\n");
         this.gameObject.name = "Shells Library Manager";
-        StartCoroutine(wait());
         ShellManagerMenu.SetActive(false);
-    }
-
-    private IEnumerator wait()
-    {
-        yield return new WaitUntil(() => (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Q)));
-        Debug.Log("\n\nStarting Initialization...\n\n");
         InitializeDictionary();
     }
 
     private void InitializeDictionary()
     {
         if (Initialized) return;
+        if (ShellLibrary == null) Debug.LogError("SS: Fatal error Shell Dictionary was null!!");
         ShellLibrary.Clear();
-        List<ShellBehaviour> candles = FindObjectsOfType<ShellBehaviour>(true).ToList();
+        List<BaseFireworkBehavior> candles = FindObjectsOfType<BaseFireworkBehavior>(true).ToList();
         Debug.Log($"Shells Collection Size = {candles.Count}");
-        foreach (ShellBehaviour def in candles)
+        if (candles == null) Debug.LogError("SS: Fatal error Dictionary was null!!");
+        foreach (BaseFireworkBehavior def in candles)
         {
+            if (def.EntityDefinition.Id == null) {
+                Debug.LogError("SS: Entity ID was null at " + def.EntityDefinition.name);
+                continue;
+            }
             if (!ShellLibrary.ContainsKey(def.EntityDefinition.Id))
             {
+                if (def.EntityDefinition.PrefabGameObject == null)
+                {
+                    Debug.LogError("SS: Entity GameObject was null at " + def.EntityDefinition.name);
+                    continue;
+                }
                 ShellLibrary.Add(def.EntityDefinition.Id, def.EntityDefinition.PrefabGameObject);
             }
         }
@@ -354,7 +358,7 @@ public class ShellsCreator : ModScriptBehaviour
         LoadableTubeBehaviour[] loadableTubeBehaviours = RackItem.GetComponentsInChildren<LoadableTubeBehaviour>();
         foreach (LoadableTubeBehaviour T in loadableTubeBehaviours)
         {
-            ShellBehaviour candle = T.gameObject.GetComponentInChildren<ShellBehaviour>();
+            BaseFireworkBehavior candle = T.gameObject.GetComponentInChildren<BaseFireworkBehavior>();
             if (candle == null)
             {
                 presetData.Add("Empty");
