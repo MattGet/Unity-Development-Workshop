@@ -79,18 +79,26 @@ public class ShellsCreator : ModScriptBehaviour
         if (candles == null) Debug.LogError("SS: Fatal error Dictionary was null!!");
         foreach (BaseFireworkBehavior def in candles)
         {
-            if (def.EntityDefinition.Id == null) {
-                Debug.LogError("SS: Entity ID was null at " + def.EntityDefinition.name);
-                continue;
-            }
-            if (!ShellLibrary.ContainsKey(def.EntityDefinition.Id))
+            try
             {
-                if (def.EntityDefinition.PrefabGameObject == null)
+                if (def.EntityDefinition == null)
                 {
-                    Debug.LogError("SS: Entity GameObject was null at " + def.EntityDefinition.name);
+                    Debug.LogError("SS: Entity was null");
                     continue;
                 }
-                ShellLibrary.Add(def.EntityDefinition.Id, def.EntityDefinition.PrefabGameObject);
+                if (!ShellLibrary.ContainsKey(def.EntityDefinition.Id))
+                {
+                    if (def.EntityDefinition.PrefabGameObject == null)
+                    {
+                        Debug.LogError("SS: Entity GameObject was null at " + def.EntityDefinition.name);
+                        continue;
+                    }
+                    ShellLibrary.Add(def.EntityDefinition.Id, def.EntityDefinition.PrefabGameObject);
+                }
+            }
+            catch (Exception ex) {
+                Debug.LogError(ex);
+                continue;
             }
         }
 
