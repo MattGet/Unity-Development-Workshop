@@ -4,34 +4,32 @@ using UnityEngine;
 
 public class ShellsMessagingService : MonoBehaviour
 {
-    private GameObject ShellsManager;
-    // Start is called before the first frame update
-    void Start()
-    {
-        ShellsManager = GameObject.Find("Shells Library Manager");
-        if (ShellsManager == null)
-        {
-            Debug.Log("SS: First Method Failed Trying Again!");
-            ShellsManager = (GameObject)GameObject.FindObjectOfType(typeof(ShellsCreator));
-        }
-        else
-        {
-            Debug.Log("SS: Found Shells Manager: " + ShellsManager);
-        }
-    }
-
     public void OpenCC()
     {
-        if (ShellsManager != null)
+        try
         {
-            ShellsManager.SendMessage("ToggleShellsCreator", this.gameObject);
+            ShellsCreator ShellsManager = (ShellsCreator)GameObject.FindObjectOfType(typeof(ShellsCreator));
+            if (ShellsManager == null)
+            {
+                Debug.Log("SS: Auto Method Failed Attempting Manual Search!");
+                Transform root = this.gameObject.transform.root;
+                foreach (Transform T in root)
+                {
+                    if (T.gameObject.name == "Shells Library Manager")
+                    {
+                        Debug.Log("Found Shells Manager... Sending Message");
+                        T.gameObject.BroadcastMessage("ToggleShellsCreator", this.gameObject, SendMessageOptions.RequireReceiver);
+                        ShellsCreator creator = T.gameObject.GetComponent<ShellsCreator>();
+                        creator.ToggleShellsCreator(this.gameObject);
+                    }
+                }
+            }
+            else {
+                ShellsManager.ToggleShellsCreator(this.gameObject);
+            }
         }
-        else
-        {
-            Debug.LogError("SHELL RACK FAILED TO SEND MESSAGE AS SHELLS MANAGER WAS NULL");
-            ShellsManager = this.gameObject.transform.root.gameObject;
-            ShellsManager.BroadcastMessage("ToggleShellsCreator", this.gameObject);
-            Debug.LogWarning("SS: Broadcasted Message Instead from: " + ShellsManager);
+        catch (System.Exception ex) {
+            Debug.LogException(ex);
         }
     }
 

@@ -41,6 +41,12 @@ public class ShellsCreator : ModScriptBehaviour
     private bool CloseOnLoad = false;
     private bool ShowAll = false;
     private bool ShowOnlyRack = false;
+
+    public static explicit operator ShellsCreator(GameObject v)
+    {
+        throw new NotImplementedException();
+    }
+
     private bool UseDebug = false;
     private int SortingOption = 1;
 
@@ -65,6 +71,9 @@ public class ShellsCreator : ModScriptBehaviour
     {
         Debug.Log("\n\nShell Creator Loaded... Waiting For Initialization\n\n");
         this.gameObject.name = "Shells Library Manager";
+        this.gameObject.transform.parent = GameObject.Find("--- MANAGERS ---").transform;
+        Debug.Log("Name: " + this.gameObject.name);
+        Debug.Log("Parent: " + this.gameObject.transform.parent.name);
         ShellManagerMenu.SetActive(false);
         InitializeDictionary();
     }
@@ -114,6 +123,7 @@ public class ShellsCreator : ModScriptBehaviour
 
     public void ToggleShellsCreator(GameObject Rack = null)
     {
+        Debug.Log("SS: Message Recived");
         if (ManagerActive)
         {
             if (Rack != null) return;

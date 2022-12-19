@@ -534,8 +534,8 @@ MonoBehaviour:
   RackPanelPrefab: {fileID: 4802528567912155295, guid: ae6c007e87d930941a0777e3b935a752, type: 3}
   SearchBar: {fileID: 5219801523809738293}
   CloseToggle: {fileID: 2342933708785852111}
-  SliderOff: {fileID: 21300000, guid: 929c6b177ef6b614ba8017f774751a48, type: 3}
-  SliderOn: {fileID: 21300000, guid: d3162b1e9b8a3e949bec9483e5ebf751, type: 3}
+  SliderOff: {fileID: 21300000, guid: c03773fe82dedfa4e815f2685050213e, type: 3}
+  SliderOn: {fileID: 21300000, guid: c771258b99e39f74ca26ab48980cd9a9, type: 3}
   PSorting: {fileID: 3425394601441974953}
   DebugToggle: {fileID: 7959355281689350075}
   PresetSaveMenu: {fileID: 1418946920815324393}
@@ -2305,9 +2305,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CandleCreator, Assembly-CSharp
-        m_MethodName: ToggleCandleCreator
+      - m_Target: {fileID: 4884383706457867007}
+        m_TargetAssemblyTypeName: ShellsCreator, Assembly-CSharp
+        m_MethodName: ToggleShellsCreator
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2926,8 +2926,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CandleCreator, Assembly-CSharp
+      - m_Target: {fileID: 4884383706457867007}
+        m_TargetAssemblyTypeName: ShellsCreator, Assembly-CSharp
         m_MethodName: TogglePresetCreationMenu
         m_Mode: 6
         m_Arguments:
@@ -3839,8 +3839,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CandleCreator, Assembly-CSharp
+      - m_Target: {fileID: 4884383706457867007}
+        m_TargetAssemblyTypeName: ShellsCreator, Assembly-CSharp
         m_MethodName: ClearSearch
         m_Mode: 1
         m_Arguments:
@@ -4263,8 +4263,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CandleCreator, Assembly-CSharp
+      - m_Target: {fileID: 4884383706457867007}
+        m_TargetAssemblyTypeName: ShellsCreator, Assembly-CSharp
         m_MethodName: ToggleOffRemoveMenu
         m_Mode: 6
         m_Arguments:
@@ -4622,8 +4622,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CandleCreator, Assembly-CSharp
+      - m_Target: {fileID: 4884383706457867007}
+        m_TargetAssemblyTypeName: ShellsCreator, Assembly-CSharp
         m_MethodName: TogglePresetCreationMenu
         m_Mode: 6
         m_Arguments:
@@ -5677,8 +5677,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CandleCreator, Assembly-CSharp
+      - m_Target: {fileID: 4884383706457867007}
+        m_TargetAssemblyTypeName: ShellsCreator, Assembly-CSharp
         m_MethodName: UpdateSearch
         m_Mode: 0
         m_Arguments:
@@ -6228,8 +6228,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CandleCreator, Assembly-CSharp
+      - m_Target: {fileID: 4884383706457867007}
+        m_TargetAssemblyTypeName: ShellsCreator, Assembly-CSharp
         m_MethodName: ToggleOffRemoveMenu
         m_Mode: 6
         m_Arguments:
@@ -8430,8 +8430,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CandleCreator, Assembly-CSharp
+      - m_Target: {fileID: 4884383706457867007}
+        m_TargetAssemblyTypeName: ShellsCreator, Assembly-CSharp
         m_MethodName: TogglePresetCreationMenu
         m_Mode: 6
         m_Arguments:
