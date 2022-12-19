@@ -202,7 +202,7 @@ public class ShellsCreator : ModScriptBehaviour
     private void GetUsablePresets()
     {
         UsablePresets.Clear();
-        List<string> presetData = GetPresetData();
+        List<string> presetData = GetPresetData(false);
         float caliber = 0f;
         try
         {
@@ -260,7 +260,7 @@ public class ShellsCreator : ModScriptBehaviour
         {
             PresetMenuActive = true;
             PresetSaveMenu.SetActive(true);
-            List<string> preset = GetPresetData();
+            List<string> preset = GetPresetData(true);
             float caliber;
             try
             {
@@ -345,7 +345,7 @@ public class ShellsCreator : ModScriptBehaviour
 
     public bool SavePreset()
     {
-        List<string> presetdata = GetPresetData();
+        List<string> presetdata = GetPresetData(false);
         float caliber = float.Parse(caliberid.text);
         int count = int.Parse(countid.text);
         string name = presetname.text;
@@ -372,7 +372,7 @@ public class ShellsCreator : ModScriptBehaviour
         }
     }
 
-    private List<string> GetPresetData()
+    private List<string> GetPresetData(bool forDisplay)
     {
         List<string> presetData = new List<string>();
         LoadableTubeBehaviour[] tubeBehaviours = RackItem.GetComponentsInChildren<LoadableTubeBehaviour>();
@@ -387,7 +387,8 @@ public class ShellsCreator : ModScriptBehaviour
                 BaseFireworkBehavior fireworkBehavior;
                 if (T.Shell.TryGetComponent(out fireworkBehavior))
                 {
-                    presetData.Add(fireworkBehavior.EntityDefinition.Id);
+                    if (forDisplay) { presetData.Add(fireworkBehavior.EntityDefinition.name);
+                    } else presetData.Add(fireworkBehavior.EntityDefinition.Id);
                 }
                 else {
                     Debug.LogWarning("SS: Failed to Find Firework in Tube Shell");
@@ -418,6 +419,7 @@ public class ShellsCreator : ModScriptBehaviour
                 if (T.Shell != null)
                 { 
                     Destroy(T.Shell);
+                    T.Shell = null;
                 }
                 TubeIgniteComponent ignite;
                 if (T.gameObject.TryGetComponent(out ignite))

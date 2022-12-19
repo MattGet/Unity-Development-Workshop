@@ -69,7 +69,7 @@ public class ShellsRackPanel: MonoBehaviour
         }
         if (CaliberBlock != null)
         {
-            CaliberBlock.text = $"Caliber = {data.Caliber}mm";
+            CaliberBlock.text = $"Caliber = {data.Caliber} Inch";
         }
         if (CountBlock != null)
         {
