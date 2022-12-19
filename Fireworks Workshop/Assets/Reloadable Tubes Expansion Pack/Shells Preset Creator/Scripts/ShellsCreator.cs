@@ -383,7 +383,7 @@ public class ShellsCreator : ModScriptBehaviour
             else
             {
                 BaseFireworkBehavior fireworkBehavior;
-                if (T.TryGetComponent(out fireworkBehavior))
+                if (T.Shell.TryGetComponent(out fireworkBehavior))
                 {
                     presetData.Add(fireworkBehavior.EntityDefinition.Id);
                 }
