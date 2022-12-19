@@ -373,17 +373,23 @@ public class ShellsCreator : ModScriptBehaviour
     private List<string> GetPresetData()
     {
         List<string> presetData = new List<string>();
-        LoadableTubeBehaviour[] loadableTubeBehaviours = RackItem.GetComponentsInChildren<LoadableTubeBehaviour>();
-        foreach (LoadableTubeBehaviour T in loadableTubeBehaviours)
+        LoadableTubeBehaviour[] tubeBehaviours = RackItem.GetComponentsInChildren<LoadableTubeBehaviour>();
+        foreach (LoadableTubeBehaviour T in tubeBehaviours)
         {
-            BaseFireworkBehavior candle = T.gameObject.GetComponentInChildren<BaseFireworkBehavior>();
-            if (candle == null)
+            if (T.Shell == null)
             {
                 presetData.Add("Empty");
             }
             else
             {
-                presetData.Add(candle.EntityDefinition.Id);
+                BaseFireworkBehavior fireworkBehavior;
+                if (T.TryGetComponent(out fireworkBehavior))
+                {
+                    presetData.Add(fireworkBehavior.EntityDefinition.Id);
+                }
+                else {
+                    Debug.LogWarning("SS: Failed to Find Firework in Tube Shell");
+                }
             }
         }
         return presetData;
