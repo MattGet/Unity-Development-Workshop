@@ -4715,6 +4715,7 @@ GameObject:
   - component: {fileID: 9082593998743194166}
   - component: {fileID: 7573615801490036827}
   - component: {fileID: 912979028764856449}
+  - component: {fileID: 2880029805991397668}
   m_Layer: 0
   m_Name: 1.75inch 20-10-20 15 Degree Rack
   m_TagString: Untagged
@@ -4938,15 +4939,15 @@ MonoBehaviour:
   m_Script: {fileID: 426763944, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _customText: COPY
+  _customText: Open UI
   _showHighlight: 0
   _showInteractionUI: 1
   OnBeginUse:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9082593998743194166}
-        m_TargetAssemblyTypeName: CustomTubes.TubeCopy, Assembly-CSharp
-        m_MethodName: CreateCopy
+      - m_Target: {fileID: 2880029805991397668}
+        m_TargetAssemblyTypeName: ShellsMessagingService, Assembly-CSharp
+        m_MethodName: OpenCC
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4959,6 +4960,18 @@ MonoBehaviour:
   OnEndUse:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2880029805991397668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2636626396349313801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1c5a1ba2a6f4ec41b80d0d267303ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2899069333554076646
 GameObject:
   m_ObjectHideFlags: 0

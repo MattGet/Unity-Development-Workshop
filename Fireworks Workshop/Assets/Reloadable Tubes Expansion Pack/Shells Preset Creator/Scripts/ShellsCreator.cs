@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using CustomTubes;
 
 public class ShellsCreator : ModScriptBehaviour
 {
@@ -76,6 +77,7 @@ public class ShellsCreator : ModScriptBehaviour
         Debug.Log("Parent: " + this.gameObject.transform.parent.name);
         ShellManagerMenu.SetActive(false);
         InitializeDictionary();
+        source1.gameObject.SetActive(true);
     }
 
     private void InitializeDictionary()
@@ -413,6 +415,15 @@ public class ShellsCreator : ModScriptBehaviour
             int j = 0;
             foreach (LoadableTubeBehaviour T in loadableTubeBehaviours)
             {
+                if (T.Shell != null)
+                { 
+                    Destroy(T.Shell);
+                }
+                TubeIgniteComponent ignite;
+                if (T.gameObject.TryGetComponent(out ignite))
+                {
+                    Destroy(ignite);
+                }
                 if (j > presData.Count - 1)
                 {
                     Debug.Log($"SS ERROR: SIZE OF RACK DIDNT MATCH SIZE OF PRESET, PRESET NAME = {preset}, RACK = {RackItem}");

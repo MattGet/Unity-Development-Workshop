@@ -2598,6 +2598,7 @@ GameObject:
   - component: {fileID: 6152964322509699667}
   - component: {fileID: 5685268985191650298}
   - component: {fileID: 1155305154148023875}
+  - component: {fileID: 2614379684321922756}
   m_Layer: 0
   m_Name: 3inch 6Shot Rack
   m_TagString: Untagged
@@ -2748,15 +2749,15 @@ MonoBehaviour:
   m_Script: {fileID: 426763944, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _customText: COPY
+  _customText: Open UI
   _showHighlight: 0
   _showInteractionUI: 1
   OnBeginUse:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2691924464313583056}
-        m_TargetAssemblyTypeName: TubeCopy, Assembly-CSharp
-        m_MethodName: CreateCopy
+      - m_Target: {fileID: 2614379684321922756}
+        m_TargetAssemblyTypeName: ShellsMessagingService, Assembly-CSharp
+        m_MethodName: OpenCC
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2782,6 +2783,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3064018, y: 0.058823705, z: 1.1679789}
   m_Center: {x: 0.000000029802322, y: -0.2622035, z: 0.003127396}
+--- !u!114 &2614379684321922756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8453150954199925553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1c5a1ba2a6f4ec41b80d0d267303ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8692318502814540932
 GameObject:
   m_ObjectHideFlags: 0

@@ -454,6 +454,7 @@ using UnityEditor;
 
         public void addShell(GameObject other)
         {
+            if (Shell != null) return;
             //Debug.Log("adding new shell");
             GameObject shell = UnityEngine.Object.Instantiate<GameObject>(other, gameObject.transform.parent.transform);
             shell.name = shell.name + " Tube Spawned";
@@ -468,6 +469,7 @@ using UnityEditor;
         }
         public void addCurrentShell(GameObject shell)
         {
+            if (Shell != null) return;
             bool special = false;
             if (shell.name == "ignoreTA Potection")
             {
@@ -485,6 +487,7 @@ using UnityEditor;
 
         public void addCopiedShell(CustomTubes.ShellTubeMatchData shellmatch)
         {
+            if (Shell != null) return;
             //Debug.Log("loading Copied shell");
             if (shellmatch.shellData.ShellMatchNumber != TubeMatchNumber)
             {
