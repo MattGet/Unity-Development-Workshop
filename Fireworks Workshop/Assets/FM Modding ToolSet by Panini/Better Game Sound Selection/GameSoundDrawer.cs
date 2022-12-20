@@ -18,7 +18,6 @@ namespace FireworksMania.Core.Editor.PropertyDrawers
     [CustomPropertyDrawer(typeof(GameSoundAttribute))]
     public class GameSoundDrawer : PropertyDrawer
     {
-        private int selectedIndex = 0;
         private List<string> _selectableSoundItems;
         private HashSet<string> _soundOptions = new HashSet<string>();
         private string temp;

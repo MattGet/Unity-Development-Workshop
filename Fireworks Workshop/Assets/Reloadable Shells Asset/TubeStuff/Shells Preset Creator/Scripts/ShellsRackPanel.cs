@@ -11,6 +11,8 @@ public class ShellsRackPanel: MonoBehaviour
     public TMP_Text CaliberBlock;
     public TMP_Text CountBlock;
     public GameObject Manager;
+    private ShellsCreator creator;
+    public string Name = "Shells Library Manager 2";
 
     private void OnValidate()
     {
@@ -57,7 +59,7 @@ public class ShellsRackPanel: MonoBehaviour
     {
         if (Manager == null)
         {
-            Manager = GameObject.Find("Shells Library Manager");
+            Manager = GameObject.Find(Name);
         }
     }
 
@@ -83,7 +85,13 @@ public class ShellsRackPanel: MonoBehaviour
         {
             FindManger();
             Debug.Log($"Sending Load Request For {this.gameObject.name}");
-            Manager.SendMessage("LoadPreset", this.gameObject.name);
+            if (Manager.TryGetComponent<ShellsCreator>(out creator))
+            {
+                creator.LoadPreset(this.gameObject.name);
+            }
+            else {
+                Manager.SendMessage("LoadPreset", this.gameObject.name);
+            }
         }
         catch (System.Exception ex)
         {
@@ -98,7 +106,14 @@ public class ShellsRackPanel: MonoBehaviour
         try
         {
             FindManger();
-            Manager.SendMessage("ToggleOnRemoveMenu", this.gameObject.name);
+            if (Manager.TryGetComponent<ShellsCreator>(out creator))
+            {
+                creator.ToggleOnRemoveMenu(this.gameObject.name);
+            }
+            else
+            {
+                Manager.SendMessage("ToggleOnRemoveMenu", this.gameObject.name);
+            }
         }
         catch (System.Exception ex)
         {

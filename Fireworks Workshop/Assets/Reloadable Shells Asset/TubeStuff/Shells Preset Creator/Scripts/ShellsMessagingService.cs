@@ -15,7 +15,7 @@ public class ShellsMessagingService : MonoBehaviour
                 Transform root = this.gameObject.transform.root;
                 foreach (Transform T in root)
                 {
-                    if (T.gameObject.name == "Shells Library Manager")
+                    if (T.gameObject.name == "Shells Library Manager 2")
                     {
                         Debug.Log("SS: Found Shells Manager... Sending Message");
                         //T.gameObject.BroadcastMessage("ToggleShellsCreator", this.gameObject, SendMessageOptions.RequireReceiver);

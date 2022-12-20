@@ -15,6 +15,7 @@ using CustomTubes;
 
 public class ShellsCreator : ModScriptBehaviour
 {
+    public string Name = "Shells Library Manager 2";
     public Dictionary<string, GameObject> ShellLibrary = new Dictionary<string, GameObject>();
     private bool Initialized = false;
     private GameObject RackItem;
@@ -71,24 +72,8 @@ public class ShellsCreator : ModScriptBehaviour
 
     public void Start()
     {
-        try
-        {
-                Transform root = this.gameObject.transform.root;
-                foreach (Transform T in root)
-                {
-                    if (T.gameObject.name == "Shells Library Manager")
-                    {
-                        Debug.Log("SS: Shells Manager Already Exists Aborting New Instance");
-                        Destroy(this.gameObject);
-                    }
-                }
-        }
-        catch (System.Exception ex)
-        {
-            Debug.LogException(ex);
-        }
         Debug.Log("\n\nShell Creator Loaded... Waiting For Initialization\n\n");
-        this.gameObject.name = "Shells Library Manager";
+        this.gameObject.name = Name;
         this.gameObject.transform.parent = GameObject.Find("--- MANAGERS ---").transform;
         Debug.Log("Name: " + this.gameObject.name);
         Debug.Log("Parent: " + this.gameObject.transform.parent.name);
@@ -417,6 +402,7 @@ public class ShellsCreator : ModScriptBehaviour
 
     public bool LoadPreset(string preset)
     {
+        if (preset == null){ Debug.LogError("SS: PRESET STRING WAS NULL!"); return false; }
         ShellsPanelData data;
         bool loadSuccess = true;
         if (this.PresetLibrary.TryGetValue(preset, out data))
