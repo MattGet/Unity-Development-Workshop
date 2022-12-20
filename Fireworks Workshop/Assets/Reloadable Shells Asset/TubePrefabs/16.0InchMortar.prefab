@@ -498,8 +498,9 @@ GameObject:
   - component: {fileID: 1122035393102972043}
   - component: {fileID: 6812748134283987261}
   - component: {fileID: 8228474521585803365}
+  - component: {fileID: -7123065149425198442}
   m_Layer: 0
-  m_Name: 16InchMortar
+  m_Name: 16.0InchMortar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -692,15 +693,15 @@ MonoBehaviour:
   m_Script: {fileID: 426763944, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _customText: COPY
+  _customText: Open UI
   _showHighlight: 0
   _showInteractionUI: 1
   OnBeginUse:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6812748134283987261}
-        m_TargetAssemblyTypeName: TubeCopy, Assembly-CSharp
-        m_MethodName: CreateCopy
+      - m_Target: {fileID: -7123065149425198442}
+        m_TargetAssemblyTypeName: ShellsMessagingService, Assembly-CSharp
+        m_MethodName: OpenCC
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -741,6 +742,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.4622722, z: 1}
   m_Center: {x: 0, y: 0.23113611, z: 0}
+--- !u!114 &-7123065149425198442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4981452321174736043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1c5a1ba2a6f4ec41b80d0d267303ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6285017573095967225
 GameObject:
   m_ObjectHideFlags: 0

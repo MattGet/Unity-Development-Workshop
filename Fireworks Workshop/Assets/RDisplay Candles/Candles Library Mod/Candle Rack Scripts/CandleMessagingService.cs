@@ -23,7 +23,7 @@ public class CandleMessagingService : MonoBehaviour
     {
         if (CandleManager != null)
         {
-            CandleManager.SendMessage("ToggleCandleCreator", this.gameObject);
+            CandleManager.SendMessage("ToggleCandleCreator", this.gameObject, SendMessageOptions.RequireReceiver);
         }
         else
         {

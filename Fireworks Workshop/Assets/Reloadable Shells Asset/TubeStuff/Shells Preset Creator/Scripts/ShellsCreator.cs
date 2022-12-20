@@ -65,11 +65,28 @@ public class ShellsCreator : ModScriptBehaviour
     public TMP_Text RemovePrompt;
     private bool RemoveMenuActive = false;
     private string PresetToRemove;
+    private ShellsCreator Creator;
 
 
 
     public void Start()
     {
+        try
+        {
+                Transform root = this.gameObject.transform.root;
+                foreach (Transform T in root)
+                {
+                    if (T.gameObject.name == "Shells Library Manager")
+                    {
+                        Debug.Log("SS: Shells Manager Already Exists Aborting New Instance");
+                        Destroy(this.gameObject);
+                    }
+                }
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogException(ex);
+        }
         Debug.Log("\n\nShell Creator Loaded... Waiting For Initialization\n\n");
         this.gameObject.name = "Shells Library Manager";
         this.gameObject.transform.parent = GameObject.Find("--- MANAGERS ---").transform;
@@ -79,7 +96,7 @@ public class ShellsCreator : ModScriptBehaviour
         InitializeDictionary();
         source1.gameObject.SetActive(true);
     }
-
+    
     private void InitializeDictionary()
     {
         if (Initialized) return;
