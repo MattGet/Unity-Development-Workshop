@@ -5060,7 +5060,7 @@ MonoBehaviour:
   _fuse: {fileID: 7702169306477013841}
   _model: {fileID: 4928489321623394337}
   ThrusterObject: {fileID: 5411654696682644114}
-  ReleaseDelay: 12
+  ReleaseDelay: 12.4
   _randomTimeDelayAfterThruster: 1
   _ExplosionEffect: {fileID: 1595923846305063346}
   _rigidbody: {fileID: 5238352224855670807}
@@ -5103,26 +5103,26 @@ MonoBehaviour:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.00000078603625
-        value: 0.9999945
-        inSlope: -1.6538827
-        outSlope: -1.6538827
+        time: 0
+        value: 1
+        inSlope: -1.7285963
+        outSlope: -1.7285963
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0.0547699
+        outWeight: 0.039007094
       - serializedVersion: 3
-        time: 1.00354
-        value: 0.30381393
-        inSlope: -0.25071475
-        outSlope: -0.25071475
+        time: 1.00531
+        value: 0.39714354
+        inSlope: 0
+        outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.12366991
+        inWeight: 0
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-      m_RotationOrder: 0
+      m_RotationOrder: 4
     _thrustForceMode: 0
     _effect: {fileID: 5928338509087647205}
     _thrustAtPosition: 1
@@ -5136,20 +5136,20 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 0.00000078603625
         value: 0.9999945
-        inSlope: -1.6538827
-        outSlope: -1.6538827
+        inSlope: -2.8211725
+        outSlope: -2.8211725
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0.0547699
+        outWeight: 0.057691567
       - serializedVersion: 3
-        time: 1.00354
-        value: 0.30381393
-        inSlope: -0.25071475
-        outSlope: -0.25071475
+        time: 0.99823
+        value: 0.10023117
+        inSlope: 0
+        outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.12366991
+        inWeight: 0
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -10363,7 +10363,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2119843110387415487}
   serializedVersion: 8
-  lengthInSec: 120
+  lengthInSec: 60
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 3
@@ -39579,7 +39579,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 8
-      minScalar: 4
+      minScalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -40063,7 +40063,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 100000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 1
@@ -40329,7 +40329,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -40382,7 +40382,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 10
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -40785,12 +40785,12 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.7169812, g: 0.50372976, b: 0.21238874, a: 0.74509805}
-        key1: {r: 0.7215204, g: 0.51385766, b: 0.23030455, a: 0.39215687}
-        key2: {r: 0.8919382, g: 0.88794535, b: 0.88794535, a: 0}
-        key3: {r: 0.8867924, g: 0.8826094, b: 0.8826094, a: 0}
+        key0: {r: 0.9245283, g: 0.658025, b: 0.30003557, a: 0.74509805}
+        key1: {r: 0.9622642, g: 0.68266284, b: 0.30320394, a: 0.39215687}
+        key2: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 0}
+        key3: {r: 1, g: 1, b: 1, a: 0}
         key4: {r: 1, g: 1, b: 1, a: 0}
-        key5: {r: 0, g: 0, b: 0, a: 0}
+        key5: {r: 1, g: 1, b: 1, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 964
@@ -40798,7 +40798,7 @@ ParticleSystem:
         ctime2: 22937
         ctime3: 37008
         ctime4: 62451
-        ctime5: 0
+        ctime5: 63608
         ctime6: 0
         ctime7: 0
         atime0: 0
@@ -48131,7 +48131,7 @@ ParticleSystem:
     m_Bounce:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.05
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2

@@ -86,10 +86,10 @@ namespace FireworksMania.Core.Behaviors.Fireworks
         {
             MultiStageRocket rocketBehavior = this;
             StartCoroutine(ThrustController());
+            StartCoroutine(ReleaseRocket(rocketBehavior));
             UniTask uniTask = UniTask.Delay(200);
             await uniTask;
             token.ThrowIfCancellationRequested();
-            StartCoroutine(ReleaseRocket(rocketBehavior));
             Messenger.Broadcast<MessengerEventPlaySound>(new MessengerEventPlaySound(this._thrustSound, this.ThrusterObject.transform, followTransform: true));
             token.ThrowIfCancellationRequested();
             uniTask = UniTask.WaitWhile(() => Thrusting == true);
@@ -101,13 +101,7 @@ namespace FireworksMania.Core.Behaviors.Fireworks
                 await uniTask;
                 token.ThrowIfCancellationRequested();
             }
-            if (CoreSettings.AutoDespawnFireworks)
-            {
-                rocketBehavior.DisableRigidBodyAndColliders();
-                rocketBehavior._model.SetActive(false);
-            }
             rocketBehavior._ExplosionEffect.Play();
-            // ISSUE: reference to a compiler-generated method
             uniTask = UniTask.WaitWhile(() => this._ExplosionEffect.IsAlive() || this._ExplosionEffect.isPlaying, PlayerLoopTiming.Update, token);
             await uniTask;
             token.ThrowIfCancellationRequested();
