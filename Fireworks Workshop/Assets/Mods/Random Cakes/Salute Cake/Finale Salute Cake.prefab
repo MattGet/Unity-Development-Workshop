@@ -5561,7 +5561,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: -90, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 1, y: 3, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -9941,6 +9941,12 @@ MonoBehaviour:
   _fuseConnectionPoint: {fileID: 1269291033723245876}
   _particleSystem: {fileID: 8519814478660158832}
   _fuseIgnitedSound: IgnitedFuse_High
+  _onFuseIgnited:
+    m_PersistentCalls:
+      m_Calls: []
+  _onFuseCompleted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!135 &1695942909749998155
 SphereCollider:
   m_ObjectHideFlags: 0

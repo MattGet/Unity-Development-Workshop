@@ -19,22 +19,18 @@ namespace FireworksMania.Core.Behaviors.Fireworks
         protected GameObject _model;
         [SerializeField]
         protected GameObject ThrusterObject;
-        [SerializeField]
-        protected float ReleaseDelay;
-        [Tooltip("If enabled, a small random delay is added between the thruster finishing and the explosion happening. You should only disable this is you have a very specific reason.")]
-        [SerializeField]
-        protected bool _randomTimeDelayAfterThruster = true;
+
         [SerializeField]
         protected ParticleSystem _ExplosionEffect;
         [SerializeField]
         protected Rigidbody _rigidbody;
-        private Collider[] _colliders;
-        [Header("Sound")]
-        [GameSound]
+        [Tooltip("If enabled, a small random delay is added between the thruster finishing and the explosion happening. You should only disable this is you have a very specific reason.")]
         [SerializeField]
-        private string _thrustSound;
+        protected bool _randomTimeDelayAfterThruster = true;
+        private Collider[] _colliders;
         private bool Thrusting = false;
         [SerializeField]
+        [Space(10)]
         public List<ThrusterAttributes> ThrusterStages;
 
 
@@ -60,6 +56,7 @@ namespace FireworksMania.Core.Behaviors.Fireworks
                 if (T._effect == null)
                     Debug.LogError((object)"Missing at least one particle system on Thruster", this);
                 T._isThrusting = false;
+                T._curveDeltaTime = 0;
                 T.SetEmissionOnParticleSystems(false);
             }
             this._ExplosionEffect.Stop();
@@ -86,15 +83,13 @@ namespace FireworksMania.Core.Behaviors.Fireworks
         {
             MultiStageRocket rocketBehavior = this;
             StartCoroutine(ThrustController());
-            StartCoroutine(ReleaseRocket(rocketBehavior));
             UniTask uniTask = UniTask.Delay(200);
             await uniTask;
             token.ThrowIfCancellationRequested();
-            Messenger.Broadcast<MessengerEventPlaySound>(new MessengerEventPlaySound(this._thrustSound, this.ThrusterObject.transform, followTransform: true));
+
             token.ThrowIfCancellationRequested();
             uniTask = UniTask.WaitWhile(() => Thrusting == true);
             await uniTask;
-            Messenger.Broadcast<MessengerEventStopSound>(new MessengerEventStopSound(this._thrustSound, this.ThrusterObject.transform));
             if (rocketBehavior._randomTimeDelayAfterThruster)
             {
                 uniTask = UniTask.Delay(Mathf.RoundToInt(UnityEngine.Random.Range(0.0f, 0.1f) * 1000f), cancellationToken: token);
@@ -117,9 +112,13 @@ namespace FireworksMania.Core.Behaviors.Fireworks
             Thrusting = true;
             foreach (ThrusterAttributes T in ThrusterStages)
             {
-                T.TurnOn();
+                if (!T._KeepFrozenAtStart) {
+                    _rigidbody.isKinematic = false;
+                    _rigidbody.useGravity = true;
+                }
+                T.TurnOn(ThrusterObject);
                 yield return new WaitForSeconds(T._thrustTime);
-                T.TurnOff();
+                T.TurnOff(ThrusterObject);
             }
             Thrusting = false;
         }
@@ -134,21 +133,14 @@ namespace FireworksMania.Core.Behaviors.Fireworks
                     T._curveDeltaTime += Time.fixedDeltaTime;
                     if (T._thrustAtPosition)
                     {
-                        this._rigidbody.AddForceAtPosition(ThrusterObject.transform.up * T._thrustForcePerSecond * T._thrustEffectCurve.Evaluate(T._curveDeltaTime) * Time.fixedDeltaTime, ThrusterObject.transform.position, T._thrustForceMode);
+                        this._rigidbody.AddForceAtPosition(ThrusterObject.transform.up * T._thrustForcePerSecond * T._thrustEffectCurve.Evaluate(T._curveDeltaTime / T._thrustTime) * Time.fixedDeltaTime, ThrusterObject.transform.position, T._thrustForceMode);
                     }
                     else
                     {
-                        this._rigidbody.AddForce(ThrusterObject.transform.up * T._thrustForcePerSecond * T._thrustEffectCurve.Evaluate(T._curveDeltaTime) * Time.fixedDeltaTime, T._thrustForceMode);
+                        this._rigidbody.AddForce(ThrusterObject.transform.up * T._thrustForcePerSecond * T._thrustEffectCurve.Evaluate(T._curveDeltaTime / T._thrustTime) * Time.fixedDeltaTime, T._thrustForceMode);
                     }
                 }
             }
-        }
-
-        private IEnumerator ReleaseRocket(MultiStageRocket rocketbehaviour)
-        {
-            yield return new WaitForSeconds(ReleaseDelay);
-            rocketbehaviour._rigidbody.isKinematic = false;
-            rocketbehaviour._rigidbody.useGravity = true;
         }
 
         protected void DisableRigidBodyAndColliders()
@@ -204,6 +196,12 @@ namespace FireworksMania.Core.Behaviors.Fireworks
         [SerializeField]
         [Tooltip("If false, force will be applied in the up direction of the truster on the entire rigidbody. If true the force will be applied at the specific position")]
         public bool _thrustAtPosition;
+        [SerializeField]
+        [Tooltip("If Checked the rocket will NOT be unfrozen at the start of the thruster")]
+        public bool _KeepFrozenAtStart;
+        [GameSound]
+        [SerializeField]
+        private string _thrustSound;
         [HideInInspector]
         public bool _isThrusting;
         [HideInInspector]
@@ -223,18 +221,20 @@ namespace FireworksMania.Core.Behaviors.Fireworks
             }
         }
 
-        public void TurnOn()
+        public void TurnOn(GameObject thrusterObject)
         {
             this._isThrusting = true;
             this.SetEmissionOnParticleSystems(true);
+            Messenger.Broadcast<MessengerEventPlaySound>(new MessengerEventPlaySound(this._thrustSound, thrusterObject.transform, true, true));
         }
 
-        public void TurnOff()
+        public void TurnOff(GameObject thrusterObject)
         {
             if (this._isThrusting)
             {
                 this._isThrusting = false;
                 this.SetEmissionOnParticleSystems(false);
+                Messenger.Broadcast<MessengerEventStopSound>(new MessengerEventStopSound(this._thrustSound, thrusterObject.transform));
             }
         }
     }

@@ -34355,6 +34355,12 @@ MonoBehaviour:
   _fuseConnectionPoint: {fileID: 7755278217413521551}
   _particleSystem: {fileID: 1774598892780632525}
   _fuseIgnitedSound: IgnitedFuse_High
+  _onFuseIgnited:
+    m_PersistentCalls:
+      m_Calls: []
+  _onFuseCompleted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!135 &8078122721097477517
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -49099,6 +49105,9 @@ MonoBehaviour:
   _igniteSurroundingIgnitables: 1
   _enableShakeEffect: 1
   _shakeRangeMultipler: 3
+  _onApplyExplosionForce:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5284252017845300856
 GameObject:
   m_ObjectHideFlags: 0
