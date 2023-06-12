@@ -148,7 +148,7 @@ public class FmAudioPlayer : MonoBehaviour
 
     IEnumerator Startvideo(bool andplay)
     {
-        if (AudioURL == "Enter Video URL Here")
+        if (AudioURL == "Enter Audio URL Here")
         {
             Debug.LogWarning("FMVP: Attempted to start video without a URL input!!!");
             yield break;

@@ -19,6 +19,7 @@ public class ShellsCreator : ModScriptBehaviour
     public Dictionary<string, GameObject> ShellLibrary = new Dictionary<string, GameObject>();
     private bool Initialized = false;
     private GameObject RackItem;
+    [SerializeField]
     public Dictionary<string, ShellsPanelData> PresetLibrary = new Dictionary<string, ShellsPanelData>();
     private Dictionary<string, ShellsPanelData> UsablePresets = new Dictionary<string, ShellsPanelData>();
 

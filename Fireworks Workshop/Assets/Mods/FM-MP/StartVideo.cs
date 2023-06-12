@@ -313,14 +313,17 @@ public class StartVideo : MonoBehaviour
             if (player.source == VideoSource.VideoClip) player.source = VideoSource.Url;
         }
         WWWForm form = new WWWForm();
-        string f = "{\"context\": {\"client\": {\"clientName\": \"ANDROID\",\"clientVersion\": \"16.20\",\"hl\": \"en\"}},\"videoId\": \"" + VideoID + "\",}";
+        string f = "{\"context\": {\"client\": {\"clientName\": \"ANDROID\",\"clientVersion\": \"17.31.35\",\"androidSdkVersion\": \"30\",\"hl\": \"en\"}},\"videoId\": \"" + VideoID + "\",}";
         byte[] bodyRaw = Encoding.UTF8.GetBytes(f);
-        UnityWebRequest request = UnityWebRequest.Post("https://www.youtube.com/youtubei/v1/player?key=AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8", form);
+        UnityWebRequest request = UnityWebRequest.Post("https://www.youtube.com/youtubei/v1/player?key=AIzaSyA8eiZmM1FaDVjRy-df2KTyQ_vz_yYM39w", form);
         request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
         request.SetRequestHeader("Content-Type", "application/json");
-        //request.SetRequestHeader("Origin","https://www.youtube.com");
-        request.SetRequestHeader("X-YouTube-Client-Name", "3");
-        request.SetRequestHeader("X-YouTube-Client-Version", "16.20");
+        request.SetRequestHeader("X-YouTube-Client-Name", "1");
+        request.SetRequestHeader("X-YouTube-Client-Version", "2.20220801.00.00");
+        string userAgentTemporary = "com.google.android.youtube/17.31.35 (Linux; U; Android 11) gzip";
+        //request.SetRequestHeader("Accept", "*/*");
+        //request.SetRequestHeader("Accept-Encoding", "gzip, deflate");
+        request.SetRequestHeader("User-Agent", userAgentTemporary);
         request.certificateHandler = new Certificateinsert();
         yield return request.SendWebRequest();
         if (request.error != null)
