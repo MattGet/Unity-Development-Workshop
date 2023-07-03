@@ -10,12 +10,9 @@ namespace CustomTubes
     {
         public Fuse _fuse;
 
-        void Update()
+        public TubeIgniteComponent(Fuse fuse)
         {
-            if (_fuse.IsUsed || _fuse.IsIgnited)
-            {
-                Destroy(this);
-            }
+            this._fuse = fuse;
         }
 
         public Fuse GetFuse() => this._fuse;
@@ -29,6 +26,8 @@ namespace CustomTubes
         public IFuseConnectionPoint ConnectionPoint => this._fuse.ConnectionPoint;
 
         public bool Enabled => this._fuse.Enabled;
+
+        public bool IsIgnited => this._fuse.IsIgnited;
     }
 
 }

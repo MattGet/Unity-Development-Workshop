@@ -316,6 +316,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 30
   BlueprintDetector: {fileID: 4748762321546271617}
+  ShellDetector: {fileID: 2292200504347120406}
   Top: {fileID: 560482683831679781}
   Bottom: {fileID: 222362551338679988}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -481,6 +482,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 2
   BlueprintDetector: {fileID: 4250979099489910202}
+  ShellDetector: {fileID: 3662712508306490700}
   Top: {fileID: 7509976694156061661}
   Bottom: {fileID: 6061267801215260019}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -615,6 +617,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 32
   BlueprintDetector: {fileID: 4921226831268220756}
+  ShellDetector: {fileID: 1825366807127826503}
   Top: {fileID: 7778435199936760005}
   Bottom: {fileID: 8007483828187647316}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -749,6 +752,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 20
   BlueprintDetector: {fileID: 8686574341979892660}
+  ShellDetector: {fileID: 4388352919968524962}
   Top: {fileID: 560482683831679781}
   Bottom: {fileID: 222362551338679988}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -883,6 +887,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 43
   BlueprintDetector: {fileID: 7582177167019681373}
+  ShellDetector: {fileID: 1353498094676674913}
   Top: {fileID: 7778435199936760005}
   Bottom: {fileID: 8007483828187647316}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -1017,6 +1022,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 27
   BlueprintDetector: {fileID: 307112868907337195}
+  ShellDetector: {fileID: 1562501629726222780}
   Top: {fileID: 560482683831679781}
   Bottom: {fileID: 222362551338679988}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -1151,6 +1157,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 35
   BlueprintDetector: {fileID: 8716278165073114791}
+  ShellDetector: {fileID: 5418105557529969999}
   Top: {fileID: 7778435199936760005}
   Bottom: {fileID: 8007483828187647316}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -1316,6 +1323,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 5
   BlueprintDetector: {fileID: 2650267622107292483}
+  ShellDetector: {fileID: 2491058854491921236}
   Top: {fileID: 7509976694156061661}
   Bottom: {fileID: 6061267801215260019}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -1450,6 +1458,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 45
   BlueprintDetector: {fileID: 2721354069268212113}
+  ShellDetector: {fileID: 2890230322224693480}
   Top: {fileID: 7778435199936760005}
   Bottom: {fileID: 8007483828187647316}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -2044,9 +2053,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7435811282329440745}
-  - component: {fileID: 5048545765178306361}
-  - component: {fileID: 1910134221276271888}
-  - component: {fileID: 3143365601301232077}
   - component: {fileID: 1122201302200079942}
   - component: {fileID: 8654782417463955159}
   - component: {fileID: 2285343335287085876}
@@ -2054,8 +2060,12 @@ GameObject:
   - component: {fileID: 4957368560008932606}
   - component: {fileID: 5466554182151021677}
   - component: {fileID: 6686757479146993152}
-  - component: {fileID: 4142551451766259418}
   - component: {fileID: 2122098787276010564}
+  - component: {fileID: 5983131243059714497}
+  - component: {fileID: -2614297710940142699}
+  - component: {fileID: 3906385443607725718}
+  - component: {fileID: 2204347087845295092}
+  - component: {fileID: -3142596303652762554}
   m_Layer: 0
   m_Name: 1.75inch 20-10-20 30 Degree Rack
   m_TagString: Untagged
@@ -2083,44 +2093,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5048545765178306361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243535225229073746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 249385142, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _entityDefinition: {fileID: 11400000, guid: 4f43ee46fb32d0e448437c147a205192, type: 2}
---- !u!114 &1910134221276271888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243535225229073746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 35166855, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3143365601301232077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243535225229073746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -432571082, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sound: SFX_Impact_GeneralMedium
 --- !u!65 &1122201302200079942
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2202,7 +2174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxShells: 50
   heightUp: 1
-  ErrorSound: {fileID: 11400000, guid: 6cc8558c58ca55540826d1ba920eaa13, type: 2}
+  ErrorSound: {fileID: 0}
 --- !u!114 &6686757479146993152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2267,39 +2239,6 @@ MonoBehaviour:
   - {fileID: 5605233359103086291}
   - {fileID: 7980685498976187377}
   _rigidbody: {fileID: 6465312443372129181}
---- !u!114 &4142551451766259418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243535225229073746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 426763944, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _customText: Open UI
-  _showHighlight: 0
-  _showInteractionUI: 1
-  OnBeginUse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2122098787276010564}
-        m_TargetAssemblyTypeName: ShellsMessagingService, Assembly-CSharp
-        m_MethodName: OpenCC
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnEndUse:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &2122098787276010564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2310,6 +2249,93 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1c5a1ba2a6f4ec41b80d0d267303ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5983131243059714497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243535225229073746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 863a37014c3aafc4b94d2bab656e8c69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entityDefinition: {fileID: 11400000, guid: 2e6a719bb97ac9c48b315c444330faa6, type: 2}
+--- !u!114 &-2614297710940142699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243535225229073746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4337c1a37a18fe04cb606ba7169e57ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3906385443607725718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243535225229073746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+--- !u!114 &2204347087845295092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243535225229073746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 1
+  SyncScaleY: 1
+  SyncScaleZ: 1
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 0
+  Interpolate: 1
+  SlerpPosition: 0
+--- !u!114 &-3142596303652762554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243535225229073746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1312558911020726491
@@ -2442,6 +2468,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 8
   BlueprintDetector: {fileID: 6790162702524377023}
+  ShellDetector: {fileID: 7532689344285666116}
   Top: {fileID: 7509976694156061661}
   Bottom: {fileID: 6061267801215260019}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -2576,6 +2603,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 38
   BlueprintDetector: {fileID: 4445196617337764270}
+  ShellDetector: {fileID: 9198456868323092856}
   Top: {fileID: 7778435199936760005}
   Bottom: {fileID: 8007483828187647316}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -2793,6 +2821,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 36
   BlueprintDetector: {fileID: 7982383603361396033}
+  ShellDetector: {fileID: 8578967941494536999}
   Top: {fileID: 7778435199936760005}
   Bottom: {fileID: 8007483828187647316}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -2927,6 +2956,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 6
   BlueprintDetector: {fileID: 1602787009287157930}
+  ShellDetector: {fileID: 535319423427167757}
   Top: {fileID: 7509976694156061661}
   Bottom: {fileID: 6061267801215260019}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -3310,6 +3340,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 17
   BlueprintDetector: {fileID: 6790820733758422081}
+  ShellDetector: {fileID: 3338301893014144911}
   Top: {fileID: 560482683831679781}
   Bottom: {fileID: 222362551338679988}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -3444,6 +3475,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 41
   BlueprintDetector: {fileID: 7396015368358551852}
+  ShellDetector: {fileID: 253567186230744623}
   Top: {fileID: 7778435199936760005}
   Bottom: {fileID: 8007483828187647316}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -3744,6 +3776,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 22
   BlueprintDetector: {fileID: 4085585130354077992}
+  ShellDetector: {fileID: 3626907682723811526}
   Top: {fileID: 560482683831679781}
   Bottom: {fileID: 222362551338679988}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -3878,6 +3911,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 44
   BlueprintDetector: {fileID: 5516256660127002254}
+  ShellDetector: {fileID: 8246603705752303546}
   Top: {fileID: 7778435199936760005}
   Bottom: {fileID: 8007483828187647316}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -4613,6 +4647,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 46
   BlueprintDetector: {fileID: 1542317345782835241}
+  ShellDetector: {fileID: 9019324892494405997}
   Top: {fileID: 7778435199936760005}
   Bottom: {fileID: 8007483828187647316}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -4830,6 +4865,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 29
   BlueprintDetector: {fileID: 810495497378417419}
+  ShellDetector: {fileID: 3521389413491069547}
   Top: {fileID: 560482683831679781}
   Bottom: {fileID: 222362551338679988}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -5338,6 +5374,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 4
   BlueprintDetector: {fileID: 3403876875775206833}
+  ShellDetector: {fileID: 6838158787599210400}
   Top: {fileID: 7509976694156061661}
   Bottom: {fileID: 6061267801215260019}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -5555,6 +5592,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 34
   BlueprintDetector: {fileID: 1740503918946656585}
+  ShellDetector: {fileID: 7223279091326330345}
   Top: {fileID: 7778435199936760005}
   Bottom: {fileID: 8007483828187647316}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -5689,6 +5727,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 48
   BlueprintDetector: {fileID: 6157802297850111446}
+  ShellDetector: {fileID: 520593221271128100}
   Top: {fileID: 7778435199936760005}
   Bottom: {fileID: 8007483828187647316}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -5989,6 +6028,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 19
   BlueprintDetector: {fileID: 3649569712221456054}
+  ShellDetector: {fileID: 6881244517365981687}
   Top: {fileID: 560482683831679781}
   Bottom: {fileID: 222362551338679988}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -7134,6 +7174,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 13
   BlueprintDetector: {fileID: 7604915290597644107}
+  ShellDetector: {fileID: 6122813408490007779}
   Top: {fileID: 560482683831679781}
   Bottom: {fileID: 222362551338679988}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -7517,6 +7558,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 11
   BlueprintDetector: {fileID: 6567005692387028536}
+  ShellDetector: {fileID: 5594230865995512892}
   Top: {fileID: 560482683831679781}
   Bottom: {fileID: 222362551338679988}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -8074,6 +8116,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 9
   BlueprintDetector: {fileID: 6985116366217983500}
+  ShellDetector: {fileID: 2928482140071662868}
   Top: {fileID: 7509976694156061661}
   Bottom: {fileID: 6061267801215260019}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -8208,6 +8251,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 39
   BlueprintDetector: {fileID: 6814036134572029270}
+  ShellDetector: {fileID: 3695950046246687255}
   Top: {fileID: 7778435199936760005}
   Bottom: {fileID: 8007483828187647316}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -8646,6 +8690,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 28
   BlueprintDetector: {fileID: 4125676601731700278}
+  ShellDetector: {fileID: 7713598900874836932}
   Top: {fileID: 560482683831679781}
   Bottom: {fileID: 222362551338679988}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -8780,6 +8825,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 14
   BlueprintDetector: {fileID: 8363803007121805993}
+  ShellDetector: {fileID: 579714765826840073}
   Top: {fileID: 560482683831679781}
   Bottom: {fileID: 222362551338679988}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -9496,6 +9542,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 49
   BlueprintDetector: {fileID: 7424963326416795883}
+  ShellDetector: {fileID: 6695670196354392459}
   Top: {fileID: 7778435199936760005}
   Bottom: {fileID: 8007483828187647316}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -9997,6 +10044,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 1
   BlueprintDetector: {fileID: 6118782898908046910}
+  ShellDetector: {fileID: 3017094789500765161}
   Top: {fileID: 7509976694156061661}
   Bottom: {fileID: 6061267801215260019}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -10131,6 +10179,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 31
   BlueprintDetector: {fileID: 3969643177309707736}
+  ShellDetector: {fileID: 2420406380454957020}
   Top: {fileID: 7778435199936760005}
   Bottom: {fileID: 8007483828187647316}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -10609,6 +10658,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 3
   BlueprintDetector: {fileID: 8341852871943410199}
+  ShellDetector: {fileID: 2150569585650259911}
   Top: {fileID: 7509976694156061661}
   Bottom: {fileID: 6061267801215260019}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -10826,6 +10876,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 33
   BlueprintDetector: {fileID: 414234100449748139}
+  ShellDetector: {fileID: 4092975778355011331}
   Top: {fileID: 7778435199936760005}
   Bottom: {fileID: 8007483828187647316}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -11624,6 +11675,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 25
   BlueprintDetector: {fileID: 5328181163257289329}
+  ShellDetector: {fileID: 4911624784857494280}
   Top: {fileID: 560482683831679781}
   Bottom: {fileID: 222362551338679988}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -12038,6 +12090,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 40
   BlueprintDetector: {fileID: 1493322354591307860}
+  ShellDetector: {fileID: 5824067088396769602}
   Top: {fileID: 7778435199936760005}
   Bottom: {fileID: 8007483828187647316}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -12172,6 +12225,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 23
   BlueprintDetector: {fileID: 363943177014629821}
+  ShellDetector: {fileID: 9150512669620730497}
   Top: {fileID: 560482683831679781}
   Bottom: {fileID: 222362551338679988}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -12306,6 +12360,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 10
   BlueprintDetector: {fileID: 1790292806803422611}
+  ShellDetector: {fileID: 2924818019207622938}
   Top: {fileID: 7509976694156061661}
   Bottom: {fileID: 6061267801215260019}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -12440,6 +12495,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 47
   BlueprintDetector: {fileID: 7527384236241139211}
+  ShellDetector: {fileID: 8762508878042077788}
   Top: {fileID: 7778435199936760005}
   Bottom: {fileID: 8007483828187647316}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -12574,6 +12630,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 15
   BlueprintDetector: {fileID: 1496252107475797319}
+  ShellDetector: {fileID: 2811736960963425967}
   Top: {fileID: 560482683831679781}
   Bottom: {fileID: 222362551338679988}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -12905,6 +12962,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 50
   BlueprintDetector: {fileID: 3302070611314813025}
+  ShellDetector: {fileID: 8357055439367545078}
   Top: {fileID: 7778435199936760005}
   Bottom: {fileID: 8007483828187647316}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -13070,6 +13128,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 12
   BlueprintDetector: {fileID: 2917774180591500468}
+  ShellDetector: {fileID: 8457954587789218727}
   Top: {fileID: 560482683831679781}
   Bottom: {fileID: 222362551338679988}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -13204,6 +13263,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 26
   BlueprintDetector: {fileID: 8742288310751484873}
+  ShellDetector: {fileID: 1233605481316799117}
   Top: {fileID: 560482683831679781}
   Bottom: {fileID: 222362551338679988}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -13421,6 +13481,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 21
   BlueprintDetector: {fileID: 762899821579997900}
+  ShellDetector: {fileID: 8048332280102512079}
   Top: {fileID: 560482683831679781}
   Bottom: {fileID: 222362551338679988}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -13638,6 +13699,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 42
   BlueprintDetector: {fileID: 6090937719409869512}
+  ShellDetector: {fileID: 6800695746938544934}
   Top: {fileID: 7778435199936760005}
   Bottom: {fileID: 8007483828187647316}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -13855,6 +13917,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 24
   BlueprintDetector: {fileID: 2357669205117754734}
+  ShellDetector: {fileID: 2180978014695867482}
   Top: {fileID: 560482683831679781}
   Bottom: {fileID: 222362551338679988}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -13989,6 +14052,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 16
   BlueprintDetector: {fileID: 212423492349019809}
+  ShellDetector: {fileID: 1962210928708913351}
   Top: {fileID: 560482683831679781}
   Bottom: {fileID: 222362551338679988}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -14289,6 +14353,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 37
   BlueprintDetector: {fileID: 3605244649690386337}
+  ShellDetector: {fileID: 4783304872574596207}
   Top: {fileID: 7778435199936760005}
   Bottom: {fileID: 8007483828187647316}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -14423,6 +14488,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 7
   BlueprintDetector: {fileID: 796620286954397197}
+  ShellDetector: {fileID: 5287572392722660778}
   Top: {fileID: 7509976694156061661}
   Bottom: {fileID: 6061267801215260019}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -14557,6 +14623,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 18
   BlueprintDetector: {fileID: 5874157740498356814}
+  ShellDetector: {fileID: 1410412127491791512}
   Top: {fileID: 560482683831679781}
   Bottom: {fileID: 222362551338679988}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}

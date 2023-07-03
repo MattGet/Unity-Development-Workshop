@@ -9,6 +9,7 @@ using FireworksMania.Core.Persistence;
 using System.Reflection;
 using System.IO;
 
+
 public class PrefabToEntityDefenition : UnityEditor.Editor
 {
     [MenuItem("Assets/Prefab To Entity/Default Fireworks/Front View")]

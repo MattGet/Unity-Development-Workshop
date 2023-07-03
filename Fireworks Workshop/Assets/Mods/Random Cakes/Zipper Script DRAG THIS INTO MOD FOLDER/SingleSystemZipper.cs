@@ -274,7 +274,9 @@ public class SingleSystemZipper : MonoBehaviour
                 {
                     BurstPos = (XDistance / NumberOfBursts);
                     CyclePos = (ZDistance / NumberOfCycles);
+#if UNITY_EDITOR
                     Debug.Log("Starting Animation");
+#endif
                     Started = true;
                     StartAnimation();
                 }
@@ -354,8 +356,9 @@ public class SingleSystemZipper : MonoBehaviour
             {
                 float StartAngle = StartanlgePyramid();
                 float StartPos = StartPosPyramid();
-                Debug.Log($"StartAngle = {StartAngle}");
 #if UNITY_EDITOR
+                Debug.Log($"StartAngle = {StartAngle}");
+
                 Debug.Log("Cycle: " + i);
 #endif
 
@@ -422,9 +425,9 @@ public class SingleSystemZipper : MonoBehaviour
             float CycleModifier = (ZDistance / 2);
             for (int i = 0; i <= NumberOfCycles - 1; i++)
             {
-
-                Debug.Log($"StartAngle = {StartAngle}");
 #if UNITY_EDITOR
+                Debug.Log($"StartAngle = {StartAngle}");
+
                 Debug.Log("Cycle: " + i);
 #endif
 
@@ -562,10 +565,10 @@ public class SingleSystemZipper : MonoBehaviour
             pos = Startpos(false);
         }
 
-//#if UNITY_EDITOR
+#if UNITY_EDITOR
         Debug.Log("StartAngle =  " + start);
         Debug.Log("StartPos =  " + pos);
-//#endif
+#endif
 
         yield return new WaitForSeconds(StartDelay);
         CurrTime += StartDelay;

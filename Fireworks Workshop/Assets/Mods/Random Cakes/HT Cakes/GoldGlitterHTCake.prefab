@@ -19831,7 +19831,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5461376076953149781}
-  - component: {fileID: 628786316500376563}
+  - component: {fileID: 6772342871183914115}
   m_Layer: 0
   m_Name: DeathExplosionForce
   m_TagString: Untagged
@@ -19854,7 +19854,7 @@ Transform:
   m_Father: {fileID: 6051484638392138200}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &628786316500376563
+--- !u!114 &6772342871183914115
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19863,23 +19863,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 2774958882927291651}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 2030764095, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ddc39d05f82b0c4f988350229d1b834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _range: 1.5
-  _upwardsmodifier: 0.35
+  _range: 0.2
+  _upwardsmodifier: 0.25
   _forceMode: 1
-  _explosionForce: 800
+  _explosionForce: 100
   _applyForceRelativeToMass: 1
   _ignoreKinematic: 1
-  _ignoreRigidbodies:
-  - {fileID: 1148715201648252717}
+  _ignoreRigidbodies: []
   _affectedLayers:
     serializedVersion: 2
-    m_Bits: 5633
+    m_Bits: 0
   _igniteSurroundingIgnitables: 1
   _enableShakeEffect: 1
-  _shakeRangeMultipler: 15
+  _shakeRangeMultipler: 1
   _onApplyExplosionForce:
     m_PersistentCalls:
       m_Calls: []
@@ -19894,8 +19893,6 @@ GameObject:
   - component: {fileID: 945421670329103571}
   - component: {fileID: 1771950043546890281}
   - component: {fileID: 5925888092112226282}
-  - component: {fileID: 1512659954950090360}
-  - component: {fileID: 4978089308948191430}
   m_Layer: 0
   m_Name: Explosion (1)
   m_TagString: Untagged
@@ -24900,34 +24897,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &1512659954950090360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2843779386937999201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 841284212, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _particleSpawnedSound: '[None]'
-  _playSingleSpawnSound: 0
-  _particleDestroyedSound: '[None]'
-  _playSingleDestroySound: 0
---- !u!114 &4978089308948191430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2843779386937999201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -412979324, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3089787834255155147
 GameObject:
   m_ObjectHideFlags: 0
@@ -29937,8 +29906,6 @@ GameObject:
   - component: {fileID: 7238446480663306715}
   - component: {fileID: 6724595710801327090}
   - component: {fileID: 7915427839582247415}
-  - component: {fileID: 7391418425993874150}
-  - component: {fileID: 514595029298270785}
   m_Layer: 0
   m_Name: Explosion (2)
   m_TagString: Untagged
@@ -34947,34 +34914,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &7391418425993874150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3362715026419772049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 841284212, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _particleSpawnedSound: '[None]'
-  _playSingleSpawnSound: 0
-  _particleDestroyedSound: '[None]'
-  _playSingleDestroySound: 0
---- !u!114 &514595029298270785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3362715026419772049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -412979324, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4233326331638531608
 GameObject:
   m_ObjectHideFlags: 0
@@ -34984,8 +34923,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4172249741025370853}
-  - component: {fileID: 8371538602104949018}
   - component: {fileID: 1656932826111728848}
+  - component: {fileID: 3645281622523949793}
   m_Layer: 9
   m_Name: Fuse Component
   m_TagString: Untagged
@@ -35011,29 +34950,6 @@ Transform:
   m_Father: {fileID: 4780930032929982921}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8371538602104949018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4233326331638531608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1130798590, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _fuseTime: 8
-  _ignitionThreshold: 50
-  _fuseConnectionPoint: {fileID: 4978549823980186155}
-  _particleSystem: {fileID: 7755078258037289028}
-  _fuseIgnitedSound: IgnitedFuse_High
-  _onFuseIgnited:
-    m_PersistentCalls:
-      m_Calls: []
-  _onFuseCompleted:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!135 &1656932826111728848
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -35047,6 +34963,29 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3645281622523949793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4233326331638531608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9d074da9def36549959293b0b05e6d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fuseTime: 4
+  _ignitionThreshold: 50
+  _fuseConnectionPoint: {fileID: 1873147449143811916}
+  _particleSystem: {fileID: 7755078258037289028}
+  _fuseIgnitedSound: IgnitedFuse_Middle
+  _onFuseIgnited:
+    m_PersistentCalls:
+      m_Calls: []
+  _onFuseCompleted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4453104125752311399
 GameObject:
   m_ObjectHideFlags: 0
@@ -39810,9 +39749,9 @@ GameObject:
   - component: {fileID: 6051484638392138200}
   - component: {fileID: 1485430350677822508}
   - component: {fileID: 3189853955018197356}
-  - component: {fileID: 8946386556050869672}
-  - component: {fileID: 3596651455265425225}
-  - component: {fileID: 1153449862224313452}
+  - component: {fileID: 4149742623999934087}
+  - component: {fileID: 5461872401820647688}
+  - component: {fileID: 5825797196072110900}
   m_Layer: 0
   m_Name: Effect
   m_TagString: Untagged
@@ -44838,7 +44777,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &8946386556050869672
+--- !u!114 &4149742623999934087
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44847,10 +44786,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4861514519266114085}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -412979324, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
+  m_Script: {fileID: 11500000, guid: e20a3d12f75858845a23338c4929c13a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3596651455265425225
+--- !u!114 &5461872401820647688
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44859,27 +44798,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 4861514519266114085}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 841284212, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _particleSpawnedSound: Standard_Launch_!
-  _playSingleSpawnSound: 0
-  _particleDestroyedSound: Horsetail Cake
-  _playSingleDestroySound: 0
---- !u!114 &1153449862224313452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4861514519266114085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -740855493, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
+  m_Script: {fileID: 11500000, guid: a1ff519f9ccf6a24b8901a77cec81fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _particleSpawnedPhysicsEffect: {fileID: 0}
-  _particleDestroyedPhysicsEffect: {fileID: 628786316500376563}
+  _particleDestroyedPhysicsEffect: {fileID: 6772342871183914115}
+--- !u!114 &5825797196072110900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861514519266114085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef7c1ac7b563ad449f6e03abec85dd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleSpawnedSound: CrosetteLaunch
+  _playSingleSpawnSound: 0
+  _particleDestroyedSound: HT_Cake_Burst
+  _playSingleDestroySound: 0
 --- !u!1 &5219110413637310353
 GameObject:
   m_ObjectHideFlags: 0
@@ -49800,12 +49739,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4780930032929982921}
-  - component: {fileID: 4399789672921155209}
   - component: {fileID: 1411744617882741148}
   - component: {fileID: 1148715201648252717}
-  - component: {fileID: 7868373301296920761}
-  - component: {fileID: 7799528760280872608}
-  - component: {fileID: 8603283190641410149}
+  - component: {fileID: 4910380346691242054}
+  - component: {fileID: 4006087077088691838}
+  - component: {fileID: 6667789110395213937}
+  - component: {fileID: 2767716480780960188}
+  - component: {fileID: -7979478276788253476}
+  - component: {fileID: 8248054963878674855}
   m_Layer: 0
   m_Name: GoldGlitterHTCake
   m_TagString: Untagged
@@ -49831,21 +49772,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4399789672921155209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5987387868561884759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1702441458, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _entityDefinition: {fileID: 11400000, guid: 08728611df178b84eaf2ee6e66027cc5, type: 2}
-  _fuse: {fileID: 8371538602104949018}
-  _effect: {fileID: 1485430350677822508}
 --- !u!65 &1411744617882741148
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49875,7 +49801,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7868373301296920761
+--- !u!114 &4910380346691242054
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49884,11 +49810,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 5987387868561884759}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 249385142, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+--- !u!114 &4006087077088691838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5987387868561884759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c78bf06a529b64e4baf6089271fd6040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _entityDefinition: {fileID: 11400000, guid: 08728611df178b84eaf2ee6e66027cc5, type: 2}
---- !u!114 &7799528760280872608
+  _fuse: {fileID: 3645281622523949793}
+  _effect: {fileID: 1485430350677822508}
+--- !u!114 &6667789110395213937
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49897,10 +49845,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5987387868561884759}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1853490775, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ae0b807dd066e84bbc726130033d20b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8603283190641410149
+--- !u!114 &2767716480780960188
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49909,10 +49857,52 @@ MonoBehaviour:
   m_GameObject: {fileID: 5987387868561884759}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -432571082, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
+  m_Script: {fileID: 11500000, guid: 863a37014c3aafc4b94d2bab656e8c69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sound: SFX_Impact_GeneralLarge
+  _entityDefinition: {fileID: 11400000, guid: 08728611df178b84eaf2ee6e66027cc5, type: 2}
+--- !u!114 &-7979478276788253476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5987387868561884759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 1
+  SyncScaleY: 1
+  SyncScaleZ: 1
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 0
+  Interpolate: 1
+  SlerpPosition: 0
+--- !u!114 &8248054963878674855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5987387868561884759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6075778456340419270
 GameObject:
   m_ObjectHideFlags: 0
@@ -64614,7 +64604,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8923144981822228195}
-  - component: {fileID: 4978549823980186155}
+  - component: {fileID: 1873147449143811916}
   m_Layer: 9
   m_Name: FuseConnectionPointPrefab
   m_TagString: Untagged
@@ -64638,7 +64628,7 @@ Transform:
   m_Father: {fileID: 4172249741025370853}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4978549823980186155
+--- !u!114 &1873147449143811916
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64647,7 +64637,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8959396702957394460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1879996859, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d15df1c433248a41a665204fb340592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _activeIndicator: {fileID: 3089787834255155147}

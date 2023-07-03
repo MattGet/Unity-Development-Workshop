@@ -31,4 +31,6 @@ public class CandleIgnitionComponent : MonoBehaviour, IHaveFuse, IHaveFuseConnec
     public IFuseConnectionPoint ConnectionPoint => this._fuse.ConnectionPoint;
 
     public bool Enabled => this._fuse.Enabled;
+
+    public bool IsIgnited => throw new System.NotImplementedException();
 }

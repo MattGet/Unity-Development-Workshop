@@ -145,6 +145,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 8
   BlueprintDetector: {fileID: 1173840997678609038}
+  ShellDetector: {fileID: 7387972726807927046}
   Top: {fileID: 3530062899204470147}
   Bottom: {fileID: 5102039118207817230}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -464,6 +465,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 6
   BlueprintDetector: {fileID: 1384475192027928693}
+  ShellDetector: {fileID: 5572115914302281066}
   Top: {fileID: 2533618767565817137}
   Bottom: {fileID: 6132320303284790972}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -696,6 +698,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 11
   BlueprintDetector: {fileID: 8473829285066994796}
+  ShellDetector: {fileID: 2365853133646295309}
   Top: {fileID: 3530062899204470147}
   Bottom: {fileID: 5102039118207817230}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -928,6 +931,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 13
   BlueprintDetector: {fileID: 1810808818328828933}
+  ShellDetector: {fileID: 7115130679675153449}
   Top: {fileID: 7204923865018097172}
   Bottom: {fileID: 1571281417748479385}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -1064,6 +1068,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 15
   BlueprintDetector: {fileID: 8706519543818386631}
+  ShellDetector: {fileID: 3993876829047517145}
   Top: {fileID: 7204923865018097172}
   Bottom: {fileID: 1571281417748479385}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -1260,18 +1265,19 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5135122733767143128}
-  - component: {fileID: 7237352521576095482}
   - component: {fileID: 401404420995795839}
-  - component: {fileID: 1661358466399435949}
-  - component: {fileID: 44622623119652770}
   - component: {fileID: 366987100946644042}
   - component: {fileID: 7570946066540816637}
   - component: {fileID: 3445632595995182716}
   - component: {fileID: 7785683272252268490}
   - component: {fileID: 5341811990216822476}
   - component: {fileID: 1565933864186357536}
-  - component: {fileID: 3359235878542460695}
   - component: {fileID: 8866061684453940179}
+  - component: {fileID: 3819502203337060720}
+  - component: {fileID: -1895563084529403846}
+  - component: {fileID: 7457782973016629873}
+  - component: {fileID: -1838597184978836181}
+  - component: {fileID: -1179625913252853779}
   m_Layer: 0
   m_Name: 3.00inch 6_ 3 30 Degree Rack
   m_TagString: Untagged
@@ -1299,19 +1305,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7237352521576095482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 794038827436655810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 249385142, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _entityDefinition: {fileID: 11400000, guid: 37dcaecac19251643b91599f1ae462e2, type: 2}
 --- !u!54 &401404420995795839
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1328,31 +1321,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1661358466399435949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 794038827436655810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -432571082, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sound: SFX_Impact_GeneralLarge
---- !u!114 &44622623119652770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 794038827436655810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 35166855, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &366987100946644042
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1406,7 +1374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxShells: 18
   heightUp: 1
-  ErrorSound: {fileID: 11400000, guid: 6cc8558c58ca55540826d1ba920eaa13, type: 2}
+  ErrorSound: {fileID: 0}
 --- !u!114 &5341811990216822476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1451,39 +1419,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dd3691bca3226642984a26c1ce43446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3359235878542460695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 794038827436655810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 426763944, guid: 15f2946a651cfd84c804c26926af6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _customText: Open UI
-  _showHighlight: 0
-  _showInteractionUI: 1
-  OnBeginUse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8866061684453940179}
-        m_TargetAssemblyTypeName: ShellsMessagingService, Assembly-CSharp
-        m_MethodName: OpenCC
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnEndUse:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &8866061684453940179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1494,6 +1429,93 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1c5a1ba2a6f4ec41b80d0d267303ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3819502203337060720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794038827436655810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 863a37014c3aafc4b94d2bab656e8c69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entityDefinition: {fileID: 11400000, guid: e674bcfeb552b74479df01a6a033591d, type: 2}
+--- !u!114 &-1895563084529403846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794038827436655810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4337c1a37a18fe04cb606ba7169e57ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7457782973016629873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794038827436655810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+--- !u!114 &-1838597184978836181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794038827436655810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 1
+  SyncScaleY: 1
+  SyncScaleZ: 1
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 0
+  Interpolate: 1
+  SlerpPosition: 0
+--- !u!114 &-1179625913252853779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794038827436655810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &897276234959053100
@@ -1973,6 +1995,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 2
   BlueprintDetector: {fileID: 260689205753299516}
+  ShellDetector: {fileID: 8454152971372014004}
   Top: {fileID: 2533618767565817137}
   Bottom: {fileID: 6132320303284790972}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -2402,6 +2425,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 5
   BlueprintDetector: {fileID: 7371657627675149534}
+  ShellDetector: {fileID: 3675297641499148735}
   Top: {fileID: 2533618767565817137}
   Bottom: {fileID: 6132320303284790972}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -2551,6 +2575,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 12
   BlueprintDetector: {fileID: 63843703394035911}
+  ShellDetector: {fileID: 6809535812939671000}
   Top: {fileID: 3530062899204470147}
   Bottom: {fileID: 5102039118207817230}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -3420,6 +3445,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 10
   BlueprintDetector: {fileID: 8112925195293090859}
+  ShellDetector: {fileID: 8738201071302537818}
   Top: {fileID: 3530062899204470147}
   Bottom: {fileID: 5102039118207817230}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -5098,6 +5124,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 4
   BlueprintDetector: {fileID: 7152440939873227929}
+  ShellDetector: {fileID: 7678680019433210600}
   Top: {fileID: 2533618767565817137}
   Bottom: {fileID: 6132320303284790972}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -5851,6 +5878,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 18
   BlueprintDetector: {fileID: 6044556474243285840}
+  ShellDetector: {fileID: 972796392712736335}
   Top: {fileID: 7204923865018097172}
   Bottom: {fileID: 1571281417748479385}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -6083,6 +6111,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 1
   BlueprintDetector: {fileID: 6482221147722557216}
+  ShellDetector: {fileID: 2479853279599671052}
   Top: {fileID: 2533618767565817137}
   Bottom: {fileID: 6132320303284790972}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -6503,6 +6532,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 3
   BlueprintDetector: {fileID: 4037465700555499490}
+  ShellDetector: {fileID: 8626971763004093692}
   Top: {fileID: 2533618767565817137}
   Bottom: {fileID: 6132320303284790972}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -7246,6 +7276,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 14
   BlueprintDetector: {fileID: 4848714058000570649}
+  ShellDetector: {fileID: 3857086349103624849}
   Top: {fileID: 7204923865018097172}
   Bottom: {fileID: 1571281417748479385}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -7592,6 +7623,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 7
   BlueprintDetector: {fileID: 5341564457352894354}
+  ShellDetector: {fileID: 3584372944869525438}
   Top: {fileID: 3530062899204470147}
   Bottom: {fileID: 5102039118207817230}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -7824,6 +7856,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 17
   BlueprintDetector: {fileID: 2781345790667595771}
+  ShellDetector: {fileID: 8346708841282804378}
   Top: {fileID: 7204923865018097172}
   Bottom: {fileID: 1571281417748479385}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -8296,6 +8329,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 9
   BlueprintDetector: {fileID: 3158009537680054096}
+  ShellDetector: {fileID: 7236541626703086670}
   Top: {fileID: 3530062899204470147}
   Bottom: {fileID: 5102039118207817230}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
@@ -10162,6 +10196,7 @@ MonoBehaviour:
   TubeID: 
   TubeMatchNumber: 16
   BlueprintDetector: {fileID: 2564417285519282108}
+  ShellDetector: {fileID: 3045583470602590669}
   Top: {fileID: 7204923865018097172}
   Bottom: {fileID: 1571281417748479385}
   LoadSound: {fileID: 11400000, guid: 3747365b8c6bd84489e260d67b469718, type: 2}
