@@ -8,7 +8,10 @@ using FireworksMania.Core.Definitions;
 using FireworksMania.Core.Common;
 using CustomTubes;
 
-
+    
+    /// <summary>
+    /// Contains the custom values used to load tubes properly with blueprints, this script needs to be on the "parent" object of all tubeBehaviours.
+    /// </summary>
     [AddComponentMenu("Fireworks Mania/Persistence/CustomTubeData")]
     public class CustomTubeData : MonoBehaviour, ISaveableComponent
     {
@@ -28,6 +31,10 @@ using CustomTubes;
                 Debug.LogError((object)"Missing Rigidbody On: " + this.gameObject.name, (UnityEngine.Object)this);
         }
 
+        /// <summary>
+        /// Automatically assign each tube a number in the mortar, this number is used to match shells with the correct tube during
+        /// a blueprint load. 
+        /// </summary>
         public void SetTubes()
         {
 
@@ -45,6 +52,9 @@ using CustomTubes;
 
         }
 
+        /// <summary>
+        /// Creates a list of Unique Ids from all the TubeIDs in the mortar
+        /// </summary>
         public void setIDs()
         {
             ids.Clear();
@@ -101,7 +111,8 @@ using CustomTubes;
             component.isKinematic = flag;
             _rigidbody = component;
             StartCoroutine(RigidbodyHandler());
-
+            
+            // Loads the list of unique IDs and sets the value back on each tube in the moartar 
             ids = customComponentData.Get<List<string>>("ids");
             //Debug.Log("tubes = " + tubes.Count + " ids = " + ids.Count);
             for (int i = 0; i <= tubes.Count - 1; i++)
@@ -116,7 +127,11 @@ using CustomTubes;
             }
             
         }
-
+        
+        /// <summary>
+        /// Freezes the ridgidbody of the mortar on blueprint load, this is done to avoid physics interactions with shells loaded inside the mortar
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator RigidbodyHandler()
         {
             bool original = _rigidbody.isKinematic;

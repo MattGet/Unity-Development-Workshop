@@ -6,6 +6,9 @@ using FireworksMania.Core.Behaviors.Fireworks.Parts;
 
 namespace CustomTubes
 {
+    /// <summary>
+    /// Adds fuse capabilities to a tube when it has a shell inside it, this allows the player interact with the shell fuse when it is inside a tube
+    /// </summary>
     public class TubeIgniteComponent : MonoBehaviour, IHaveFuse, IHaveFuseConnectionPoint, IIgnitable
     {
         public Fuse _fuse;

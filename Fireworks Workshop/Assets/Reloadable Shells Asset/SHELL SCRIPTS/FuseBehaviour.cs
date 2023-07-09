@@ -48,6 +48,10 @@ public class FuseBehaviour : MonoBehaviour
         //    + "\nFuse World: " + fuse.transform.position.ToString("f3"));
 
     }
+
+    /// <summary>
+    /// Sets the fuse model to the unwrapped state
+    /// </summary>
     public void UnWrapFuse()
     {
             //Debug.Log("Entered Tube");
@@ -64,6 +68,9 @@ public class FuseBehaviour : MonoBehaviour
             }
     }
 
+    /// <summary>
+    /// Sets the fuse model to the wrapped state
+    /// </summary>
     public void WrapFuse()
     {
         if (IsWrapped == false)
@@ -81,6 +88,9 @@ public class FuseBehaviour : MonoBehaviour
 
 
 #if UNITY_EDITOR
+    /// <summary>
+    /// Custom Inspector GUI that adds buttons to change the fuse state in the editor
+    /// </summary>
     private void ChangeState()
     {
 

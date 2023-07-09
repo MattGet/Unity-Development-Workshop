@@ -10,6 +10,10 @@ using CustomTubes;
 
 namespace FireworksMania.Core.Behaviors
 {
+    /// <summary>
+    /// A custom erasebale behavior for mortars that will erase all shells in a mortar if there are shells present. Otherwise the mortar will be erased
+    /// as normal.
+    /// </summary>
     [AddComponentMenu("Fireworks Mania/Behaviors/Other/TubeErase")]
     [DisallowMultipleComponent]
     public class TubeErase : MonoBehaviour, IErasable

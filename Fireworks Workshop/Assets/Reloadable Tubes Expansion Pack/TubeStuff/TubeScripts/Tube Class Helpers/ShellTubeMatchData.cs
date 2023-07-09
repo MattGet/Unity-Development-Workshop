@@ -5,6 +5,9 @@ using CustomTubes;
 
 namespace CustomTubes
 {
+    /// <summary>
+    /// Contains the shell data used to match a shell in the proper tube on blueprint load.
+    /// </summary>
     public class ShellTubeMatchData : MonoBehaviour
     {
         public ShellData shellData;

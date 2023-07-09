@@ -10,7 +10,9 @@ using FireworksMania.Core.Definitions;
 
 namespace FireworksMania.Core.Behaviors.Fireworks
 {
-
+    /// <summary>
+    /// The custom class behaviour for Firework Shells (based off the PreloadedTubeBehaviour)
+    /// </summary>
     [AddComponentMenu("Fireworks Mania/Behaviors/Fireworks/ShellBehavior")]
     public class ShellBehaviour : BaseFireworkBehavior, IHaveFuse, IIgnitable, IHaveFuseConnectionPoint
     {
@@ -63,7 +65,7 @@ namespace FireworksMania.Core.Behaviors.Fireworks
                 W = this.transform.rotation.w
             });
             entitydata.Add<bool>("IsKinematic", (UnityEngine.Object)component != (UnityEngine.Object)null && component.isKinematic);
-            entitydata.Add<bool>("mortar", inmortar);
+            entitydata.Add<bool>("mortar", inmortar); // Save whether the shell is in a mortar and its associated Unique Tube ID
             entitydata.Add<string>("ShellID", TubeID);
             //Debug.Log("stored Shell ID = " + TubeID);
             return entitydata;
@@ -84,11 +86,15 @@ namespace FireworksMania.Core.Behaviors.Fireworks
             bool mortar = customComponentData.Get<bool>("mortar");
             string tubeid = customComponentData.Get<string>("ShellID");
             TubeID = tubeid;
-            this.gameObject.name = TubeID;
+            this.gameObject.name = TubeID; // Set the tube ID to be this objects name so the tube object can easily read it
             //Debug.Log("Loaded shell with name " + TubeID);
             inmortar = mortar;
         }
 
+        /// <summary>
+        /// Used to set the tube ID via a message from the tube
+        /// </summary>
+        /// <param name="id">The Unique ID of the tube this shell is associated with</param>
         public void SetTubeID(string id)
         {
             TubeID = id;
@@ -96,6 +102,10 @@ namespace FireworksMania.Core.Behaviors.Fireworks
             //Debug.Log("SetName = " + id);
         }
 
+        /// <summary>
+        /// Used to fetch the custom tube load sound from this shell and send it back to the tube
+        /// </summary>
+        /// <param name="sendto">The tube to send the data back to</param>
         public void GetTubeSound(GameObject sendto)
         {
             if (TubeLoadSound != null)
@@ -107,6 +117,7 @@ namespace FireworksMania.Core.Behaviors.Fireworks
         // Update is called once per frame
         void Update()
         {
+            // On first update set the shell speed of the particle effect to the GroundShellSpeed
             if (inmortar == false && Setspeed == false)
             {
                 var main = _effect.main;
@@ -114,11 +125,15 @@ namespace FireworksMania.Core.Behaviors.Fireworks
                 Setspeed = true;
                 //Debug.Log(gameObject + " Start Speed set to: " + 1);
             }
+
+            // If the shell is ignited outside a mortar
             if (_fuse.IsUsed && inmortar == false && onlytriggeronce == false)
             {
                 OnFuseCompleted(gameObject);
                 onlytriggeronce = true;
             }
+
+            // if the shell is ignited inside a mortar
             if (_fuse.IsUsed && inmortar == true && onlytriggeronce == false && TubeEffect != null)
             {
                 PlayEffect();
@@ -133,6 +148,10 @@ namespace FireworksMania.Core.Behaviors.Fireworks
             }
         }
 
+        /// <summary>
+        /// Disables the "launch" sound on a shell if a custom tube launch effect is used, this prevents there from being two launch sounds.
+        /// </summary>
+        /// <returns></returns>
         IEnumerator waitforlaunch()
         {
             float temp = _effect.main.startDelay.constant;
@@ -140,18 +159,29 @@ namespace FireworksMania.Core.Behaviors.Fireworks
             ParticleSystemSound shellshound = _effect.gameObject.GetComponent<ParticleSystemSound>();
             shellshound.enabled = true;
         }
+
+        /// <summary>
+        /// Called by a message sent from the tube when the shell enters a tube
+        /// </summary>
+        /// <param name="tube">The tube that called this function</param>
         public void entermortar(GameObject tube)
         {
             //Debug.Log("Entermortar " + gameObject.name);
 
             var main = _effect.main;
-            main.startSpeed = LaunchForce;
+            main.startSpeed = LaunchForce; // Reset launch speed to full power
             //Debug.Log(gameObject + " Reset Speed set to: " + LaunchForce);
             inmortar = true;
             Tube = tube.transform.parent.gameObject;
             Cyllinder = tube;
-            BroadcastMessage("UnWrapFuse");
+            BroadcastMessage("UnWrapFuse"); // If using a custom fuse, change the fuse state to be unwrapped
         }
+
+        /// <summary>
+        /// Handles custom behaviour of the shell after its fuse has gone off. This will hide the shell models, disable colliders,
+        /// and tell its tube that is needs to be removed.
+        /// </summary>
+        /// <param name="ShellObject"></param>
         void OnFuseCompleted(GameObject ShellObject)
         {
             //Debug.Log("Removing" + ShellObject + "from the game, Reason: Fuse ended");
@@ -167,6 +197,12 @@ namespace FireworksMania.Core.Behaviors.Fireworks
                 Cyllinder.SendMessage("removeShell");
             }
         }
+
+        /// <summary>
+        /// Disable all colliders on an object
+        /// </summary>
+        /// <param name="active"></param>
+        /// <param name="ShellObject"></param>
         public void SetAllobjectsStatus(bool active, GameObject ShellObject)
         {
             foreach (Collider c in ShellObject.GetComponents<Collider>())
@@ -174,6 +210,10 @@ namespace FireworksMania.Core.Behaviors.Fireworks
                 c.enabled = active;
             }
         }
+
+        /// <summary>
+        /// Plays the custom launch effect
+        /// </summary>
         public void PlayEffect()
         {
             if (!UseLaunchEffect) return;
@@ -183,10 +223,17 @@ namespace FireworksMania.Core.Behaviors.Fireworks
             effect.transform.parent = Tube.transform;
         }
 
+        /// <summary>
+        /// Allows the UseLaunchEffect flag to be set by an external message
+        /// </summary>
+        /// <param name="isOn"></param>
         public void UseTubeEffect(bool isOn)
         {
             UseLaunchEffect = isOn;
         }
+
+
+        // Below are the "Default" behaviours for all fireworks
 
         protected override void Awake()
         {
